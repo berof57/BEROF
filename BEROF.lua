@@ -4976,7 +4976,7 @@ local text = [[
 ٴ━━━━━━━━━━
 ⚜┇ افتح ترمنال جديد 
 ⚜┇ انسخ رابط كيثاب السورس  ↡
-`git clone https://github.com/BEROF/BEROF.git; cd BEROF;chmod +x tg;chmod +x BEROF.sh;chmod +x SM;./BEROF.sh`
+`git clone https://github.com/BEROF/BEROF.git; cd BEROF;chmod +x tg;chmod +x BEROF.sh;chmod +x BF;./BEROF.sh`
 ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
 ⚜┇ راح يطلب معلومات منك الاتيه ↓
 ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
@@ -4987,7 +4987,7 @@ local text = [[
 ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
 📌┇ راح تلقائيا يشتغل بسكرين 
 💭┇ كود رن السورس
-`cd BEROF;./SM`
+`cd BEROF;./BF`
 💭┇ كود حذف السورس 
 `rm -rf BEROF`
 ٴ━━━━━━━━━━
