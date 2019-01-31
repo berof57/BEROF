@@ -9,7 +9,7 @@
 
 ❕¦  نسخ رابط السورس  ↡
 
-git clone https://github.com/BEROF/BEROF.git; cd BEROF;chmod +x tg;chmod +x BEROF.sh;chmod +x SM.sh;./BEROF.sh
+git clone https://github.com/BEROF/BEROF.git; cd BEROF;chmod +x tg;chmod +x BEROF.sh;chmod +x BF;./BEROF.sh
 
 ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
 
@@ -31,7 +31,7 @@ git clone https://github.com/BEROF/BEROF.git; cd BEROF;chmod +x tg;chmod +x BERO
 
 📊¦ كود رن السورس
 
-cd BEROF;./SM.sh
+cd BEROF;./BF
 
 🗑¦ كود حذف السورس
 
