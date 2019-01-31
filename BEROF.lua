@@ -1778,7 +1778,7 @@ local keyboard = {
 {"تحديث السورس 🔱",'مسح المشتركين 👥','مسح المجموعات 📊'},
 {"وضع اسم البوت 🌐",'استخراج الرابط 🔦',"كشف 🔍"},
 {'مسح قائمه العام 📋','مسح المميزين عام 🔰','مسح المطورين 📡'},
-{'ضع رد تواصل ⚠️','ضع كليشه المطور 🎮','ضع كليشه ستارت ??'},
+{'ضع رد تواصل ⚠️','ضع كليشه المطور 🎮','ضع كليشه ستارت 📨'},
 {'تعطيل رساله الترحيب ??','تفعيل رساله الترحيب 📮','ضع عدد الاعضاء 👤'},
 {"حذف كليشه المطور 🀄","حذف كليشه ستارت 🃏","حذف رد التواصل 📌"},
 {"جلب رد التواصل 📚","جلب كليشه ستارت 📚"},
@@ -2068,7 +2068,7 @@ if text == "حذف كليشه المطور 🗑" and is_devmohmad(msg) then  moh
 if text and text:match("^ضع عدد الاعضاء 📜$") and is_devmohmad(msg) then  mohmadDEVBEROF:setex(DEVBERO.."numadd:bot" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  local t = '*📊┇ ارسل لي العدد الان*'  berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') end
 if text == "جلب رد التواصل 📋" and is_devmohmad(msg) then if mohmadDEVBEROF:get(DEVBERO.."pvstart") then pvstart = mohmadDEVBEROF:get(DEVBERO.."pvstart") berof_sendMsg(msg.chat_id_, msg.id_, 1,''..check_markdown(pvstart)..'', 1, 'md')  else  berof_sendMsg(msg.chat_id_, msg.id_, 1,'*✉┇ لا يوجد رد في التواصل \n☑┇* ارسل `ضع رد التواصل`\n♦', 1, 'md')  end  end
 if text == "جلب كليشه ستارت 📋" and is_devmohmad(msg) then  local start = mohmadDEVBEROF:get(DEVBERO.."start:msgofstart1")  if start then berof_sendMsg(msg.chat_id_, msg.id_, 1,''..check_markdown(start)..'', 1, 'md') else berof_sendMsg(msg.chat_id_, msg.id_, 1,'*🎭┇ لم يتم وضع كليشه ستارت *\n', 1, 'md') end end
-if text == 'الاحصائيات 🔭' and is_devmohmad(msg) then    local grall = mohmadDEVBEROF:scard(DEVBERO.."botgps") or 0    local gradd = mohmadDEVBEROF:scard(DEVBERO..'bot:gpsby:id') or 0    local uspv = mohmadDEVBEROF:scard(DEVBERO.."usersbot") or 0    berof_sendMsg(msg.chat_id_, msg.id_, 1,'\n*☑┇ عدد المجموعات المفعله ↫ ❪'..gradd..'❫\n☑┇ عدد المشتركين ↫ ❪'..uspv..'❫*\n✓', 1, 'md')   end
+if text == 'الاحصائيات 📋' and is_devmohmad(msg) then    local grall = mohmadDEVBEROF:scard(DEVBERO.."botgps") or 0    local gradd = mohmadDEVBEROF:scard(DEVBERO..'bot:gpsby:id') or 0    local uspv = mohmadDEVBEROF:scard(DEVBERO.."usersbot") or 0    berof_sendMsg(msg.chat_id_, msg.id_, 1,'\n*☑┇ عدد المجموعات المفعله ↫ ❪'..gradd..'❫\n☑┇ عدد المشتركين ↫ ❪'..uspv..'❫*\n✓', 1, 'md')   end
 if text=="اذاعه بالتوجيه ♦" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then   mohmadDEVBEROF:setex(DEVBERO.."bc:in:gropsfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true)   berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇* ارسل لي التوجيه ليتم اذاعته للمجموعات\n✓", 1, "md")   end
 if text=="اذاعه خاص بالتوجيه 📡" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then   mohmadDEVBEROF:setex(DEVBERO.."bc:in:pvfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true)   berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇* ارسل لي التوجيه ليتم اذاعته للخاص\n✓", 1, "md")   end
 if text=="اذاعه عام بالتوجيه 📊" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then   mohmadDEVBEROF:setex(DEVBERO.."bc:in:allfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true)   berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇* ارسل لي التوجيه ليتم اذاعته للكل\n✓", 1, "md")   end
@@ -4993,7 +4993,7 @@ local text = [[
 ٴ━━━━━━━━━━
 ⚜┇ للمزيد من المعلومات راسلنا
 ☑┇ مطور السورس » @U22222
-🔘┇ قناة السورس » @BEROF_TEAM
+🔘┇ قناة السورس » [BEROF_TEAM]
 ]] 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,text, 1, 'md')   
 end
