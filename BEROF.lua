@@ -101,7 +101,7 @@ echo -e ""
 done
 ]])  
 file:close()  
-file = io.open("SM", "w")  
+file = io.open("BF", "w")  
 file:write([[
 killall screen
 while(true) do
@@ -112,7 +112,7 @@ echo -e "BEROF IS RUN BOT"
 ]])  
 file:close() 
 os.execute('rm -fr $HOME/.telegram-cli')
-os.execute('./SM')
+os.execute('./BF')
  end 
 local serialize_to_file = function(data, file, uglify)  
 file = io.open(file, "w+")  
@@ -2132,54 +2132,54 @@ print('\27[30;36m»» T H E C O N T A C T \27[1;37m')
 seavusername(msg.sender_user_id_) 
 end
 local user_id = msg.sender_user_id_
-floods = mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"flood") or 'nil'
-NUM_MSG_MAX = mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodmax") or 5
-TIME_CHECK = mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodtime") or 5
-if mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"flood") then 
+floods = mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"flood") or 'nil'
+NUM_MSG_MAX = mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodmax") or 5
+TIME_CHECK = mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodtime") or 5
+if mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"flood") then 
 if not is_vipgroup(msg) then
 if msg.content_.ID == "MessageChatAddMembers" then 
 return else
-local post_count = tonumber(mohmaddevberof:get(DEVBERO..'floodc:'..msg.sender_user_id_..':'..msg.chat_id_) or 0)
-if post_count > tonumber(mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodmax") or 5) then 
+local post_count = tonumber(mohmadDEVBEROF:get(DEVBERO..'floodc:'..msg.sender_user_id_..':'..msg.chat_id_) or 0)
+if post_count > tonumber(mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodmax") or 5) then 
 local ch = msg.chat_id_
-local type = mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"flood") 
+local type = mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"flood") 
 trigger_anti_spam(msg,type)  
 end
-mohmaddevberof:setex(DEVBERO..'floodc:'..msg.sender_user_id_..':'..msg.chat_id_, tonumber(mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodtime") or 3), post_count+1) 
+mohmadDEVBEROF:setex(DEVBERO..'floodc:'..msg.sender_user_id_..':'..msg.chat_id_, tonumber(mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodtime") or 3), post_count+1) 
 end 
 end
 local edit_id = data.text_ or 'nil'  
 NUM_MSG_MAX = 5
-if mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodmax") then
-NUM_MSG_MAX = mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodmax") 
+if mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodmax") then
+NUM_MSG_MAX = mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodmax") 
 end
-if mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodtime") then
-TIME_CHECK = mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"floodtime") 
+if mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodtime") then
+TIME_CHECK = mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"floodtime") 
 end 
 end	  
-if tonumber(mohmaddevberof:get('numlockpinmsg'..msg.chat_id_..msg.sender_user_id_) or 1) >= 100  then
-mohmaddevberof:del(DEVBERO.."lockpin"..msg.chat_id_) 
+if tonumber(mohmadDEVBEROF:get('numlockpinmsg'..msg.chat_id_..msg.sender_user_id_) or 1) >= 100  then
+mohmadDEVBEROF:del(DEVBERO.."lockpin"..msg.chat_id_) 
 else
 if msg.content_.ID == 'MessagePinMessage' then    
-if is_owner(msg) and mohmaddevberof:get(DEVBERO.."lockpin"..msg.chat_id_) then    
-mohmaddevberof:set(DEVBERO..'pinned'..msg.chat_id_, msg.content_.message_id_) 
-elseif not mohmaddevberof:get(DEVBERO.."lockpin"..msg.chat_id_) then    
-mohmaddevberof:set(DEVBERO..'pinned'..msg.chat_id_, msg.content_.message_id_)    
+if is_owner(msg) and mohmadDEVBEROF:get(DEVBERO.."lockpin"..msg.chat_id_) then    
+mohmadDEVBEROF:set(DEVBERO..'pinned'..msg.chat_id_, msg.content_.message_id_) 
+elseif not mohmadDEVBEROF:get(DEVBERO.."lockpin"..msg.chat_id_) then    
+mohmadDEVBEROF:set(DEVBERO..'pinned'..msg.chat_id_, msg.content_.message_id_)    
 end    
 end
 end
 if is_monsh(msg) then  
 else   
 if not is_owner(msg) then  
-if mohmaddevberof:get(DEVBERO.."lockpin"..msg.chat_id_) then 
+if mohmadDEVBEROF:get(DEVBERO.."lockpin"..msg.chat_id_) then 
 if msg.content_.ID == 'MessagePinMessage' then  
 unpinChannelMessage(msg.chat_id_)  
-local PinnedMessage = mohmaddevberof:get(DEVBERO..'pinned'..msg.chat_id_)  
+local PinnedMessage = mohmadDEVBEROF:get(DEVBERO..'pinned'..msg.chat_id_)  
 if PinnedMessage then  
 pinChannelMessage(msg.chat_id_,tonumber(PinnedMessage), 0)  end  end  end  end  end  
 if msg.content_.ID == 'MessagePinMessage' then    
-if tonumber(mohmaddevberof:get('numlockpinmsg'..msg.chat_id_..msg.sender_user_id_) or 1) >= 100 then    
-local PinnedMessage = mohmaddevberof:get(DEVBERO..'pinned'..msg.chat_id_)  
+if tonumber(mohmadDEVBEROF:get('numlockpinmsg'..msg.chat_id_..msg.sender_user_id_) or 1) >= 100 then    
+local PinnedMessage = mohmadDEVBEROF:get(DEVBERO..'pinned'..msg.chat_id_)  
 if PinnedMessage then  
 pinChannelMessage(msg.chat_id_,tonumber(PinnedMessage), 0) 
 end
@@ -2187,19 +2187,19 @@ end
 end
 --------------------------------
 if msg.content_.ID == 'MessageText' and not is_vipgroup(msg) then      
-if mohmaddevberof:get(DEVBERO..'lock:text'..msg.chat_id_) then       
+if mohmadDEVBEROF:get(DEVBERO..'lock:text'..msg.chat_id_) then       
 delete_msg(msg.chat_id_,{[0] = msg.id_})   
 return false end    
 end     
 ---الاشعارات
 if msg.content_.ID == "MessageChatDeletePhoto" or msg.content_.ID == "MessageChatChangePhoto" or msg.content_.ID == 'MessagePinMessage' or msg.content_.ID == "MessageChatJoinByLink" or msg.content_.ID == "MessageChatAddMembers" or msg.content_.ID == 'MessageChatChangeTitle' or msg.content_.ID == "MessageChatDeleteMember" then   
-if mohmaddevberof:get(DEVBERO..'lock:tagservr'..msg.chat_id_) then  
+if mohmadDEVBEROF:get(DEVBERO..'lock:tagservr'..msg.chat_id_) then  
 delete_msg(msg.chat_id_,{[0] = msg.id_})       
 end    
 end   
 ---الاضافات والدخول
 if msg.content_.ID == "MessageChatAddMembers" and not is_vipgroup(msg) then   
-if mohmaddevberof:get(DEVBERO.."lock:AddMempar"..msg.chat_id_) == 'kick' then
+if mohmadDEVBEROF:get(DEVBERO.."lock:AddMempar"..msg.chat_id_) == 'kick' then
 local mem_id = msg.content_.members_  
 for i=0,#mem_id do  
 kicck(msg,msg.chat_id_,mem_id[i].id_)
@@ -2207,7 +2207,7 @@ end
 end
 end
 if msg.content_.ID == "MessageChatJoinByLink" and not is_vipgroup(msg) then 
-if mohmaddevberof:get(DEVBERO.."lock:Join"..msg.chat_id_) == 'kick' then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Join"..msg.chat_id_) == 'kick' then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 return false  
 end
@@ -2216,93 +2216,93 @@ end
 --المعرفات
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("@[%a%d_]+") or msg.content_.caption_:match("@(.+)") then  
-if mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
+if mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 end
 if text and text:match("@[%a%d_]+") or text and text:match("@(.+)") then    
-if mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
+if mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 --الهاشتاك
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("#[%a%d_]+") or msg.content_.caption_:match("#(.+)") then 
-if mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
+if mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 end
 if text and text:match("#[%a%d_]+") or text and text:match("#(.+)") then
-if mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
+if mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 ---الشارحه
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("/[%a%d_]+") or msg.content_.caption_:match("/(.+)") then  
-if mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
+if mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 end
 if text and text:match("/[%a%d_]+") or text and text:match("/(.+)") then
-if mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
+if mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "del" and not is_vipgroup(msg) then    
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then    
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then    
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
@@ -2310,171 +2310,171 @@ end
 if msg.content_.caption_ then 
 if not is_vipgroup(msg) then 
 if msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]://") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]://") or msg.content_.caption_:match("[Ww][Ww][Ww].") or msg.content_.caption_:match(".[Cc][Oo][Mm]") or msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or msg.content_.caption_:match(".[Pp][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or msg.content_.caption_:match("[Tt].[Mm][Ee]/") then 
-if mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" and not is_vipgroup(msg) then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" and not is_vipgroup(msg) then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 end
 end
 if text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or text and text:match("[Hh][Tt][Tt][Pp][Ss]://") or text and text:match("[Hh][Tt][Tt][Pp]://") or text and text:match("[Ww][Ww][Ww].") or text and text:match(".[Cc][Oo][Mm]") or text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or text and text:match(".[Pp][Ee]") or text and text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or text and text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or text and text:match("[Tt].[Mm][Ee]/") and not is_vipgroup(msg) then
-if mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" and not is_vipgroup(msg) then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" and not is_vipgroup(msg) then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ked" and not is_vipgroup(msg) then 
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "kick" and not is_vipgroup(msg) then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ktm" and not is_vipgroup(msg) then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 
 ---الصور
 if msg.content_.ID == 'MessagePhoto' and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 --الفيديو
 if msg.content_.ID == 'MessageVideo' and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 ---المتحركات
 if msg.content_.ID == 'MessageAnimation' and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 --الالعاب
 if msg.content_.game_ and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 ---الصوت
 if msg.content_.ID == 'MessageAudio' and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Audio"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 ---البصمات
 if msg.content_.ID == 'MessageVoice' and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 ---الكيبورد
 if msg.reply_markup_ and msg.reply_markup_.ID == 'ReplyMarkupInlineKeyboard' and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 --الملصقات
 if msg.content_.ID == 'MessageSticker' and not is_mod(msg) and not is_vipgroup(msg) and not is_vipgroups(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 --التوجيه
 if msg.forward_info_ and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 return false
-elseif mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 return false
-elseif mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 return false
-elseif mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 return false
 end
@@ -2484,31 +2484,31 @@ return false
 end
 ---الملفات
 if msg.content_.ID == 'MessageDocument' and not is_vipgroup(msg) then     
-if mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 --الكاميرا الاماميه
 if msg.content_.ID == "MessageUnsupported" and not is_vipgroup(msg) then      
-if mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
@@ -2517,16 +2517,16 @@ if msg.content_.entities_ then
 if msg.content_.entities_[0] then 
 if msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then      
 if not is_vipgroup(msg) then
-if mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end  
@@ -2535,16 +2535,16 @@ end
 end 
 --الجهات
 if msg.content_.ID == 'MessageContact' and not is_vipgroup(msg) then      
-if mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "del" then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "kick" then
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ktm" then
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ktm" then
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
@@ -2553,92 +2553,92 @@ if msg.content_.text_ and not is_vipgroup(msg) then
 local _nl, ctrl_ = string.gsub(text, '%c', '')  
 local _nl, real_ = string.gsub(text, '%d', '')   
 sens = 400  
-if mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "del" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
+if mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "del" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ked" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ked" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
 ked(msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "kick" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "kick" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
 kicck(msg,msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
-elseif mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ktm" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
-mohmaddevberof:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ktm" and utf8.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
+mohmadDEVBEROF:sadd(DEVBERO..'mutes'..msg.chat_id_,msg.sender_user_id_)
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
 ---------
 -->>lock by del user chat <<--
 if msg.content_.ID == 'MessagePinMessage' then
-if mohmaddevberof:sismember(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
-local PinnedMessage = mohmaddevberof:get(DEVBERO..'pinned'..msg.chat_id_)  
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+local PinnedMessage = mohmadDEVBEROF:get(DEVBERO..'pinned'..msg.chat_id_)  
 if PinnedMessage then  
 pinChannelMessage(msg.chat_id_,tonumber(PinnedMessage),0) 
 end
 else
-mohmaddevberof:set(DEVBERO..'pinned'..msg.chat_id_, msg.content_.message_id_)    
+mohmadDEVBEROF:set(DEVBERO..'pinned'..msg.chat_id_, msg.content_.message_id_)    
 end  
 end  
  
 if msg.content_.caption_ and not is_owner(msg) then 
 if msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]://") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]://") or msg.content_.caption_:match("[Ww][Ww][Ww].") or msg.content_.caption_:match(".[Cc][Oo][Mm]") or msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or msg.content_.caption_:match(".[Pp][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or msg.content_.caption_:match("[Tt].[Mm][Ee]/") then 
-if mohmaddevberof:sismember(DEVBERO..'LOCK:LINKS'..msg.chat_id_,msg.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:LINKS'..msg.chat_id_,msg.sender_user_id_) then
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 end
 if text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or text and text:match("[Hh][Tt][Tt][Pp][Ss]://") or text and text:match("[Hh][Tt][Tt][Pp]://") or text and text:match("[Ww][Ww][Ww].") or text and text:match(".[Cc][Oo][Mm]") or text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or text and text:match(".[Pp][Ee]") or text and text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or text and text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or text and text:match("[Tt].[Mm][Ee]/") and not is_vipgroup(msg) then
-if mohmaddevberof:sismember(DEVBERO..'LOCK:LINKS'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:LINKS'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 -- المعرفات
 if text and text:match("@[%a%d_]+") or text and text:match("@(.+)") and not is_owner(msg) then     
-if mohmaddevberof:sismember(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,msg.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,msg.sender_user_id_) then
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 if msg.content_.caption_ and not is_owner(msg) then  
 if msg.content_.caption_:match("@[%a%d_]+") or msg.content_.caption_:match("@(.+)") then  
-if mohmaddevberof:sismember(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,msg.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,msg.sender_user_id_) then
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 end
 -- الصور
 if msg.content_.ID == 'MessagePhoto' then 
-if mohmaddevberof:sismember(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 -- الصوت
 if msg.content_.ID == 'MessageVoice' or msg.content_.ID == 'MessageAudio' then
-if mohmaddevberof:sismember(DEVBERO..'LOCK:VICO'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:VICO'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 
 --المتحركه
 if msg.content_.ID == 'MessageAnimation' then
-if mohmaddevberof:sismember(DEVBERO..'LOCK:GIF'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:GIF'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 --الفيديو
 if msg.content_.ID == 'MessageVideo' then
-if mohmaddevberof:sismember(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 --الملصقات
 if msg.content_.ID == 'MessageSticker' then     
 print('ملصق')
-if mohmaddevberof:sismember(DEVBERO..'LOCK:STEKR'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:STEKR'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 --السيبفي
 if msg.content_.ID == "MessageUnsupported" then
-if mohmaddevberof:sismember(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
@@ -2646,7 +2646,7 @@ end
 if msg.content_.entities_ then 
 if msg.content_.entities_[0] then 
 if msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then      
-if mohmaddevberof:sismember(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
@@ -2654,29 +2654,29 @@ end
 end
 --التوجيه
 if msg.forward_info_ then
-if mohmaddevberof:sismember(DEVBERO..'LOCK:FWD'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:FWD'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end
 --الاونلاين
 if msg.reply_markup_ and msg.reply_markup_.ID == 'ReplyMarkupInlineKeyboard' then     
-if mohmaddevberof:sismember(DEVBERO..'LOCK:INLIN'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
+if mohmadDEVBEROF:sismember(DEVBERO..'LOCK:INLIN'..msg.chat_id_,msg.sender_user_id_) and not is_owner(msg) then 
 tdcli_function ({ID="DeleteMessages", chat_id_=msg.chat_id_, message_ids_={[0] = msg.id_}}, dl_cb, nil) 
 end
 end 
  
-local status_welcome = (mohmaddevberof:get(DEVBERO..'add:welc:'..msg.chat_id_) or 'rem')  
-if status_welcome == 'add' and not mohmaddevberof:get(DEVBERO..'lock:tagservr'..msg.chat_id_)  then
+local status_welcome = (mohmadDEVBEROF:get(DEVBERO..'add:welc:'..msg.chat_id_) or 'rem')  
+if status_welcome == 'add' and not mohmadDEVBEROF:get(DEVBERO..'lock:tagservr'..msg.chat_id_)  then
 if msg.content_.ID == "MessageChatJoinByLink" then
 if not is_banned(msg.chat_id_,msg.sender_user_id_) then 
 function wlc(extra,result,success) 
-if mohmaddevberof:get(DEVBERO..'welcome:'..msg.chat_id_) then 
-t = mohmaddevberof:get(DEVBERO..'welcome:'..msg.chat_id_) 
+if mohmadDEVBEROF:get(DEVBERO..'welcome:'..msg.chat_id_) then 
+t = mohmadDEVBEROF:get(DEVBERO..'welcome:'..msg.chat_id_) 
 else  
 t = '\n• نورت حبي \n•  name \n• ngp' 
 end 
 t = t:gsub('name','<BEROF>'..CatchName(result.first_name_,25)..'</BEROF>') 
-t = t:gsub('ngp',mohmaddevberof:get(DEVBERO..'group:name'..msg.chat_id_)) 
+t = t:gsub('ngp',mohmadDEVBEROF:get(DEVBERO..'group:name'..msg.chat_id_)) 
 monsendwel(msg,msg.chat_id_,t,msg.sender_user_id_) 
 end 
 getUser(msg.sender_user_id_,wlc) 
@@ -2684,366 +2684,366 @@ end
 end
 end 
 if text == 'قفل الدردشه' and msg.reply_to_message_id_ == 0 and is_monsh(msg) then 
-mohmaddevberof:set(DEVBERO.."lock:text"..msg.chat_id_,true) 
+mohmadDEVBEROF:set(DEVBERO.."lock:text"..msg.chat_id_,true) 
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الدردشه \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الاضافه' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO.."lock:AddMempar"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:AddMempar"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل اضافة الاعضاء \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الدخول' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO.."lock:Join"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Join"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل دخول الاعضاء \n✓',msg.sender_user_id_)  
 elseif text == 'قفل البوتات' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO.."lock:Bot:kick"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Bot:kick"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل البوتات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل البوتات بالطرد' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO.."lock:Bot:kick"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Bot:kick"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل البوتات بالطرد\n✓',msg.sender_user_id_)  
 elseif text == 'قفل البوتات بالتقييد' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO.."lock:Bot:kick"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Bot:kick"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل البوتات بالتقييد\n✓',msg.sender_user_id_)  
 elseif text == 'قفل اشعارات البوتات' and msg.reply_to_message_id_ == 0 and is_mod(msg) then  
-mohmaddevberof:set(DEVBERO..'lock:tagservrbot'..msg.chat_id_,true)  
+mohmadDEVBEROF:set(DEVBERO..'lock:tagservrbot'..msg.chat_id_,true)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل اشعارات البوتات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الاشعارات' and msg.reply_to_message_id_ == 0 and is_mod(msg) then  
-mohmaddevberof:set(DEVBERO..'lock:tagservr'..msg.chat_id_,true)  
+mohmadDEVBEROF:set(DEVBERO..'lock:tagservr'..msg.chat_id_,true)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الاشعارات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التثبيت' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO.."lockpin"..msg.chat_id_, true) 
-mohmaddevberof:sadd(DEVBERO..'lock:pin',msg.chat_id_) tdcli_function ({ ID = "GetChannelFull",  channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  mohmaddevberof:set(DEVBERO..'pinned'..msg.chat_id_,data.pinned_message_id_)  end,nil)
+mohmadDEVBEROF:set(DEVBERO.."lockpin"..msg.chat_id_, true) 
+mohmadDEVBEROF:sadd(DEVBERO..'lock:pin',msg.chat_id_) tdcli_function ({ ID = "GetChannelFull",  channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  mohmadDEVBEROF:set(DEVBERO..'pinned'..msg.chat_id_,data.pinned_message_id_)  end,nil)
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التثبيت هنا \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التعديل' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO..'lock:edit'..msg.chat_id_,true) 
+mohmadDEVBEROF:set(DEVBERO..'lock:edit'..msg.chat_id_,true) 
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل تعديل الكلمات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل تعديل الميديا' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO..'lock:edit:media'..msg.chat_id_,true) 
+mohmadDEVBEROF:set(DEVBERO..'lock:edit:media'..msg.chat_id_,true) 
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل تعديل الميديا \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الكل' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
 add_lockal(msg.chat_id_)
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل جميع الاوامر \n✓',msg.sender_user_id_)  
 end
 if text == 'فتح الاضافه' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO.."lock:AddMempar"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:AddMempar"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح اضافة الاعضاء \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الدردشه' and msg.reply_to_message_id_ == 0 and is_monsh(msg) then 
-mohmaddevberof:del(DEVBERO.."lock:text"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:text"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الدردشه \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الدخول' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO.."lock:Join"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Join"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح دخول الاعضاء \n✓',msg.sender_user_id_)  
 elseif text == 'فتح البوتات' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO.."lock:Bot:kick"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Bot:kick"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح البوتات \n✓',msg.sender_user_id_)  
 elseif text == 'فتح البوتات بالطرد' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO.."lock:Bot:kick"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Bot:kick"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح البوتات بالطرد\n✓',msg.sender_user_id_)  
 elseif text == 'فتح البوتات بالتقييد' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO.."lock:Bot:kick"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Bot:kick"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح البوتات بالتقييد\n✓',msg.sender_user_id_)  
 elseif text == 'فتح اشعارات البوتات' and msg.reply_to_message_id_ == 0 and is_mod(msg) then  
-mohmaddevberof:del(DEVBERO..'lock:tagservrbot'..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO..'lock:tagservrbot'..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح اشعارات البوتات \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الاشعارات' and msg.reply_to_message_id_ == 0 and is_mod(msg) then  
-mohmaddevberof:del(DEVBERO..'lock:tagservr'..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO..'lock:tagservr'..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح الاشعارات \n✓',msg.sender_user_id_)  
 elseif text == 'فتح التثبيت' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO.."lockpin"..msg.chat_id_)  mohmaddevberof:srem(DEVBERO..'lock:pin',msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."lockpin"..msg.chat_id_)  mohmadDEVBEROF:srem(DEVBERO..'lock:pin',msg.chat_id_)
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح التثبيت هنا \n✓',msg.sender_user_id_)  
 elseif text == 'فتح التعديل' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO..'lock:edit'..msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO..'lock:edit'..msg.chat_id_) 
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح تعديل الكلمات \n✓',msg.sender_user_id_)  
 elseif text == 'فتح تعديل الميديا' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO..'lock:edit:media'..msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO..'lock:edit:media'..msg.chat_id_) 
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح تعديل الميديا \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الكل' and msg.reply_to_message_id_ == 0 and is_mod(msg) then 
 rem_lockal(msg.chat_id_) 
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فـتح جميع الاوامر \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الروابط' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Link"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Link"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الروابط \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الروابط بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Link"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Link"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الروابط بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الروابط بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Link"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Link"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الروابط بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الروابط بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Link"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Link"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الروابط بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الروابط' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Link"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Link"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الروابط \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل المعرفات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:user:name"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:user:name"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المعرفات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل المعرفات بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:user:name"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:user:name"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المعرفات بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل المعرفات بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:user:name"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:user:name"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المعرفات بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل المعرفات بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:user:name"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:user:name"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المعرفات بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح المعرفات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:user:name"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:user:name"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح المعرفات \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل التاك' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التاك \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التاك بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التاك بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التاك بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التاك بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التاك بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:hashtak"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التاك بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح التاك' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:hashtak"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:hashtak"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح التاك \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الشارحه' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الشارحه \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الشارحه بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الشارحه بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الشارحه بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الشارحه بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الشارحه بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Cmd"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الشارحه بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الشارحه' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Cmd"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Cmd"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الشارحه \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الصور' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Photo"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Photo"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصور \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الصور بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Photo"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Photo"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصور بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الصور بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Photo"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Photo"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصور بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الصور بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Photo"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Photo"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصور بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الصور' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Photo"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Photo"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الصور \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الفيديو' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Video"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Video"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الفيديو \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الفيديو بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Video"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Video"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الفيديو بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الفيديو بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Video"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Video"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الفيديو بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الفيديو بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Video"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Video"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الفيديو بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الفيديو' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Video"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Video"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الفيديو \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل المتحركه' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Animation"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Animation"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المتحركه \n✓',msg.sender_user_id_)  
 elseif text == 'قفل المتحركه بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Animation"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Animation"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المتحركه بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل المتحركه بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Animation"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Animation"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المتحركه بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل المتحركه بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Animation"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Animation"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل المتحركه بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح المتحركه' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Animation"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Animation"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح المتحركه \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الالعاب' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:geam"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:geam"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الالعاب \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الالعاب بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:geam"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:geam"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الالعاب بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الالعاب بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:geam"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:geam"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الالعاب بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الالعاب بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:geam"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:geam"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الالعاب بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الالعاب' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:geam"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:geam"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الالعاب \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الاغاني' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Audio"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Audio"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الاغاني \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الاغاني بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Audio"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Audio"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الاغاني بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الاغاني بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Audio"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Audio"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الاغاني بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الاغاني بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Audio"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Audio"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الاغاني بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الاغاني' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Audio"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Audio"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الاغاني \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الصوت' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:vico"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:vico"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصوت \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الصوت بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:vico"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:vico"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصوت بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الصوت بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:vico"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:vico"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصوت بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الصوت بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:vico"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:vico"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الصوت بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الصوت' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:vico"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:vico"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الصوت \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الكيبورد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكيبورد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الكيبورد بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكيبورد بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الكيبورد بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكيبورد بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الكيبورد بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Keyboard"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكيبورد بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الكيبورد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Keyboard"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Keyboard"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الكيبورد \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الملصقات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملصقات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الملصقات بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملصقات بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الملصقات بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملصقات بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الملصقات بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Sticker"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملصقات بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الملصقات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Sticker"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Sticker"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الملصقات \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل التوجيه' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:forward"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:forward"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التوجيه \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التوجيه بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:forward"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:forward"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التوجيه بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التوجيه بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:forward"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:forward"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التوجيه بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل التوجيه بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:forward"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:forward"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل التوجيه بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح التوجيه' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:forward"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:forward"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح التوجيه \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الملفات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Document"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Document"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملفات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الملفات بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Document"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Document"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملفات بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الملفات بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Document"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Document"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملفات بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الملفات بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Document"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Document"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الملفات بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الملفات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Document"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Document"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الملفات \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل السيلفي' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل السيلفي \n✓',msg.sender_user_id_)  
 elseif text == 'قفل السيلفي بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل السيلفي بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل السيلفي بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل السيلفي بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل السيلفي بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Unsupported"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل السيلفي بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح السيلفي' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Unsupported"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Unsupported"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح السيلفي \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الماركداون' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الماركداون \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الماركداون بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الماركداون بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الماركداون بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الماركداون بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الماركداون بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Markdaun"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الماركداون بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الماركداون' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Markdaun"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Markdaun"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الماركداون \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الجهات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Contact"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Contact"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الجهات \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الجهات بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Contact"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Contact"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الجهات بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الجهات بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Contact"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Contact"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الجهات بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الجهات بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Contact"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Contact"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الجهات بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الجهات' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Contact"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Contact"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الجهات \n✓',msg.sender_user_id_)  
 end
 if text == 'قفل الكلايش' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Spam"..msg.chat_id_,'del')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Spam"..msg.chat_id_,'del')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكلايش \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الكلايش بالتقييد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Spam"..msg.chat_id_,'ked')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Spam"..msg.chat_id_,'ked')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكلايش بالتقييد \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الكلايش بالكتم' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Spam"..msg.chat_id_,'ktm')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Spam"..msg.chat_id_,'ktm')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكلايش بالكتم \n✓',msg.sender_user_id_)  
 elseif text == 'قفل الكلايش بالطرد' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:set(DEVBERO.."lock:Spam"..msg.chat_id_,'kick')  
+mohmadDEVBEROF:set(DEVBERO.."lock:Spam"..msg.chat_id_,'kick')  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم قفـل الكلايش بالطرد \n✓',msg.sender_user_id_)  
 elseif text == 'فتح الكلايش' and is_mod(msg) and msg.reply_to_message_id_ == 0 then 
-mohmaddevberof:del(DEVBERO.."lock:Spam"..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."lock:Spam"..msg.chat_id_)  
 monsend(msg,msg.chat_id_,'🔘┇ اهــلا عـزيـزي {'..get_rtba(msg)..'} ♦\n☑┇ تـم فتح الكلايش \n✓',msg.sender_user_id_)  
 end
 if text == "حذف الصوره" and is_mod(msg) then 
@@ -3051,91 +3051,91 @@ deleteChatPhoto(msg.chat_id_)
 berof_sendMsg(msg.chat_id_, msg.id_,1, '*☑┇* تم حذف صورة المجموعه \n',1,'md') 
 end
 if text and text:match("^ضع وصف$") and is_mod(msg) then  
-mohmaddevberof:setex(DEVBERO.."set:description" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."set:description" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*📋┇* ارسل النص الذي تريده '  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text and text:match("^ضع ترحيب$") and is_mod(msg) then  
-mohmaddevberof:setex(DEVBERO.."welc:bot" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."welc:bot" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*📃┇* ارسل النص الذي تريده '  
 local tt = '\n*🔘┇* ايضا يمكنك وضع \n*❕┇* دالة طباعه الاسم `name` \n*📄┇* ودالة طباعه اسم المجموعه `ngp`'
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t..tt, 1, 'md') 
 end
-if text and text:match("^جلب صوره$") and not mohmaddevberof:get(DEVBERO.."lock:get:photo"..msg.chat_id_) then  
-mohmaddevberof:setex(DEVBERO.."photo:bot" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+if text and text:match("^جلب صوره$") and not mohmadDEVBEROF:get(DEVBERO.."lock:get:photo"..msg.chat_id_) then  
+mohmadDEVBEROF:setex(DEVBERO.."photo:bot" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*🔘┇* ارسل رقم الصوره الان '  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text and text == 'تغير كليشه الترحيب' and is_devmohmad(msg)  then    
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*💬┇ حسنآ ارسل لي نص الترحيب *\n', 1, 'md')   
-mohmaddevberof:set("addreply1:"..msg.sender_user_id_..bot_id,"rep")   
+mohmadDEVBEROF:set("addreply1:"..msg.sender_user_id_..bot_id,"rep")   
 return false   end     
 if text then    
-local rep = mohmaddevberof:get("addreply1:"..msg.sender_user_id_..bot_id)   
+local rep = mohmadDEVBEROF:get("addreply1:"..msg.sender_user_id_..bot_id)   
 if rep == 'rep' then    
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del("addreply1:"..msg.sender_user_id_..bot_id)   
+mohmadDEVBEROF:del("addreply1:"..msg.sender_user_id_..bot_id)   
 return false  end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📷┇ ارسل لي صورة الترحيب *\n", 1, 'md')   
-mohmaddevberof:set("addreply1:"..msg.sender_user_id_..bot_id,"repp")   
-mohmaddevberof:set("addreply2:"..msg.sender_user_id_..bot_id, text)   
-mohmaddevberof:set("klish:welc"..bot_id,text)   
+mohmadDEVBEROF:set("addreply1:"..msg.sender_user_id_..bot_id,"repp")   
+mohmadDEVBEROF:set("addreply2:"..msg.sender_user_id_..bot_id, text)   
+mohmadDEVBEROF:set("klish:welc"..bot_id,text)   
 return false   
 end   
 end   
 if msg.content_.photo_ then   
-local test = mohmaddevberof:get("addreply1:"..msg.sender_user_id_..bot_id)   
+local test = mohmadDEVBEROF:get("addreply1:"..msg.sender_user_id_..bot_id)   
 if test == 'repp' then   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم تغير كليشه الترحيب 💯*\n", 1, 'md')   
-mohmaddevberof:del("addreply1:"..msg.sender_user_id_..bot_id)   
-local test = mohmaddevberof:get("addreply2:"..msg.sender_user_id_..bot_id)   
+mohmadDEVBEROF:del("addreply1:"..msg.sender_user_id_..bot_id)   
+local test = mohmadDEVBEROF:get("addreply2:"..msg.sender_user_id_..bot_id)   
 if msg.content_.photo_ then   
 if msg.content_.photo_.sizes_[1] then   
-mohmaddevberof:set("addreply1photo1"..bot_id, msg.content_.photo_.sizes_[1].photo_.persistent_id_)   
+mohmadDEVBEROF:set("addreply1photo1"..bot_id, msg.content_.photo_.sizes_[1].photo_.persistent_id_)   
 end 
 end   
-mohmaddevberof:del("addreply2:"..msg.sender_user_id_..bot_id)   
+mohmadDEVBEROF:del("addreply2:"..msg.sender_user_id_..bot_id)   
 return false   end   
 end
 --======================
 --ردود المجموعه بالرد
 if text == "مسح الردود بالرد" and is_monsh(msg) then  
-local list = mohmaddevberof:smembers(DEVBERO.."rep:media"..msg.chat_id_)  
-local mohmad = mohmaddevberof:scard(DEVBERO.."rep:media"..msg.chat_id_)  
+local list = mohmadDEVBEROF:smembers(DEVBERO.."rep:media"..msg.chat_id_)  
+local mohmad = mohmadDEVBEROF:scard(DEVBERO.."rep:media"..msg.chat_id_)  
 for k,v in pairs(list) do  
-mohmaddevberof:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:gif"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:vico"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:stekr"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."mohmad:"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:photo"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:video"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:document"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:audio"..v..msg.chat_id_)  
-mohmaddevberof:srem(DEVBERO.."rep:media"..msg.chat_id_,v)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:gif"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:vico"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:stekr"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."mohmad:"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:photo"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:video"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:document"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:audio"..v..msg.chat_id_)  
+mohmadDEVBEROF:srem(DEVBERO.."rep:media"..msg.chat_id_,v)  
 end  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*👥┇* المجموعه تحتوي على *{"..mohmad.."}* رد \n*☑┇* تم مسح الردود جميعها \n", 1, 'md')  
 end
 if  text == "قائمه الردود بالرد" and is_monsh(msg) then  
-local list = mohmaddevberof:smembers(DEVBERO.."rep:media"..msg.chat_id_)  
+local list = mohmadDEVBEROF:smembers(DEVBERO.."rep:media"..msg.chat_id_)  
 t = "*☑┇ قائمة ردود المجموعه بالرد ♦\nٴ━━━━━━━━━━━*\n"    
 for k,v in pairs(list) do  
-if mohmaddevberof:get(DEVBERO.."addreply1:gif"..v..msg.chat_id_) then
+if mohmadDEVBEROF:get(DEVBERO.."addreply1:gif"..v..msg.chat_id_) then
 mohmad = 'متحركه 📷'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:vico"..v..msg.chat_id_)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:vico"..v..msg.chat_id_)  then
 mohmad = 'بصمه 🎵'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:stekr"..v..msg.chat_id_)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:stekr"..v..msg.chat_id_)  then
 mohmad = 'ملصق 🃏'
-elseif mohmaddevberof:get(DEVBERO.."mohmad:"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."mohmad:"..v..msg.chat_id_) then
 mohmad = 'رساله 💭'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:photo"..v..msg.chat_id_)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:photo"..v..msg.chat_id_)  then
 mohmad = 'صوره 🌇'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:video"..v..msg.chat_id_)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:video"..v..msg.chat_id_)  then
 mohmad = 'فيديو 📹'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:document"..v..msg.chat_id_)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:document"..v..msg.chat_id_)  then
 mohmad = 'ملف 📁'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:audio"..v..msg.chat_id_)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:audio"..v..msg.chat_id_)  then
 mohmad = 'اغنيه 🎵'
 end
 t = t..'*'..k..'• *❨`'..v..'`❩ *» {'..mohmad..'}*\n'    
@@ -3147,66 +3147,66 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1, t, 1, 'md')
 end  
 if text == 'اضف رد بالرد' and is_mod(msg)  then   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*📊┇ حسنآ ارسل لي الكلمه الان *\n♦', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_,"rep")  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_,"rep")  
 return false  end    
 if text then   
-local tsssst = mohmaddevberof:get(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+local tsssst = mohmadDEVBEROF:get(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
 if tsssst == 'rep' then   
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
 return false  end 
-if mohmaddevberof:sismember(DEVBERO..'rep:media'..msg.chat_id_,text) then
+if mohmadDEVBEROF:sismember(DEVBERO..'rep:media'..msg.chat_id_,text) then
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ لقد تم اضافة رد بهاذه الكلمه \n🔘┇ ارسل كلمه اخرى او ارسل الغاء*\n♦\n", 1, 'md')  
 else
 media = '{ متحركه ‹› ملصق ‹› صوره ‹› اغنيه ‹› بصمه ‹› ملف ‹› فيديو }'
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*🔘┇ حسنآ ارسل الرد الان\n📤┇ يمكنك ارسال الرد » "..media.."*\n♦", 1, 'md')  
-mohmaddevberof:set(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_,"repp")  
-mohmaddevberof:set(DEVBERO.."addreply2:"..msg.sender_user_id_..msg.chat_id_, text)  
-mohmaddevberof:sadd(DEVBERO.."rep:media"..msg.chat_id_,text)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_,"repp")  
+mohmadDEVBEROF:set(DEVBERO.."addreply2:"..msg.sender_user_id_..msg.chat_id_, text)  
+mohmadDEVBEROF:sadd(DEVBERO.."rep:media"..msg.chat_id_,text)  
 end
 return false  end  
 end  
 if text and text == 'حذف رد بالرد' and  is_monsh(msg) then   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*📊┇ حسنآ ارسل لي الكلمه الان *\n♦', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_,"reppp")  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_,"reppp")  
 return false  end
 if text then 
-local test = mohmaddevberof:get(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+local test = mohmadDEVBEROF:get(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
 if test and test == 'reppp' then   
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
 return false  end 
-if not mohmaddevberof:sismember(DEVBERO..'rep:media'..msg.chat_id_,text) then
-mohmaddevberof:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+if not mohmadDEVBEROF:sismember(DEVBERO..'rep:media'..msg.chat_id_,text) then
+mohmadDEVBEROF:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n❕┇ لا يوجد رد بهاذه الكلمه*\n☑\n", 1, 'md')  
-mohmaddevberof:del("addreply1:gif"..text..msg.chat_id_)  
-mohmaddevberof:del("addreply1:vico"..text..msg.chat_id_)  
-mohmaddevberof:del("addreply1:stekr"..text..msg.chat_id_)  
-mohmaddevberof:del("mohmad:"..text..msg.chat_id_)  
-mohmaddevberof:del("addreply1:photo"..text..msg.chat_id_)
-mohmaddevberof:del("addreply1:video"..text..msg.chat_id_)
-mohmaddevberof:del("addreply1:document"..text..msg.chat_id_)
-mohmaddevberof:del("addreply1:audio"..text..msg.chat_id_)
-mohmaddevberof:srem("rep:media"..msg.chat_id_,text)  
+mohmadDEVBEROF:del("addreply1:gif"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("addreply1:vico"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("addreply1:stekr"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("mohmad:"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("addreply1:photo"..text..msg.chat_id_)
+mohmadDEVBEROF:del("addreply1:video"..text..msg.chat_id_)
+mohmadDEVBEROF:del("addreply1:document"..text..msg.chat_id_)
+mohmadDEVBEROF:del("addreply1:audio"..text..msg.chat_id_)
+mohmadDEVBEROF:srem("rep:media"..msg.chat_id_,text)  
 else
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n☑┇ تم حذفها من قائمة الردود *\n☑\n", 1, 'md')  
-mohmaddevberof:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:gif"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:vico"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:stekr"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."mohmad:"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:photo"..text..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:video"..text..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:document"..text..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:audio"..text..msg.chat_id_)
-mohmaddevberof:srem(DEVBERO.."rep:media"..msg.chat_id_,text)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:gif"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:vico"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:stekr"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."mohmad:"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:photo"..text..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:video"..text..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:document"..text..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:audio"..text..msg.chat_id_)
+mohmadDEVBEROF:srem(DEVBERO.."rep:media"..msg.chat_id_,text)  
 end
 return false  end  
 end
 if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
-local test = mohmaddevberof:get(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+local test = mohmadDEVBEROF:get(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
 if test == 'repp' then  
 if text then 
 what = 'رساله 💭'
@@ -3226,29 +3226,29 @@ elseif msg.content_.video_ then
 what = 'فيديو 📹'
 end
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ تم حفظ الردَ الخاص پك\n🔘┇ نو؏ الرد — { '..what..' }*', 1, 'md')  
-mohmaddevberof:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
-local test = mohmaddevberof:get(DEVBERO.."addreply2:"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:"..msg.sender_user_id_..msg.chat_id_)  
+local test = mohmadDEVBEROF:get(DEVBERO.."addreply2:"..msg.sender_user_id_..msg.chat_id_)  
 if msg.content_.sticker_ then   
-mohmaddevberof:set(DEVBERO.."addreply1:stekr"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:stekr"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
 end   
 if msg.content_.voice_ then  
-mohmaddevberof:set(DEVBERO.."addreply1:vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
 end   
 if msg.content_.animation_ then   
-mohmaddevberof:set(DEVBERO.."addreply1:gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
 end  
 if text then   
-mohmaddevberof:set(DEVBERO.."mohmad:"..test..msg.chat_id_, text)  
+mohmadDEVBEROF:set(DEVBERO.."mohmad:"..test..msg.chat_id_, text)  
 end  
 if msg.content_.audio_ then
-mohmaddevberof:set(DEVBERO.."addreply1:audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
 end
 if msg.content_.document_ then
-mohmaddevberof:set(DEVBERO.."addreply1:document"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:document"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
 end
 if msg.content_.video_ then
-mohmaddevberof:set(DEVBERO.."addreply1:video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
-mohmaddevberof:set(DEVBERO.."addreply1:video:caption"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:video:caption"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
@@ -3263,24 +3263,24 @@ end
 if msg.content_.photo_.sizes_[3] then
 photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
-mohmaddevberof:set(DEVBERO.."addreply1:photo"..test..msg.chat_id_, photo_in_group)  
-mohmaddevberof:set(DEVBERO.."addreply1:photo:caption"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:photo"..test..msg.chat_id_, photo_in_group)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:photo:caption"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
 end
-mohmaddevberof:del(DEVBERO.."addreply2:"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply2:"..msg.sender_user_id_..msg.chat_id_)  
 return false  end  
 end
 
-if text and msg.reply_to_message_id_ ~= 0 and not mohmaddevberof:get(DEVBERO..'lock:rep:rd'..msg.chat_id_) then  
-local anemi = mohmaddevberof:get(DEVBERO.."addreply1:gif"..text..msg.chat_id_)   
-local veico = mohmaddevberof:get(DEVBERO.."addreply1:vico"..text..msg.chat_id_)   
-local stekr = mohmaddevberof:get(DEVBERO.."addreply1:stekr"..text..msg.chat_id_)     
-local mohmad = mohmaddevberof:get(DEVBERO.."mohmad:"..text..msg.chat_id_)   
-local photo = mohmaddevberof:get(DEVBERO.."addreply1:photo"..text..msg.chat_id_)
-local photo_caption = (mohmaddevberof:get(DEVBERO.."addreply1:photo:caption"..text..msg.chat_id_) or '' )
-local video = mohmaddevberof:get(DEVBERO.."addreply1:video"..text..msg.chat_id_)
-local video_caption = mohmaddevberof:get(DEVBERO.."addreply1:video:caption"..text..msg.chat_id_)
-local document = mohmaddevberof:get(DEVBERO.."addreply1:document"..text..msg.chat_id_)
-local audio = mohmaddevberof:get(DEVBERO.."addreply1:audio"..text..msg.chat_id_)
+if text and msg.reply_to_message_id_ ~= 0 and not mohmadDEVBEROF:get(DEVBERO..'lock:rep:rd'..msg.chat_id_) then  
+local anemi = mohmadDEVBEROF:get(DEVBERO.."addreply1:gif"..text..msg.chat_id_)   
+local veico = mohmadDEVBEROF:get(DEVBERO.."addreply1:vico"..text..msg.chat_id_)   
+local stekr = mohmadDEVBEROF:get(DEVBERO.."addreply1:stekr"..text..msg.chat_id_)     
+local mohmad = mohmadDEVBEROF:get(DEVBERO.."mohmad:"..text..msg.chat_id_)   
+local photo = mohmadDEVBEROF:get(DEVBERO.."addreply1:photo"..text..msg.chat_id_)
+local photo_caption = (mohmadDEVBEROF:get(DEVBERO.."addreply1:photo:caption"..text..msg.chat_id_) or '' )
+local video = mohmadDEVBEROF:get(DEVBERO.."addreply1:video"..text..msg.chat_id_)
+local video_caption = mohmadDEVBEROF:get(DEVBERO.."addreply1:video:caption"..text..msg.chat_id_)
+local document = mohmadDEVBEROF:get(DEVBERO.."addreply1:document"..text..msg.chat_id_)
+local audio = mohmadDEVBEROF:get(DEVBERO.."addreply1:audio"..text..msg.chat_id_)
 if mohmad then    
 berof_sendMsg(msg.chat_id_, msg.reply_to_message_id_, 1, ''..check_markdown(mohmad)..'', 1, 'md')     
 return false   
@@ -3317,41 +3317,41 @@ end
 --======================
 --ردود المجموعه
 if text == "مسح الردود" and is_monsh(msg) then  
-local list = mohmaddevberof:smembers(DEVBERO.."repmedia"..msg.chat_id_)  
-local mohmad = mohmaddevberof:scard(DEVBERO.."repmedia"..msg.chat_id_)  
+local list = mohmadDEVBEROF:smembers(DEVBERO.."repmedia"..msg.chat_id_)  
+local mohmad = mohmadDEVBEROF:scard(DEVBERO.."repmedia"..msg.chat_id_)  
 for k,v in pairs(list) do  
-mohmaddevberof:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply1:gif"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply1:vico"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply1:stekr"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply:rd"..v..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:photo:gp"..v..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:video:gp"..v..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:document:gp"..v..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:audio:gp"..v..msg.chat_id_)
-mohmaddevberof:srem(DEVBERO.."repmedia"..msg.chat_id_,v)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1:gif"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1:vico"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1:stekr"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply:rd"..v..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:photo:gp"..v..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:video:gp"..v..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:document:gp"..v..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:audio:gp"..v..msg.chat_id_)
+mohmadDEVBEROF:srem(DEVBERO.."repmedia"..msg.chat_id_,v)  
 end  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*🔘┇* المجموعه تحتوي على *{"..mohmad.."}* رد \n*☑┇* تم مسح الردود جميعها \n", 1, 'md')  
 end
 if  text == "قائمه الردود" and is_monsh(msg) then  
-local list = mohmaddevberof:smembers(DEVBERO.."repmedia"..msg.chat_id_)  
+local list = mohmadDEVBEROF:smembers(DEVBERO.."repmedia"..msg.chat_id_)  
 t = "*☑┇ قائمة ردود المجموعه ♦\nٴ━━━━━━━━━━━*\n"    
 for k,v in pairs(list) do  
-if mohmaddevberof:get(DEVBERO.."add:reply1:gif"..v..msg.chat_id_) then
+if mohmadDEVBEROF:get(DEVBERO.."add:reply1:gif"..v..msg.chat_id_) then
 mohmad = 'متحركه 📷'
-elseif mohmaddevberof:get(DEVBERO.."add:reply1:vico"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:reply1:vico"..v..msg.chat_id_) then
 mohmad = 'بصمه 🎙'
-elseif mohmaddevberof:get(DEVBERO.."add:reply1:stekr"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:reply1:stekr"..v..msg.chat_id_) then
 mohmad = 'ملصق 🃏'
-elseif mohmaddevberof:get(DEVBERO.."add:reply:rd"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:reply:rd"..v..msg.chat_id_) then
 mohmad = 'رساله 💭'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:photo:gp"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:photo:gp"..v..msg.chat_id_) then
 mohmad = 'صوره 🌇'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:video:gp"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:video:gp"..v..msg.chat_id_) then
 mohmad = 'فيديو 📹'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:document:gp"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:document:gp"..v..msg.chat_id_) then
 mohmad = 'ملف 📁'
-elseif mohmaddevberof:get(DEVBERO.."addreply1:audio:gp"..v..msg.chat_id_) then
+elseif mohmadDEVBEROF:get(DEVBERO.."addreply1:audio:gp"..v..msg.chat_id_) then
 mohmad = 'اغنيه 🎵'
 end
 t = t..'*'..k..'• *❨`'..v..'`❩ *» {'..mohmad..'}*\n'    
@@ -3363,64 +3363,64 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1, t, 1, 'md')
 end  
 if text and text == 'اضف رد' and is_monsh(msg)  then   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ حسنآ ارسل لي الكلمه الان *\n', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_,"rep")  
+mohmadDEVBEROF:set(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_,"rep")  
 return false  
 end    
 if text then   
-local tsssst = mohmaddevberof:get(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
+local tsssst = mohmadDEVBEROF:get(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
 if tsssst == 'rep' then   
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
 return false  end 
-if mohmaddevberof:sismember(DEVBERO..'repmedia'..msg.chat_id_,text) then
+if mohmadDEVBEROF:sismember(DEVBERO..'repmedia'..msg.chat_id_,text) then
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ لقد تم اضافة رد بهاذه الكلمه \n🔘┇ ارسل كلمه اخرى او ارسل الغاء*\n♦\n", 1, 'md')  
 else
 media = '{ متحركه ‹› ملصق ‹› صوره ‹› اغنيه ‹› بصمه ‹› ملف ‹› فيديو }'
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ حسنآ ارسل الرد الان\n🔘┇ يمكنك ارسال الرد » "..media.."*\n♦", 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_,"repp")  
-mohmaddevberof:set(DEVBERO.."add:reply2"..msg.sender_user_id_..msg.chat_id_, text)  
-mohmaddevberof:sadd(DEVBERO.."repmedia"..msg.chat_id_,text)  
+mohmadDEVBEROF:set(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_,"repp")  
+mohmadDEVBEROF:set(DEVBERO.."add:reply2"..msg.sender_user_id_..msg.chat_id_, text)  
+mohmadDEVBEROF:sadd(DEVBERO.."repmedia"..msg.chat_id_,text)  
 end
 return false  end  
 end
 if text == 'حذف رد' and is_monsh(msg) then   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ حسنآ ارسل لي الكلمه الان *\n', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_,"reppp")  
+mohmadDEVBEROF:set(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_,"reppp")  
 return false  end
 if text then 
-local test = mohmaddevberof:get(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
+local test = mohmadDEVBEROF:get(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
 if test and test == 'reppp' then   
-if not mohmaddevberof:sismember(DEVBERO..'repmedia'..msg.chat_id_,text) then
-mohmaddevberof:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)
+if not mohmadDEVBEROF:sismember(DEVBERO..'repmedia'..msg.chat_id_,text) then
+mohmadDEVBEROF:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n❕┇ لا يوجد رد بهاذه الكلمه*\n♦\n", 1, 'md')  
-mohmaddevberof:del("add:reply1:gif"..text..msg.chat_id_)  
-mohmaddevberof:del("add:reply1:vico"..text..msg.chat_id_)  
-mohmaddevberof:del("add:reply1:stekr"..text..msg.chat_id_)  
-mohmaddevberof:del("add:reply:rd"..text..msg.chat_id_)  
-mohmaddevberof:del("addreply1:photo:gp"..text..msg.chat_id_)
-mohmaddevberof:del("addreply1:video:gp"..text..msg.chat_id_)
-mohmaddevberof:del("addreply1:document:gp"..text..msg.chat_id_)
-mohmaddevberof:del("addreply1:audio:gp"..text..msg.chat_id_)
-mohmaddevberof:srem("repmedia"..msg.chat_id_,text)  
+mohmadDEVBEROF:del("add:reply1:gif"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("add:reply1:vico"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("add:reply1:stekr"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("add:reply:rd"..text..msg.chat_id_)  
+mohmadDEVBEROF:del("addreply1:photo:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:del("addreply1:video:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:del("addreply1:document:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:del("addreply1:audio:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:srem("repmedia"..msg.chat_id_,text)  
 else
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n☑┇ تم حذفها من قائمة الردود *\n♦\n", 1, 'md')  
-mohmaddevberof:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply1:gif"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply1:vico"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply1:stekr"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."add:reply:rd"..text..msg.chat_id_)  
-mohmaddevberof:del(DEVBERO.."addreply1:photo:gp"..text..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:video:gp"..text..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:document:gp"..text..msg.chat_id_)
-mohmaddevberof:del(DEVBERO.."addreply1:audio:gp"..text..msg.chat_id_)
-mohmaddevberof:srem(DEVBERO.."repmedia"..msg.chat_id_,text)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1:gif"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1:vico"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1:stekr"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply:rd"..text..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."addreply1:photo:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:video:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:document:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:del(DEVBERO.."addreply1:audio:gp"..text..msg.chat_id_)
+mohmadDEVBEROF:srem(DEVBERO.."repmedia"..msg.chat_id_,text)  
 end
 return false  end  
 end
 
 if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
-local test = mohmaddevberof:get(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
+local test = mohmadDEVBEROF:get(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
 if test == 'repp' then  
 if text then 
 what = 'رساله 💭'
@@ -3440,29 +3440,29 @@ elseif msg.content_.video_ then
 what = 'فيديو 📹'
 end
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ تم حفظ الردَ الخاص پك\n🔘┇ نو؏ الرد — { '..what..' }*', 1, 'md')  
-mohmaddevberof:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
-local test = mohmaddevberof:get(DEVBERO.."add:reply2"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply1"..msg.sender_user_id_..msg.chat_id_)  
+local test = mohmadDEVBEROF:get(DEVBERO.."add:reply2"..msg.sender_user_id_..msg.chat_id_)  
 if msg.content_.sticker_ then   
-mohmaddevberof:set(DEVBERO.."add:reply1:stekr"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."add:reply1:stekr"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
 end   
 if msg.content_.voice_ then  
-mohmaddevberof:set(DEVBERO.."add:reply1:vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."add:reply1:vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
 end   
 if msg.content_.animation_ then   
-mohmaddevberof:set(DEVBERO.."add:reply1:gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."add:reply1:gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
 end  
 if text then   
-mohmaddevberof:set(DEVBERO.."add:reply:rd"..test..msg.chat_id_, text)  
+mohmadDEVBEROF:set(DEVBERO.."add:reply:rd"..test..msg.chat_id_, text)  
 end  
 if msg.content_.audio_ then
-mohmaddevberof:set(DEVBERO.."addreply1:audio:gp"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:audio:gp"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
 end
 if msg.content_.document_ then
-mohmaddevberof:set(DEVBERO.."addreply1:document:gp"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:document:gp"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
 end
 if msg.content_.video_ then
-mohmaddevberof:set(DEVBERO.."addreply1:video:gp"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
-mohmaddevberof:set(DEVBERO.."addreply1:video:caption:gp"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:video:gp"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:video:caption:gp"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
@@ -3477,23 +3477,23 @@ end
 if msg.content_.photo_.sizes_[3] then
 photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
-mohmaddevberof:set(DEVBERO.."addreply1:photo:gp"..test..msg.chat_id_, photo_in_group)  
-mohmaddevberof:set(DEVBERO.."addreply1:photo:caption:gp"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:photo:gp"..test..msg.chat_id_, photo_in_group)  
+mohmadDEVBEROF:set(DEVBERO.."addreply1:photo:caption:gp"..test..msg.chat_id_,(msg.content_.caption_ or ''))  
 end
-mohmaddevberof:del(DEVBERO.."add:reply2"..msg.sender_user_id_..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO.."add:reply2"..msg.sender_user_id_..msg.chat_id_)  
 return false  end  
 end
-if text and not mohmaddevberof:get(DEVBERO..'lock:rep'..msg.chat_id_) then  
-local anemi = mohmaddevberof:get(DEVBERO.."add:reply1:gif"..text..msg.chat_id_)   
-local veico = mohmaddevberof:get(DEVBERO.."add:reply1:vico"..text..msg.chat_id_)   
-local stekr = mohmaddevberof:get(DEVBERO.."add:reply1:stekr"..text..msg.chat_id_)     
-local mohmad = mohmaddevberof:get(DEVBERO.."add:reply:rd"..text..msg.chat_id_)   
-local video_caption = mohmaddevberof:get(DEVBERO.."addreply1:video:caption:gp"..text..msg.chat_id_)
-local photo_caption = (mohmaddevberof:get(DEVBERO.."addreply1:photo:caption:gp"..text..msg.chat_id_) or '' )
-local photo = mohmaddevberof:get(DEVBERO.."addreply1:photo:gp"..text..msg.chat_id_)
-local video = mohmaddevberof:get(DEVBERO.."addreply1:video:gp"..text..msg.chat_id_)
-local document = mohmaddevberof:get(DEVBERO.."addreply1:document:gp"..text..msg.chat_id_)
-local audio = mohmaddevberof:get(DEVBERO.."addreply1:audio:gp"..text..msg.chat_id_)
+if text and not mohmadDEVBEROF:get(DEVBERO..'lock:rep'..msg.chat_id_) then  
+local anemi = mohmadDEVBEROF:get(DEVBERO.."add:reply1:gif"..text..msg.chat_id_)   
+local veico = mohmadDEVBEROF:get(DEVBERO.."add:reply1:vico"..text..msg.chat_id_)   
+local stekr = mohmadDEVBEROF:get(DEVBERO.."add:reply1:stekr"..text..msg.chat_id_)     
+local mohmad = mohmadDEVBEROF:get(DEVBERO.."add:reply:rd"..text..msg.chat_id_)   
+local video_caption = mohmadDEVBEROF:get(DEVBERO.."addreply1:video:caption:gp"..text..msg.chat_id_)
+local photo_caption = (mohmadDEVBEROF:get(DEVBERO.."addreply1:photo:caption:gp"..text..msg.chat_id_) or '' )
+local photo = mohmadDEVBEROF:get(DEVBERO.."addreply1:photo:gp"..text..msg.chat_id_)
+local video = mohmadDEVBEROF:get(DEVBERO.."addreply1:video:gp"..text..msg.chat_id_)
+local document = mohmadDEVBEROF:get(DEVBERO.."addreply1:document:gp"..text..msg.chat_id_)
+local audio = mohmadDEVBEROF:get(DEVBERO.."addreply1:audio:gp"..text..msg.chat_id_)
 if mohmad then    
 berof_sendMsg(msg.chat_id_, msg.id_, 1, ''..check_markdown(mohmad)..'', 1, 'md')     
 return false   
@@ -3530,61 +3530,61 @@ end
 --======================
 --ردود المطور بالرد
 if text == 'تفعيل ردود المطور بالرد' and is_devmohmad(msg) then   
-if mohmaddevberof:get(DEVBERO..'lock:rep:all:rd'..bot_id) then
+if mohmadDEVBEROF:get(DEVBERO..'lock:rep:all:rd'..bot_id) then
 mohmad = '*☑┇ تم تفعيل ردود المطور بالرد *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
-mohmaddevberof:del(DEVBERO..'lock:rep:all:rd'..bot_id)   
+mohmadDEVBEROF:del(DEVBERO..'lock:rep:all:rd'..bot_id)   
 else
 mohmad = '*☑┇ بالتاكيد تم تفعيل ردود الطور بالرد *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
 end
 end
 if text == 'تعطيل ردود المطور بالرد' and is_devmohmad(msg) then  
-if not mohmaddevberof:get(DEVBERO..'lock:rep:all:rd'..bot_id) then
+if not mohmadDEVBEROF:get(DEVBERO..'lock:rep:all:rd'..bot_id) then
 mohmad = '*☑┇ تم تعطيل ردود المطور بالرد *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
-mohmaddevberof:set(DEVBERO..'lock:rep:all:rd'..bot_id,true)   
+mohmadDEVBEROF:set(DEVBERO..'lock:rep:all:rd'..bot_id,true)   
 else
 mohmad = '*☑┇ بالتاكيد تم تعطيل ردود الطور بالرد *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
 end
 end
 if text == "مسح ردود المطور بالرد" and is_devmohmad(msg) then    
-local list = mohmaddevberof:smembers(DEVBERO.."rep:media:all:rd"..bot_id)    
-local mohmad = mohmaddevberof:scard(DEVBERO.."rep:media:all:rd"..bot_id)    
+local list = mohmadDEVBEROF:smembers(DEVBERO.."rep:media:all:rd"..bot_id)    
+local mohmad = mohmadDEVBEROF:scard(DEVBERO.."rep:media:all:rd"..bot_id)    
 for k,v in pairs(list) do    
-mohmaddevberof:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:repallt:gif:all:rd"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tvico:all:rd"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tstekr:all:rd"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:text:all:rd"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."all:addreply1:photo:gp"..v..bot_id)
-mohmaddevberof:del(DEVBERO.."all:addreply1:video:gp"..v..bot_id)
-mohmaddevberof:del(DEVBERO.."all:addreply1:document:gp"..v..bot_id)
-mohmaddevberof:del(DEVBERO.."all:addreply1:audio:gp"..v..bot_id)
-mohmaddevberof:srem(DEVBERO.."rep:media:all:rd"..bot_id,v)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:gif:all:rd"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tvico:all:rd"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tstekr:all:rd"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:text:all:rd"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:photo:gp"..v..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:video:gp"..v..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:document:gp"..v..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:audio:gp"..v..bot_id)
+mohmadDEVBEROF:srem(DEVBERO.."rep:media:all:rd"..bot_id,v)    
 end    
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*🔘┇* المجموعه تحتوي على *{"..mohmad.."}* رد \n*☑┇* تم مسح الردود جميعها \n", 1, 'md')    
 end
 if  text == "ردود المطور بالرد" and is_devmohmad(msg) then    
-local list = mohmaddevberof:smembers(DEVBERO.."rep:media:all:rd"..bot_id)    
+local list = mohmadDEVBEROF:smembers(DEVBERO.."rep:media:all:rd"..bot_id)    
 t = "*📊┇ قائمة ردود المطور بالرد ♦\nٴ━━━━━━━━━━━*\n"    
 for k,v in pairs(list) do    
-if mohmaddevberof:get(DEVBERO.."add:repallt:gif:all:rd"..v..bot_id) then
+if mohmadDEVBEROF:get(DEVBERO.."add:repallt:gif:all:rd"..v..bot_id) then
 mohmad = 'متحركه 📷'
-elseif mohmaddevberof:get(DEVBERO.."add:rep:tvico:all:rd"..v..bot_id) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:rep:tvico:all:rd"..v..bot_id) then
 mohmad = 'بصمه 🎙'
-elseif mohmaddevberof:get(DEVBERO.."add:rep:tstekr:all:rd"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:rep:tstekr:all:rd"..v..bot_id)  then
 mohmad = 'ملصق 🃏'
-elseif mohmaddevberof:get(DEVBERO.."add:rep:text:all:rd"..v..bot_id) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:rep:text:all:rd"..v..bot_id) then
 mohmad = 'رساله 💭'
-elseif mohmaddevberof:get(DEVBERO.."all:addreply1:photo:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."all:addreply1:photo:gp"..v..bot_id)  then
 mohmad = 'صوره 🌇'
-elseif mohmaddevberof:get(DEVBERO.."all:addreply1:video:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."all:addreply1:video:gp"..v..bot_id)  then
 mohmad = 'فيديو 📹'
-elseif mohmaddevberof:get(DEVBERO.."all:addreply1:document:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."all:addreply1:document:gp"..v..bot_id)  then
 mohmad = 'ملف 📁'
-elseif mohmaddevberof:get(DEVBERO.."all:addreply1:audio:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."all:addreply1:audio:gp"..v..bot_id)  then
 mohmad = 'اغنيه 🎵'
 end
 t = t..'*'..k..'• *❨`'..v..'`❩ *» {'..mohmad..'}*\n'    
@@ -3596,67 +3596,67 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1, t, 1, 'md')
 end
 if text and text == 'اضف رد بالرد عام' and is_devmohmad(msg)  then     
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*🔘┇ حسنآ ارسل لي الكلمه الان *\n♦', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id,'yes')    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id,'yes')    
 return false    end      
 if text then     
-local tt = mohmaddevberof:get(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+local tt = mohmadDEVBEROF:get(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
 if tt == 'yes' then     
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
 return false  end 
-if mohmaddevberof:sismember(DEVBERO.."rep:media:all:rd"..bot_id,text) then
+if mohmadDEVBEROF:sismember(DEVBERO.."rep:media:all:rd"..bot_id,text) then
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ لقد تم اضافة رد بهاذه الكلمه \n🔘┇ ارسل كلمه اخرى او ارسل الغاء*\n♦\n", 1, 'md')  
 else
 media = '{ متحركه ‹› ملصق ‹› صوره ‹› اغنيه ‹› بصمه ‹› ملف ‹› فيديو }'
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*❕┇ حسنآ ارسل الرد الان\n🔘┇ يمكنك ارسال الرد » "..media.."*\n♦", 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id,'yes1')    
-mohmaddevberof:set(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id, text)    
-mohmaddevberof:sadd(DEVBERO.."rep:media:all:rd"..bot_id,text)    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id,'yes1')    
+mohmadDEVBEROF:set(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id, text)    
+mohmadDEVBEROF:sadd(DEVBERO.."rep:media:all:rd"..bot_id,text)    
 end
 return false    end    
 end
 if text and text == 'حذف رد بالرد عام' and  is_devmohmad(msg) then     
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ حسنآ ارسل لي الكلمه الان *\n♦', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id,'yes11')    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id,'yes11')    
 return false    end    
 --للكل بالرد
 if text then 
-local test = mohmaddevberof:get(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+local test = mohmadDEVBEROF:get(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
 if test and test == 'yes11' then     
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
 return false  end 
-if not mohmaddevberof:sismember(DEVBERO..'rep:media:all:rd'..bot_id,text) then
-mohmaddevberof:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+if not mohmadDEVBEROF:sismember(DEVBERO..'rep:media:all:rd'..bot_id,text) then
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n🔘┇ لا يوجد رد بهاذه الكلمه*\n♦\n", 1, 'md')  
-mohmaddevberof:del("add:repallt:gif:all:rd"..text..bot_id)    
-mohmaddevberof:del("add:rep:tvico:all:rd"..text..bot_id)    
-mohmaddevberof:del("add:rep:tstekr:all:rd"..text..bot_id)    
-mohmaddevberof:del("add:rep:text:all:rd"..text..bot_id)    
-mohmaddevberof:del("all:addreply1:photo:gp"..text..bot_id)
-mohmaddevberof:del("all:addreply1:video:gp"..text..bot_id)
-mohmaddevberof:del("all:addreply1:document:gp"..text..bot_id)
-mohmaddevberof:del("all:addreply1:audio:gp"..text..bot_id)
-mohmaddevberof:del("rep:media:all:rd"..bot_id,text)    
+mohmadDEVBEROF:del("add:repallt:gif:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del("add:rep:tvico:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del("add:rep:tstekr:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del("add:rep:text:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del("all:addreply1:photo:gp"..text..bot_id)
+mohmadDEVBEROF:del("all:addreply1:video:gp"..text..bot_id)
+mohmadDEVBEROF:del("all:addreply1:document:gp"..text..bot_id)
+mohmadDEVBEROF:del("all:addreply1:audio:gp"..text..bot_id)
+mohmadDEVBEROF:del("rep:media:all:rd"..bot_id,text)    
 else
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n☑┇ تم حذفها من قائمة الردود *\n♦\n", 1, 'md')  
-mohmaddevberof:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:repallt:gif:all:rd"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tvico:all:rd"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tstekr:all:rd"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:text:all:rd"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."all:addreply1:photo:gp"..text..bot_id)
-mohmaddevberof:del(DEVBERO.."all:addreply1:video:gp"..text..bot_id)
-mohmaddevberof:del(DEVBERO.."all:addreply1:document:gp"..text..bot_id)
-mohmaddevberof:del(DEVBERO.."all:addreply1:audio:gp"..text..bot_id)
-mohmaddevberof:srem(DEVBERO.."rep:media:all:rd"..bot_id,text)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:gif:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tvico:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tstekr:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:text:all:rd"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:photo:gp"..text..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:video:gp"..text..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:document:gp"..text..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."all:addreply1:audio:gp"..text..bot_id)
+mohmadDEVBEROF:srem(DEVBERO.."rep:media:all:rd"..bot_id,text)    
 end
 return false    end    
 end
 if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
-local test = mohmaddevberof:get(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+local test = mohmadDEVBEROF:get(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
 if test == 'yes1' then    
 if text then 
 what = 'رساله 💭'
@@ -3676,29 +3676,29 @@ elseif msg.content_.video_ then
 what = 'فيديو 📹'
 end
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ تم حفظ الردَ الخاص پك\n🔘┇ نو؏ الرد — { '..what..' }*', 1, 'md')  
-mohmaddevberof:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
-local test = mohmaddevberof:get(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:rd"..msg.sender_user_id_..bot_id)    
+local test = mohmadDEVBEROF:get(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
 if msg.content_.sticker_ then     
-mohmaddevberof:set(DEVBERO.."add:rep:tstekr:all:rd"..test..bot_id, msg.content_.sticker_.sticker_.persistent_id_)    
+mohmadDEVBEROF:set(DEVBERO.."add:rep:tstekr:all:rd"..test..bot_id, msg.content_.sticker_.sticker_.persistent_id_)    
 end     
 if msg.content_.voice_ then    
-mohmaddevberof:set(DEVBERO.."add:rep:tvico:all:rd"..test..bot_id, msg.content_.voice_.voice_.persistent_id_)    
+mohmadDEVBEROF:set(DEVBERO.."add:rep:tvico:all:rd"..test..bot_id, msg.content_.voice_.voice_.persistent_id_)    
 end     
 if msg.content_.animation_ then     
-mohmaddevberof:set(DEVBERO.."add:repallt:gif:all:rd"..test..bot_id, msg.content_.animation_.animation_.persistent_id_)    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt:gif:all:rd"..test..bot_id, msg.content_.animation_.animation_.persistent_id_)    
 end    
 if text then     
-mohmaddevberof:set(DEVBERO.."add:rep:text:all:rd"..test..bot_id, text)    
+mohmadDEVBEROF:set(DEVBERO.."add:rep:text:all:rd"..test..bot_id, text)    
 end    
 if msg.content_.audio_ then
-mohmaddevberof:set(DEVBERO.."all:addreply1:audio:gp"..test..bot_id, msg.content_.audio_.audio_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."all:addreply1:audio:gp"..test..bot_id, msg.content_.audio_.audio_.persistent_id_)  
 end
 if msg.content_.document_ then
-mohmaddevberof:set(DEVBERO.."all:addreply1:document:gp"..test..bot_id, msg.content_.document_.document_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."all:addreply1:document:gp"..test..bot_id, msg.content_.document_.document_.persistent_id_)  
 end
 if msg.content_.video_ then
-mohmaddevberof:set(DEVBERO.."all:addreply1:video:gp"..test..bot_id, msg.content_.video_.video_.persistent_id_)  
-mohmaddevberof:set(DEVBERO.."all:addreply1:video:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."all:addreply1:video:gp"..test..bot_id, msg.content_.video_.video_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."all:addreply1:video:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
@@ -3713,24 +3713,24 @@ end
 if msg.content_.photo_.sizes_[3] then
 photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
-mohmaddevberof:set(DEVBERO.."all:addreply1:photo:gp"..test..bot_id, photo_in_group)  
-mohmaddevberof:set(DEVBERO.."all:addreply1:photo:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."all:addreply1:photo:gp"..test..bot_id, photo_in_group)  
+mohmadDEVBEROF:set(DEVBERO.."all:addreply1:photo:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
 end
-mohmaddevberof:del(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
 return false    
 end    
 end
-if text and msg.reply_to_message_id_ ~= 0 and not mohmaddevberof:get(DEVBERO..'lock:rep:all:rd'..bot_id) then   
-local anemi = mohmaddevberof:get(DEVBERO.."add:repallt:gif:all:rd"..text..bot_id)    
-local veico = mohmaddevberof:get(DEVBERO.."add:rep:tvico:all:rd"..text..bot_id)    
-local stekr = mohmaddevberof:get(DEVBERO.."add:rep:tstekr:all:rd"..text..bot_id)      
-local mohmad = mohmaddevberof:get(DEVBERO.."add:rep:text:all:rd"..text..bot_id)    
-local video_caption = mohmaddevberof:get(DEVBERO.."all:addreply1:video:caption:gp"..text..bot_id)
-local photo_caption = (mohmaddevberof:get(DEVBERO.."all:addreply1:photo:caption:gp"..text..bot_id) or '' )
-local photo = mohmaddevberof:get(DEVBERO.."all:addreply1:photo:gp"..text..bot_id)
-local video = mohmaddevberof:get(DEVBERO.."all:addreply1:video:gp"..text..bot_id)
-local document = mohmaddevberof:get(DEVBERO.."all:addreply1:document:gp"..text..bot_id)
-local audio = mohmaddevberof:get(DEVBERO.."all:addreply1:audio:gp"..text..bot_id)
+if text and msg.reply_to_message_id_ ~= 0 and not mohmadDEVBEROF:get(DEVBERO..'lock:rep:all:rd'..bot_id) then   
+local anemi = mohmadDEVBEROF:get(DEVBERO.."add:repallt:gif:all:rd"..text..bot_id)    
+local veico = mohmadDEVBEROF:get(DEVBERO.."add:rep:tvico:all:rd"..text..bot_id)    
+local stekr = mohmadDEVBEROF:get(DEVBERO.."add:rep:tstekr:all:rd"..text..bot_id)      
+local mohmad = mohmadDEVBEROF:get(DEVBERO.."add:rep:text:all:rd"..text..bot_id)    
+local video_caption = mohmadDEVBEROF:get(DEVBERO.."all:addreply1:video:caption:gp"..text..bot_id)
+local photo_caption = (mohmadDEVBEROF:get(DEVBERO.."all:addreply1:photo:caption:gp"..text..bot_id) or '' )
+local photo = mohmadDEVBEROF:get(DEVBERO.."all:addreply1:photo:gp"..text..bot_id)
+local video = mohmadDEVBEROF:get(DEVBERO.."all:addreply1:video:gp"..text..bot_id)
+local document = mohmadDEVBEROF:get(DEVBERO.."all:addreply1:document:gp"..text..bot_id)
+local audio = mohmadDEVBEROF:get(DEVBERO.."all:addreply1:audio:gp"..text..bot_id)
 if mohmad then     
 berof_sendMsg(msg.chat_id_, msg.reply_to_message_id_, 1, ''..check_markdown(mohmad)..'', 1, 'md')      
 return false    
@@ -3766,71 +3766,71 @@ end
 --======================
 --ردود المطور
 if text == 'تفعيل ردود المطور' and is_devmohmad(msg) then   
-if mohmaddevberof:get(DEVBERO..'lock:rep:all'..bot_id) then
+if mohmadDEVBEROF:get(DEVBERO..'lock:rep:all'..bot_id) then
 mohmad = '*☑┇ تم تفعيل ردود المطور *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
-mohmaddevberof:del(DEVBERO..'lock:rep:all'..bot_id)   
+mohmadDEVBEROF:del(DEVBERO..'lock:rep:all'..bot_id)   
 else
 mohmad = '*☑┇ بالتاكيد تم تفعيل ردود الطور *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
 end
 end
 if text == 'تعطيل ردود المطور' and is_devmohmad(msg) then  
-if not mohmaddevberof:get(DEVBERO..'lock:rep:all'..bot_id) then
+if not mohmadDEVBEROF:get(DEVBERO..'lock:rep:all'..bot_id) then
 mohmad = '*☑┇ تم تعطيل ردود المطور *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
-mohmaddevberof:set(DEVBERO..'lock:rep:all'..bot_id,true)   
+mohmadDEVBEROF:set(DEVBERO..'lock:rep:all'..bot_id,true)   
 else
 mohmad = '*☑┇ بالتاكيد تم تعطيل ردود الطور *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
 end
 end
 if text == "مسح ردود المطور" and is_devmohmad(msg) then    
-local list = mohmaddevberof:smembers(DEVBERO.."rep:media:all"..bot_id)    
-local mohmad = mohmaddevberof:scard(DEVBERO.."rep:media:all"..bot_id)    
+local list = mohmadDEVBEROF:smembers(DEVBERO.."rep:media:all"..bot_id)    
+local mohmad = mohmadDEVBEROF:scard(DEVBERO.."rep:media:all"..bot_id)    
 for k,v in pairs(list) do    
-mohmaddevberof:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:repallt:gif:all"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tvico:all"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tstekr:all"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:text:all"..v..bot_id)    
-mohmaddevberof:del(DEVBERO.."mall:addreply1:photo:gp"..v..bot_id)
-mohmaddevberof:del(DEVBERO.."mall:addreply1:video:gp"..v..bot_id)
-mohmaddevberof:del(DEVBERO.."mall:addreply1:document:gp"..v..bot_id)
-mohmaddevberof:del(DEVBERO.."mall:addreply1:audio:gp"..v..bot_id)
-mohmaddevberof:srem(DEVBERO.."rep:media:all"..bot_id,v)    
-mohmaddevberof:del("add:repallt"..msg.sender_user_id_..bot_id)    
-mohmaddevberof:del("add:repallt:gif:all"..v..bot_id)    
-mohmaddevberof:del("add:rep:tvico:all"..v..bot_id)    
-mohmaddevberof:del("add:rep:tstekr:all"..v..bot_id)    
-mohmaddevberof:del("add:rep:text:all"..v..bot_id)    
-mohmaddevberof:del("mall:addreply1:photo:gp"..v..bot_id)
-mohmaddevberof:del("mall:addreply1:video:gp"..v..bot_id)
-mohmaddevberof:del("mall:addreply1:document:gp"..v..bot_id)
-mohmaddevberof:del("mall:addreply1:audio:gp"..v..bot_id)
-mohmaddevberof:srem("rep:media:all"..bot_id,v)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:gif:all"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tvico:all"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tstekr:all"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:text:all"..v..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:photo:gp"..v..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:video:gp"..v..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:document:gp"..v..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:audio:gp"..v..bot_id)
+mohmadDEVBEROF:srem(DEVBERO.."rep:media:all"..bot_id,v)    
+mohmadDEVBEROF:del("add:repallt"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del("add:repallt:gif:all"..v..bot_id)    
+mohmadDEVBEROF:del("add:rep:tvico:all"..v..bot_id)    
+mohmadDEVBEROF:del("add:rep:tstekr:all"..v..bot_id)    
+mohmadDEVBEROF:del("add:rep:text:all"..v..bot_id)    
+mohmadDEVBEROF:del("mall:addreply1:photo:gp"..v..bot_id)
+mohmadDEVBEROF:del("mall:addreply1:video:gp"..v..bot_id)
+mohmadDEVBEROF:del("mall:addreply1:document:gp"..v..bot_id)
+mohmadDEVBEROF:del("mall:addreply1:audio:gp"..v..bot_id)
+mohmadDEVBEROF:srem("rep:media:all"..bot_id,v)    
 end    
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*🔘┇* المجموعه تحتوي على *{"..mohmad.."}* رد \n*☑┇* تم مسح الردود جميعها \n", 1, 'md')    
 end
 if  text == "ردود المطور" and is_devmohmad(msg) then    
-local list = mohmaddevberof:smembers(DEVBERO.."rep:media:all"..bot_id)    
+local list = mohmadDEVBEROF:smembers(DEVBERO.."rep:media:all"..bot_id)    
 t = "*🔘┇ قائمة ردود المطور ♦\nٴ━━━━━━━━━━━*\n"    
 for k,v in pairs(list) do    
-if mohmaddevberof:get(DEVBERO.."add:repallt:gif:all"..v..bot_id) then
+if mohmadDEVBEROF:get(DEVBERO.."add:repallt:gif:all"..v..bot_id) then
 mohmad = 'متحركه 📷'
-elseif mohmaddevberof:get(DEVBERO.."add:rep:tvico:all"..v..bot_id) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:rep:tvico:all"..v..bot_id) then
 mohmad = 'بصمه 🎙'
-elseif mohmaddevberof:get(DEVBERO.."add:rep:tstekr:all"..v..bot_id) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:rep:tstekr:all"..v..bot_id) then
 mohmad = 'ملصق 🃏'
-elseif mohmaddevberof:get(DEVBERO.."add:rep:text:all"..v..bot_id) then
+elseif mohmadDEVBEROF:get(DEVBERO.."add:rep:text:all"..v..bot_id) then
 mohmad = 'رساله 💭'
-elseif mohmaddevberof:get(DEVBERO.."mall:addreply1:photo:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:photo:gp"..v..bot_id)  then
 mohmad = 'صوره 🌇'
-elseif mohmaddevberof:get(DEVBERO.."mall:addreply1:video:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:video:gp"..v..bot_id)  then
 mohmad = 'فيديو 📹'
-elseif mohmaddevberof:get(DEVBERO.."mall:addreply1:document:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:document:gp"..v..bot_id)  then
 mohmad = 'ملف 📁'
-elseif mohmaddevberof:get(DEVBERO.."mall:addreply1:audio:gp"..v..bot_id)  then
+elseif mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:audio:gp"..v..bot_id)  then
 mohmad = 'اغنيه 🎵'
 end
 t = t..'*'..k..'• *❨`'..v..'`❩ *» {'..mohmad..'}*\n'    
@@ -3842,58 +3842,58 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1, t, 1, 'md')
 end
 if text and text == 'اضف رد عام' and is_devmohmad(msg)  then     
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*🔘┇ حسنآ ارسل لي الكلمه الان *\n♦', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id,'yes')    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id,'yes')    
 return false    end      
 if text then    
-local tt = mohmaddevberof:get(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+local tt = mohmadDEVBEROF:get(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
 if tt == 'yes' then     
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
 return false  end 
-if mohmaddevberof:sismember(DEVBERO.."rep:media:all"..bot_id,text) then
+if mohmadDEVBEROF:sismember(DEVBERO.."rep:media:all"..bot_id,text) then
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ لقد تم اضافة رد بهاذه الكلمه \n🔘┇ ارسل كلمه اخرى او ارسل الغاء*\n♦\n", 1, 'md')  
 else
 media = '{ متحركه ‹› ملصق ‹› صوره ‹› اغنيه ‹› بصمه ‹› ملف ‹› فيديو }'
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ حسنآ ارسل الرد الان\n🔘┇ يمكنك ارسال الرد » "..media.."*\n♦", 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id,'yes1')    
-mohmaddevberof:set(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id, text)    
-mohmaddevberof:sadd(DEVBERO.."rep:media:all"..bot_id,text)    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id,'yes1')    
+mohmadDEVBEROF:set(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id, text)    
+mohmadDEVBEROF:sadd(DEVBERO.."rep:media:all"..bot_id,text)    
 end
 return false    end    
 end
 if text and text == 'حذف رد عام' and  is_devmohmad(msg) then     
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*🔘┇ حسنآ ارسل لي الكلمه الان *\n♦', 1, 'md')  
-mohmaddevberof:set(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id,'yes11')    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id,'yes11')    
 return false    end    
 if text then 
-local test = mohmaddevberof:get(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+local test = mohmadDEVBEROF:get(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
 if test and test == 'yes11' then   
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
 return false  end   
-if not mohmaddevberof:sismember(DEVBERO..'rep:media:all'..bot_id,text) then
-mohmaddevberof:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+if not mohmadDEVBEROF:sismember(DEVBERO..'rep:media:all'..bot_id,text) then
+mohmadDEVBEROF:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n🔘┇ لا يوجد رد بهاذه الكلمه*\n♦\n", 1, 'md')  
-mohmaddevberof:del(DEVBERO.."add:repallt:gif:all"..text..bot_id)    mohmaddevberof:del(DEVBERO.."add:rep:tvico:all"..text..bot_id)    mohmaddevberof:del(DEVBERO.."add:rep:tstekr:all"..text..bot_id)    mohmaddevberof:del(DEVBERO.."add:rep:text:all"..text..bot_id) mohmaddevberof:srem("rep:media:all"..bot_id,text) 
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:gif:all"..text..bot_id)    mohmadDEVBEROF:del(DEVBERO.."add:rep:tvico:all"..text..bot_id)    mohmadDEVBEROF:del(DEVBERO.."add:rep:tstekr:all"..text..bot_id)    mohmadDEVBEROF:del(DEVBERO.."add:rep:text:all"..text..bot_id) mohmadDEVBEROF:srem("rep:media:all"..bot_id,text) 
 else
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*📊┇ الكلمه » {* ["..text.."] *} ♦\n☑┇ تم حذفها من قائمة الردود *\n♦\n", 1, 'md')  
-mohmaddevberof:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:repallt:gif:all"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tvico:all"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:tstekr:all"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."add:rep:text:all"..text..bot_id)    
-mohmaddevberof:del(DEVBERO.."mall:addreply1:photo:gp"..text..bot_id)
-mohmaddevberof:del(DEVBERO.."mall:addreply1:video:gp"..text..bot_id)
-mohmaddevberof:del(DEVBERO.."mall:addreply1:document:gp"..text..bot_id)
-mohmaddevberof:del(DEVBERO.."mall:addreply1:audio:gp"..text..bot_id)
-mohmaddevberof:srem(DEVBERO.."rep:media:all"..bot_id,text)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt:gif:all"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tvico:all"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:tstekr:all"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:rep:text:all"..text..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:photo:gp"..text..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:video:gp"..text..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:document:gp"..text..bot_id)
+mohmadDEVBEROF:del(DEVBERO.."mall:addreply1:audio:gp"..text..bot_id)
+mohmadDEVBEROF:srem(DEVBERO.."rep:media:all"..bot_id,text)    
 end
 return false    end    
 end    
 if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
-local test = mohmaddevberof:get(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+local test = mohmadDEVBEROF:get(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
 if test == 'yes1' then    
 if text then 
 what = 'رساله 💭'
@@ -3913,29 +3913,29 @@ elseif msg.content_.video_ then
 what = 'فيديو 📹'
 end
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ تم حفظ الردَ الخاص پك\n🔘┇ نو؏ الرد — { '..what..' }*', 1, 'md')  
-mohmaddevberof:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
-local test = mohmaddevberof:get(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."add:repallt"..msg.sender_user_id_..bot_id)    
+local test = mohmadDEVBEROF:get(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
 if msg.content_.sticker_ then     
-mohmaddevberof:set(DEVBERO.."add:rep:tstekr:all"..test..bot_id, msg.content_.sticker_.sticker_.persistent_id_)    
+mohmadDEVBEROF:set(DEVBERO.."add:rep:tstekr:all"..test..bot_id, msg.content_.sticker_.sticker_.persistent_id_)    
 end     
 if msg.content_.voice_ then    
-mohmaddevberof:set(DEVBERO.."add:rep:tvico:all"..test..bot_id, msg.content_.voice_.voice_.persistent_id_)    
+mohmadDEVBEROF:set(DEVBERO.."add:rep:tvico:all"..test..bot_id, msg.content_.voice_.voice_.persistent_id_)    
 end     
 if msg.content_.animation_ then     
-mohmaddevberof:set(DEVBERO.."add:repallt:gif:all"..test..bot_id, msg.content_.animation_.animation_.persistent_id_)    
+mohmadDEVBEROF:set(DEVBERO.."add:repallt:gif:all"..test..bot_id, msg.content_.animation_.animation_.persistent_id_)    
 end    
 if text then     
-mohmaddevberof:set(DEVBERO.."add:rep:text:all"..test..bot_id, text)    
+mohmadDEVBEROF:set(DEVBERO.."add:rep:text:all"..test..bot_id, text)    
 end    
 if msg.content_.audio_ then
-mohmaddevberof:set(DEVBERO.."mall:addreply1:audio:gp"..test..bot_id, msg.content_.audio_.audio_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."mall:addreply1:audio:gp"..test..bot_id, msg.content_.audio_.audio_.persistent_id_)  
 end
 if msg.content_.document_ then
-mohmaddevberof:set(DEVBERO.."mall:addreply1:document:gp"..test..bot_id, msg.content_.document_.document_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."mall:addreply1:document:gp"..test..bot_id, msg.content_.document_.document_.persistent_id_)  
 end
 if msg.content_.video_ then
-mohmaddevberof:set(DEVBERO.."mall:addreply1:video:gp"..test..bot_id, msg.content_.video_.video_.persistent_id_)  
-mohmaddevberof:set(DEVBERO.."mall:addreply1:video:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."mall:addreply1:video:gp"..test..bot_id, msg.content_.video_.video_.persistent_id_)  
+mohmadDEVBEROF:set(DEVBERO.."mall:addreply1:video:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
@@ -3950,23 +3950,23 @@ end
 if msg.content_.photo_.sizes_[3] then
 photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
-mohmaddevberof:set(DEVBERO.."mall:addreply1:photo:gp"..test..bot_id, photo_in_group)  
-mohmaddevberof:set(DEVBERO.."mall:addreply1:photo:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
+mohmadDEVBEROF:set(DEVBERO.."mall:addreply1:photo:gp"..test..bot_id, photo_in_group)  
+mohmadDEVBEROF:set(DEVBERO.."mall:addreply1:photo:caption:gp"..test..bot_id,(msg.content_.caption_ or ''))  
 end
-mohmaddevberof:del(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
+mohmadDEVBEROF:del(DEVBERO.."addreply2:"..msg.sender_user_id_..bot_id)    
 return false    end    
 end
-if text and not mohmaddevberof:get(DEVBERO..'lock:rep:all'..bot_id) then    
-local anemi = mohmaddevberof:get(DEVBERO.."add:repallt:gif:all"..text..bot_id)    
-local veico = mohmaddevberof:get(DEVBERO.."add:rep:tvico:all"..text..bot_id)    
-local stekr = mohmaddevberof:get(DEVBERO.."add:rep:tstekr:all"..text..bot_id)      
-local mohmad = mohmaddevberof:get(DEVBERO.."add:rep:text:all"..text..bot_id)    
-local video_caption = mohmaddevberof:get(DEVBERO.."mall:addreply1:video:caption:gp"..text..bot_id)
-local photo_caption = (mohmaddevberof:get(DEVBERO.."mall:addreply1:photo:caption:gp"..text..bot_id) or '' )
-local photo = mohmaddevberof:get(DEVBERO.."mall:addreply1:photo:gp"..text..bot_id)
-local video = mohmaddevberof:get(DEVBERO.."mall:addreply1:video:gp"..text..bot_id)
-local document = mohmaddevberof:get(DEVBERO.."mall:addreply1:document:gp"..text..bot_id)
-local audio = mohmaddevberof:get(DEVBERO.."mall:addreply1:audio:gp"..text..bot_id)
+if text and not mohmadDEVBEROF:get(DEVBERO..'lock:rep:all'..bot_id) then    
+local anemi = mohmadDEVBEROF:get(DEVBERO.."add:repallt:gif:all"..text..bot_id)    
+local veico = mohmadDEVBEROF:get(DEVBERO.."add:rep:tvico:all"..text..bot_id)    
+local stekr = mohmadDEVBEROF:get(DEVBERO.."add:rep:tstekr:all"..text..bot_id)      
+local mohmad = mohmadDEVBEROF:get(DEVBERO.."add:rep:text:all"..text..bot_id)    
+local video_caption = mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:video:caption:gp"..text..bot_id)
+local photo_caption = (mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:photo:caption:gp"..text..bot_id) or '' )
+local photo = mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:photo:gp"..text..bot_id)
+local video = mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:video:gp"..text..bot_id)
+local document = mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:document:gp"..text..bot_id)
+local audio = mohmadDEVBEROF:get(DEVBERO.."mall:addreply1:audio:gp"..text..bot_id)
 if mohmad then     
 berof_sendMsg(msg.chat_id_, msg.id_, 1, ''..check_markdown(mohmad)..'', 1, 'md')      
 return false    end     
@@ -4005,7 +4005,7 @@ berof_sendMsg(msg.chat_id_, msg.id_,  1, '*☑┇ اضغط على الايدي �
 end
 
 if text == "تنظيف المجموعات" and is_devmohmad(msg) then
-local group = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id')   
+local group = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id')   
 local w = 0
 local q = 0
 for i = 1, #group do
@@ -4013,25 +4013,25 @@ tdcli_function({ID='GetChat',chat_id_ = group[i]
 },function(arg,data)
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
 print('\27[30;34m»» THE BOT IS NOT ADMIN ↓\n»» '..group[i]..'\n\27[1;37m')
-mohmaddevberof:srem(DEVBERO.."bot:gpsby:id",group[i])  
+mohmadDEVBEROF:srem(DEVBERO.."bot:gpsby:id",group[i])  
 rem_group(group[i])   
 changeChatMemberStatus(group[i], bot_id, "Left")
 w = w + 1
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
-mohmaddevberof:srem(DEVBERO..'bot:gpsby:id',group[i]) 
+mohmadDEVBEROF:srem(DEVBERO..'bot:gpsby:id',group[i]) 
 rem_group(group[i])   
 q = q + 1
 print('\27[30;35m»» THE BOT IS LEFT GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
-mohmaddevberof:srem(DEVBERO..'bot:gpsby:id',group[i]) 
+mohmadDEVBEROF:srem(DEVBERO..'bot:gpsby:id',group[i]) 
 rem_group(pv[i])   
 q = q + 1
 print('\27[30;36m»» THE BOT IS KICKED GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
 end
 if data and data.code_ and data.code_ == 400 then
-mohmaddevberof:srem(DEVBERO..'bot:gpsby:id',group[i]) 
+mohmadDEVBEROF:srem(DEVBERO..'bot:gpsby:id',group[i]) 
 rem_group(group[i])   
 w = w + 1
 end
@@ -4059,7 +4059,7 @@ end
 return false
 end
 if text == "تنظيف المشتركين" and is_devmohmad(msg) then
-local pv = mohmaddevberof:smembers(DEVBERO..'usersbot')   
+local pv = mohmadDEVBEROF:smembers(DEVBERO..'usersbot')   
 local sendok = 0
 for i = 1, #pv do
 tdcli_function({ID='GetChat',chat_id_ = pv[i]
@@ -4071,7 +4071,7 @@ if data.ID and data.ID == "Ok"  then
 print('\27[30;33m»» THE USER IS SAVE ME ↓\n»» '..pv[i]..'\n\27[1;37m')
 else
 print('\27[30;31m»» THE USER IS BLOCK ME ↓\n»» '..pv[i]..'\n\27[1;37m')
-mohmaddevberof:srem(DEVBERO.."usersbot",pv[i])
+mohmadDEVBEROF:srem(DEVBERO.."usersbot",pv[i])
 sendok = sendok + 1
 end
 if #pv == i then 
@@ -4087,7 +4087,7 @@ end,nil)
 end
 return false
 end
-if text == "وضع اسم البوت" and is_devmohmad(msg) then mohmaddevberof:setex(DEVBERO..'namebot:witting'..msg.sender_user_id_,300,true) berof_sendMsg(msg.chat_id_, msg.id_, 1, "*🔘┇* ارسل لي الاسم ♦\n",1, 'md')  end
+if text == "وضع اسم البوت" and is_devmohmad(msg) then mohmadDEVBEROF:setex(DEVBERO..'namebot:witting'..msg.sender_user_id_,300,true) berof_sendMsg(msg.chat_id_, msg.id_, 1, "*🔘┇* ارسل لي الاسم ♦\n",1, 'md')  end
 if text == 'مسح البوتات' and is_monsh(msg) then   
 tdcli_function ({ 
 ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID,filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(arg,tah)  
@@ -4140,47 +4140,47 @@ end
 getChannelMembers(msg.chat_id_, 0, 'Bots', 200,cb)
 end
 if text == 'قفل التكرار بالطرد' and is_mod(msg) then 
-mohmaddevberof:hset("flooding:settings:"..msg.chat_id_ ,"flood",'kick')  
+mohmadDEVBEROF:hset("flooding:settings:"..msg.chat_id_ ,"flood",'kick')  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '☑*┇* تم قفل التكرار بالطرد \n*🔘┇ خـاصيــه ، الطرد 👤*\n🔽',1, 'md')
 elseif text == 'قفل التكرار' and is_mod(msg) then 
-mohmaddevberof:hset("flooding:settings:"..msg.chat_id_ ,"flood",'del')  
+mohmadDEVBEROF:hset("flooding:settings:"..msg.chat_id_ ,"flood",'del')  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '☑*┇* تم قفل التكرار \n*🔘┇ خـاصيــه ، الحذف 👤*\n🔽',1, 'md')
 elseif text == 'قفل التكرار بالتقييد' and is_mod(msg) then 
-mohmaddevberof:hset("flooding:settings:"..msg.chat_id_ ,"flood",'keed')  
+mohmadDEVBEROF:hset("flooding:settings:"..msg.chat_id_ ,"flood",'keed')  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '☑*┇* تم قفل التكرار بالتقييد \n*🔘┇ خـاصيــه ، التقييد 👤*\n🔽',1, 'md')
 elseif text == 'قفل التكرار بالكتم' and is_mod(msg) then 
-mohmaddevberof:hset("flooding:settings:"..msg.chat_id_ ,"flood",'mute')  
+mohmadDEVBEROF:hset("flooding:settings:"..msg.chat_id_ ,"flood",'mute')  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '☑*┇* تم قفل التكرار بالكتم \n*🔘┇ خـاصيــه ، الكتم 👤*\n🔽',1, 'md')
 elseif text == 'فتح التكرار' and is_mod(msg) then 
-mohmaddevberof:hdel("flooding:settings:"..msg.chat_id_ ,"flood")  
+mohmadDEVBEROF:hdel("flooding:settings:"..msg.chat_id_ ,"flood")  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '☑*┇* تم فتح التكرار \n🔽',1, 'md')
 end 
-if mohmaddevberof:get(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
+if mohmadDEVBEROF:get(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
-mohmaddevberof:del(DEVBERO..'id:gp'..msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO..'id:gp'..msg.chat_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
+mohmadDEVBEROF:del(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 return false  end 
-mohmaddevberof:del(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
+mohmadDEVBEROF:del(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 local numadded = string.match(text, "(.*)") 
-local iduserr = mohmaddevberof:get(DEVBERO..'id:gp'..msg.chat_id_)  
+local iduserr = mohmadDEVBEROF:get(DEVBERO..'id:gp'..msg.chat_id_)  
 berof_sendMsg((iduserr), 0, 1, numadded, 1, "html")   
 berof_sendMsg(msg.chat_id_, msg.id_,  1, "☑*┇* تم ارسال رسالتك الى  *{ "..iduserr..' }* ', 1, 'md')  
 end
 if text and text:match("^اذاعه (-%d+)$") and is_devmohmad(msg) then  
 mohmad = text:match("^اذاعه (-%d+)$")
-mohmaddevberof:set(DEVBERO..'id:gp'..msg.chat_id_,mohmad)  
-mohmaddevberof:setex(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:set(DEVBERO..'id:gp'..msg.chat_id_,mohmad)  
+mohmadDEVBEROF:setex(DEVBERO.."bc:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*🔘┇ ارسل لي النص الذي تريده*'  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text then 
 if is_mod(msg) then
-if text == 'ارسال نسخه' and is_devmohmad(msg) then  sendDocument(SUDO, 0, 0, 1, nil, './berof.lua', '🔘┇اسم الملف ( berof.lua )\n📊┇عدد المشتركين ( '..(mohmaddevberof:scard(DEVBERO.."usersbot") or 0)..' )\n❕┇عدد المجموعات ( '..(mohmaddevberof:scard(DEVBERO.."botgps") or 0)..' )',dl_cb, nil)  end
+if text == 'ارسال نسخه' and is_devmohmad(msg) then  sendDocument(SUDO, 0, 0, 1, nil, './berof.lua', '🔘┇اسم الملف ( berof.lua )\n📊┇عدد المشتركين ( '..(mohmadDEVBEROF:scard(DEVBERO.."usersbot") or 0)..' )\n❕┇عدد المجموعات ( '..(mohmadDEVBEROF:scard(DEVBERO.."botgps") or 0)..' )',dl_cb, nil)  end
 if text == 'اذاعه خاص' and tonumber(msg.reply_to_message_id_) > 0 and is_devmohmad(msg) then 
 function cb(a,b,c) 
 if b.content_.text_ then
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 berof_sendMsg(v, 0, 1, '[ '..b.content_.text_..' ]', 1, 'md')  
 end
@@ -4190,22 +4190,22 @@ photo = b.content_.photo_.sizes_[0].photo_.persistent_id_
 elseif b.content_.photo_.sizes_[1] then
 photo = b.content_.photo_.sizes_[1].photo_.persistent_id_
 end
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 sendPhoto(v, 0, 0, 1, nil, photo,(b.content_.caption_ or '')) 
 end
 elseif b.content_.animation_ then
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 sendDocument(v, 0, 0, 1,nil, b.content_.animation_.animation_.persistent_id_,(b.content_.caption_ or ''))    
 end 
 elseif b.content_.sticker_ then
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 sendSticker(v, 0, 0, 1, nil, b.content_.sticker_.sticker_.persistent_id_)   
 end 
 end
-local pv = mohmaddevberof:scard(DEVBERO.."usersbot")      
+local pv = mohmadDEVBEROF:scard(DEVBERO.."usersbot")      
 local text = '☑*┇ تمت الاذاعه الى » ❪'..pv..'❫* مشتركين في البوت \n♦' 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, text, 1, 'md') 
 end 
@@ -4214,7 +4214,7 @@ end
 if text == 'اذاعه' and tonumber(msg.reply_to_message_id_) > 0 and is_devmohmad(msg) then 
 function cb(a,b,c) 
 if b.content_.text_ then
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 berof_sendMsg(v, 0, 1, '[ '..b.content_.text_..' ]', 1, 'md')  
 end
@@ -4224,22 +4224,22 @@ photo = b.content_.photo_.sizes_[0].photo_.persistent_id_
 elseif b.content_.photo_.sizes_[1] then
 photo = b.content_.photo_.sizes_[1].photo_.persistent_id_
 end
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 sendPhoto(v, 0, 0, 1, nil, photo,(b.content_.caption_ or ''))
 end 
 elseif b.content_.animation_ then
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 sendDocument(v, 0, 0, 1,nil, b.content_.animation_.animation_.persistent_id_,(b.content_.caption_ or ''))    
 end 
 elseif b.content_.sticker_ then
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 sendSticker(v, 0, 0, 1, nil, b.content_.sticker_.sticker_.persistent_id_)   
 end 
 end
-local grp = mohmaddevberof:scard(DEVBERO.."bot:gpsby:id")       
+local grp = mohmadDEVBEROF:scard(DEVBERO.."bot:gpsby:id")       
 local text = '☑*┇ تمت الاذاعه الى » ❪'..grp..'❫* مشتركين في البوت \n♦' 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, text, 1, 'md') 
 end 
@@ -4248,7 +4248,7 @@ end
 if text == 'اذاعه عام' and tonumber(msg.reply_to_message_id_) > 0 and is_devmohmad(msg) then 
 function cb(a,b,c) 
 if b.content_.text_ then
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 berof_sendMsg(v, 0, 1, '[ '..b.content_.text_..' ]', 1, 'md')  
 end
@@ -4258,23 +4258,23 @@ photo = b.content_.photo_.sizes_[0].photo_.persistent_id_
 elseif b.content_.photo_.sizes_[1] then
 photo = b.content_.photo_.sizes_[1].photo_.persistent_id_
 end
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 sendPhoto(v, 0, 0, 1, nil, photo,(b.content_.caption_ or '')) 
 end
 elseif b.content_.animation_ then
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 sendDocument(v, 0, 0, 1,nil, b.content_.animation_.animation_.persistent_id_,(b.content_.caption_ or ''))    
 end 
 elseif b.content_.sticker_ then
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot') 
 for k,v in pairs(list) do 
 sendSticker(v, 0, 0, 1, nil, b.content_.sticker_.sticker_.persistent_id_)   
 end 
 end
 if b.content_.text_ then
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 berof_sendMsg(v, 0, 1, '[ '..b.content_.text_..' ]', 1, 'md')  
 end
@@ -4284,23 +4284,23 @@ photo = b.content_.photo_.sizes_[0].photo_.persistent_id_
 elseif b.content_.photo_.sizes_[1] then
 photo = b.content_.photo_.sizes_[1].photo_.persistent_id_
 end
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 sendPhoto(v, 0, 0, 1, nil, photo,(b.content_.caption_ or ''))
 end 
 elseif b.content_.animation_ then
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 sendDocument(v, 0, 0, 1,nil, b.content_.animation_.animation_.persistent_id_,(b.content_.caption_ or ''))    
 end 
 elseif b.content_.sticker_ then
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id') 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id') 
 for k,v in pairs(list) do 
 sendSticker(v, 0, 0, 1, nil, b.content_.sticker_.sticker_.persistent_id_)   
 end 
 end
-local grp = mohmaddevberof:scard(DEVBERO.."bot:gpsby:id")  
-local pv = mohmaddevberof:scard(DEVBERO.."usersbot")          
+local grp = mohmadDEVBEROF:scard(DEVBERO.."bot:gpsby:id")  
+local pv = mohmadDEVBEROF:scard(DEVBERO.."usersbot")          
 local text = '☑*┇ تمت الاذاعه الى *'..
 '\n*📡┇ » ❪'..pv..'❫* مشترك في الخاص'..
 '\n*🎫┇ » ❪'..grp..'❫* مجموعه في البوت\n♦' 
@@ -4320,42 +4320,42 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1, '💬*┇* تم تحديث ♻ السو�
 dofile('BEROF.lua')  
 end
 if text == 'الاحصائيات' and is_devmohmad(msg) then  
-local grall = mohmaddevberof:scard(DEVBERO.."botgps") or 0  
-local gradd = mohmaddevberof:scard(DEVBERO..'bot:gpsby:id') or 0  
-local uspv = mohmaddevberof:scard(DEVBERO.."usersbot") or 0  
+local grall = mohmadDEVBEROF:scard(DEVBERO.."botgps") or 0  
+local gradd = mohmadDEVBEROF:scard(DEVBERO..'bot:gpsby:id') or 0  
+local uspv = mohmadDEVBEROF:scard(DEVBERO.."usersbot") or 0  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*\n🔘┇ عدد المجموعات المفعله ↫ ❪'..gradd..'❫\n❕┇ عدد المشتركين ↫ ❪'..uspv..'❫*\n✓', 1, 'md') 
 end
 if text == 'مسح المشتركين' and is_devmohmad(msg) then   
-local list = mohmaddevberof:smembers(DEVBERO..'usersbot')   
+local list = mohmadDEVBEROF:smembers(DEVBERO..'usersbot')   
 local pv = 0
 for k,v in pairs(list) do    
-mohmaddevberof:srem(DEVBERO..'usersbot',v)  
+mohmadDEVBEROF:srem(DEVBERO..'usersbot',v)  
 pv = pv + 1
 end   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ تم مسح » ❪'..pv..'❫ من المشتركين *\n', 1, 'md') 
 end  
 if text ==  ""..NAMEBOT..' غادر' and is_owner(msg) then 
-mohmaddevberof:srem(DEVBERO.."addgrop", msg.chat_id_) 
-mohmaddevberof:del(DEVBERO.."add:bot:group"..msg.chat_id_, true) 
+mohmadDEVBEROF:srem(DEVBERO.."addgrop", msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO.."add:bot:group"..msg.chat_id_, true) 
 rem_group(msg.chat_id_)  
 rem_lockal(msg.chat_id_) 
-mohmaddevberof:del(DEVBERO.."test:group"..msg.chat_id_)   
-mohmaddevberof:del(DEVBERO..'moder'..msg.chat_id_) 
-mohmaddevberof:del(DEVBERO..'modergroup'..msg.chat_id_) 
-mohmaddevberof:del(DEVBERO..'mods:'..msg.chat_id_) 
-mohmaddevberof:del(DEVBERO.."add:bot:group"..msg.chat_id_, true) 
-mohmaddevberof:srem(DEVBERO..'bot:gpsby:id', msg.chat_id_)  
-mohmaddevberof:srem(DEVBERO.."botgps", msg.chat_id_)   
+mohmadDEVBEROF:del(DEVBERO.."test:group"..msg.chat_id_)   
+mohmadDEVBEROF:del(DEVBERO..'moder'..msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO..'modergroup'..msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO..'mods:'..msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO.."add:bot:group"..msg.chat_id_, true) 
+mohmadDEVBEROF:srem(DEVBERO..'bot:gpsby:id', msg.chat_id_)  
+mohmadDEVBEROF:srem(DEVBERO.."botgps", msg.chat_id_)   
 changeChatMemberStatus(msg.chat_id_, bot_id, "Left") 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '☑*┇*  تم مغادرة المجموعه ', 1, 'md') 
 return false  
 end
 if text == 'مسح المقيدين' and is_mod(msg) then     
-local list = mohmaddevberof:smembers(DEVBERO..'tedmembars'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'tedmembars'..msg.chat_id_) 
 local pv = 0
 for k,v in pairs(list) do   
-mohmaddevberof:del(DEVBERO..'tedmembars'..msg.chat_id_) 
-mohmaddevberof:srem(DEVBERO.."keed", msg.chat_id_)  
+mohmadDEVBEROF:del(DEVBERO..'tedmembars'..msg.chat_id_) 
+mohmadDEVBEROF:srem(DEVBERO.."keed", msg.chat_id_)  
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..v.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True") 
 pv = pv + 1
 end 
@@ -4384,24 +4384,24 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1,chanb, 1, 'md')
 end
 return false  end
 if kk.id_ then  
-local msgss = tonumber(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..kk.id_) or 0)  
+local msgss = tonumber(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..kk.id_) or 0)  
 if tonumber(kk.id_) == tonumber(373906612) then
 t = 'مطور السورس'
 elseif tonumber(kk.id_) == tonumber(bot_id) then
 t = 'هاذا بوت'
 elseif tonumber(kk.id_) == tonumber(SUDO) then
 t = 'مطور اساسي'
-elseif mohmaddevberof:sismember(DEVBERO..'sudo:bot',kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',kk.id_) then
 t = 'المطور'
-elseif mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,kk.id_) then
 t = 'المنشئ'
-elseif mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,kk.id_) then
 t = 'المدير'
-elseif mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,kk.id_) then
 t = 'الادمن'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:groups',kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',kk.id_) then
 t = 'مميز عام'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,kk.id_) then
 t = 'عضو مميز'
 else
 t = 'مجرد عضو'
@@ -4414,13 +4414,13 @@ photouser1 = ''
 else
 photouser1 = '\n📷┇ عدد صوره » ❪ '..pho.total_count_..' ❫'
 end
-if mohmaddevberof:sismember(DEVBERO..'berof:gbaned',kk.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'berof:gbaned',kk.id_) then
 kkeed = 'محظور عام'
-elseif mohmaddevberof:sismember(DEVBERO..'berof:baned'..msg.chat_id_,kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'berof:baned'..msg.chat_id_,kk.id_) then
 kkeed = 'محظور'
-elseif mohmaddevberof:sismember(DEVBERO..'mutes'..msg.chat_id_,kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mutes'..msg.chat_id_,kk.id_) then
 kkeed = 'مكتوم'
-elseif mohmaddevberof:sismember(DEVBERO..'tedmembars'..msg.chat_id_,kk.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'tedmembars'..msg.chat_id_,kk.id_) then
 kkeed = 'مقيد'
 else
 kkeed = ' لا يوجد'
@@ -4454,7 +4454,7 @@ text = '*🌐┇ ايديه » ❪* `'..kk.id_..
 ' ❫\n🔘*┇ اسمه » ❪* `'..CatchName(data.first_name_,20)..
 '` ❫\n💠*┇ رتبـة الكروب » ❪ '..rtpa..
 ' ❫\n🎫┇ رتبـة البوت » ❪ '..t..
-' ❫\n📨┇ رسـائله » ❪ '..(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..kk.id_) or 0)..
+' ❫\n📨┇ رسـائله » ❪ '..(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..kk.id_) or 0)..
 ' ❫\n📊┇ تفــاعله » ❪ '..formsgg(msgss)..' ❫'..photouser1..
 '\n🚫┇ نوع القيود » ❪ '..kkeed..
 ' ❫\n❕┇ التواجد » ❪ '..tt..
@@ -4469,24 +4469,24 @@ return false
 end
 if text and text:match('كشف (%d+)') then 
 local iduser = text:match('كشف (%d+)')  
-local msgss = tonumber(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..iduser) or 0)  
+local msgss = tonumber(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..iduser) or 0)  
 if tonumber(iduser) == tonumber(373906612) then
 t = 'مطور السورس'
 elseif tonumber(iduser) == tonumber(bot_id) then
 t = 'هاذا البوت'
 elseif tonumber(iduser) == tonumber(SUDO) then
 t = 'مطور اساسي'
-elseif mohmaddevberof:sismember(DEVBERO..'sudo:bot',iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',iduser) then
 t = 'المطور'
-elseif mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,iduser) then
 t = 'المنشئ'
-elseif mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,iduser) then
 t = 'المدير'
-elseif mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,iduser) then
 t = 'الادمن'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:groups',iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',iduser) then
 t = 'مميز عام'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,iduser) then
 t = 'عضو مميز'
 else
 t = 'مجرد عضو'
@@ -4507,13 +4507,13 @@ photouser1 = ''
 else
 photouser1 = '\n📷┇ عدد صوره » ❪ '..pho.total_count_..' ❫'
 end
-if mohmaddevberof:sismember(DEVBERO..'berof:gbaned',iduser) then
+if mohmadDEVBEROF:sismember(DEVBERO..'berof:gbaned',iduser) then
 kkeed = 'محظور عام'
-elseif mohmaddevberof:sismember(DEVBERO..'berof:baned'..msg.chat_id_,iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'berof:baned'..msg.chat_id_,iduser) then
 kkeed = 'محظور'
-elseif mohmaddevberof:sismember(DEVBERO..'mutes'..msg.chat_id_,iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mutes'..msg.chat_id_,iduser) then
 kkeed = 'مكتوم'
-elseif mohmaddevberof:sismember(DEVBERO..'tedmembars'..msg.chat_id_,iduser) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'tedmembars'..msg.chat_id_,iduser) then
 kkeed = 'مقيد'
 else
 kkeed = ' لا يوجد'
@@ -4547,7 +4547,7 @@ text = '🌐┇ ايديه » ❪ '..iduser..
 ' ❫\n⚜┇ اسمه » ❪ {'..CatchName(data.first_name_,20)..
 ' }❫\n🔘┇ رتبـة الكروب » ❪ '..rtpa..
 ' ❫\n🔰┇ رتبـة البوت » ❪ '..t..
-' ❫\n📨┇ رسـائله » ❪ '..(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..iduser) or 0)..
+' ❫\n📨┇ رسـائله » ❪ '..(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..iduser) or 0)..
 ' ❫\n❕┇ تفــاعله » ❪ '..formsgg(msgss)..' ❫'..photouser1..
 '\n🚫┇ نوع القيود » ❪ '..kkeed..
 ' ❫\n📊┇ التواجد » ❪ '..tt..
@@ -4559,7 +4559,7 @@ text = '*🌐┇ ايديه » ❪* `'..iduser..
 ' ❫\n⚜*┇ اسمه » ❪* `'..CatchName(data.first_name_,20)..
 '` ❫\n🔘*┇ رتبـة الكروب » ❪ '..rtpa..
 ' ❫\n🔰┇ رتبـة البوت » ❪ '..t..
-' ❫\n💬┇ رسـائله » ❪ '..(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..iduser) or 0)..
+' ❫\n💬┇ رسـائله » ❪ '..(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..iduser) or 0)..
 ' ❫\n❕┇ تفــاعله » ❪ '..formsgg(msgss)..' ❫'..photouser1..
 '\n🚫┇ نوع القيود » ❪ '..kkeed..
 ' ❫\n📊┇ التواجد » ❪ '..tt..
@@ -4574,24 +4574,24 @@ end
 
 if text ==("كشف") and msg.reply_to_message_id_ ~= 0 then  
 function id_by_reply(extra, result, success) 
-local msgss = tonumber(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..result.sender_user_id_) or 0)  
+local msgss = tonumber(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..result.sender_user_id_) or 0)  
 if tonumber(result.sender_user_id_) == tonumber(373906612) then
 t = 'مطور السورس'
 elseif tonumber(result.sender_user_id_) == tonumber(bot_id) then
 t = 'هاذا البوت'
 elseif tonumber(result.sender_user_id_) == tonumber(SUDO) then
 t = 'مطور اساسي'
-elseif mohmaddevberof:sismember(DEVBERO..'sudo:bot',result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',result.sender_user_id_) then
 t = 'المطور'
-elseif mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_) then
 t = 'المنشئ'
-elseif mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
 t = 'المدير'
-elseif mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
 t = 'الادمن'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:groups',result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',result.sender_user_id_) then
 t = 'مميز عام'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_) then
 t = 'عضو مميز'
 else
 t = 'مجرد عضو'
@@ -4609,13 +4609,13 @@ photouser1 = ''
 else
 photouser1 = '\n📷┇ عدد صوره » ❪ '..pho.total_count_..' ❫'
 end
-if mohmaddevberof:sismember(DEVBERO..'berof:gbaned',result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'berof:gbaned',result.sender_user_id_) then
 kkeed = 'محظور عام'
-elseif mohmaddevberof:sismember(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_) then
 kkeed = 'محظور'
-elseif mohmaddevberof:sismember(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_) then
 kkeed = 'مكتوم'
-elseif mohmaddevberof:sismember(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) then
 kkeed = 'مقيد'
 else
 kkeed = 'لا يوجد'
@@ -4649,7 +4649,7 @@ text = '🌐┇ ايديه » ❪ '..result.sender_user_id_..
 ' ❫\n⚜┇ اسمه » ❪ {'..CatchName(data.first_name_,20)..
 ' }❫\n🔘┇ رتبـة الكروب » ❪ '..rtpa..
 ' ❫\n🔰┇ رتبـة البوت » ❪ '..t..
-' ❫\n📨┇ رسـائله » ❪ '..(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..result.sender_user_id_) or 0)..
+' ❫\n📨┇ رسـائله » ❪ '..(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..result.sender_user_id_) or 0)..
 ' ❫\n❕┇ تفــاعله » ❪ '..formsgg(msgss)..' ❫'..photouser1..
 '\n🚫┇ نوع القيود » ❪ '..kkeed..
 ' ❫\n📊┇ التواجد » ❪ '..tt..
@@ -4661,7 +4661,7 @@ text = '*🌐┇ ايديه » ❪* `'..result.sender_user_id_..
 ' ❫\n🔘*┇ اسمه » ❪* `'..CatchName(data.first_name_,20)..
 '` ❫\n🔰*┇ رتبـة الكروب » ❪ '..rtpa..
 ' ❫\n📊┇ رتبـة البوت » ❪ '..t..
-' ❫\n📨┇ رسـائله » ❪ '..(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..result.sender_user_id_) or 0)..
+' ❫\n📨┇ رسـائله » ❪ '..(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..result.sender_user_id_) or 0)..
 ' ❫\n❕┇ تفــاعله » ❪ '..formsgg(msgss)..' ❫'..photouser1..
 '\n🚫┇ نوع القيود » ❪ '..kkeed..
 ' ❫\n🎮┇ التواجد » ❪ '..tt..
@@ -4681,24 +4681,24 @@ local username = text:match('^كشف (.*)')
 if not text:find('@') then
 function mention(extra, tes, success)
 if tes.content_.entities_[0].user_id_ then  
-local msgss = tonumber(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..tes.content_.entities_[0].user_id_) or 0)  
+local msgss = tonumber(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..tes.content_.entities_[0].user_id_) or 0)  
 if tonumber(tes.content_.entities_[0].user_id_) == tonumber(373906612) then
 t = 'مطور السورس'
 elseif tonumber(tes.content_.entities_[0].user_id_) == tonumber(bot_id) then
 t = 'هاذا بوت'
 elseif tonumber(tes.content_.entities_[0].user_id_) == tonumber(SUDO) then
 t = 'مطور اساسي'
-elseif mohmaddevberof:sismember(DEVBERO..'sudo:bot',tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',tes.content_.entities_[0].user_id_) then
 t = 'المطور'
-elseif mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
 t = 'المنشئ'
-elseif mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
 t = 'المدير'
-elseif mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
 t = 'الادمن'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:groups',tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',tes.content_.entities_[0].user_id_) then
 t = 'مميز عام'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
 t = 'عضو مميز'
 else
 t = 'مجرد عضو'
@@ -4719,13 +4719,13 @@ photouser1 = ''
 else
 photouser1 = '\n📷┇ عدد صوره » ❪ '..pho.total_count_..' ❫'
 end
-if mohmaddevberof:sismember(DEVBERO..'berof:gbaned',tes.content_.entities_[0].user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'berof:gbaned',tes.content_.entities_[0].user_id_) then
 kkeed = 'محظور عام'
-elseif mohmaddevberof:sismember(DEVBERO..'berof:baned'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'berof:baned'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
 kkeed = 'محظور'
-elseif mohmaddevberof:sismember(DEVBERO..'mutes'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mutes'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
 kkeed = 'مكتوم'
-elseif mohmaddevberof:sismember(DEVBERO..'tedmembars'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'tedmembars'..msg.chat_id_,tes.content_.entities_[0].user_id_) then
 kkeed = 'مقيد'
 else
 kkeed = ' لا يوجد'
@@ -4758,7 +4758,7 @@ text = '🌐┇ ايديه » ❪ '..tes.content_.entities_[0].user_id_..
 ' ❫\n⚜┇ اسمه » ❪ {'..CatchName(data.first_name_,20)..
 ' }❫\n🔘┇ رتبـة الكروب » ❪ '..rtpa..
 ' ❫\n🔰┇ رتبـة البوت » ❪ '..t..
-' ❫\n📨┇ رسـائله » ❪ '..(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..tes.content_.entities_[0].user_id_) or 0)..
+' ❫\n📨┇ رسـائله » ❪ '..(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..tes.content_.entities_[0].user_id_) or 0)..
 ' ❫\n📊┇ تفــاعله » ❪ '..formsgg(msgss)..' ❫'..photouser1..
 '\n🚫┇ نوع القيود » ❪ '..kkeed..
 ' ❫\n❕┇ التواجد » ❪ '..tt..
@@ -4773,34 +4773,34 @@ getMessage(msg.chat_id_,msg.id_,mention)
 end
 end
 if text and text:match("^جلب الرابط$") and is_devmohmad(msg) then  
-mohmaddevberof:setex(DEVBERO.."get:link:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."get:link:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*🔘┇ حسنآ ارسل لي ايدي المجموعه*\n♦'  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text and text:match("^معلومات$") and is_devmohmad(msg) then  
-mohmaddevberof:setex(DEVBERO.."get:info:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."get:info:gp" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*🔘┇ حسنآ ارسل لي ايدي المجموعه*\n♦'  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text == 'الكروبات' and is_sudo(msg) then 
-local t = mohmaddevberof:scard(DEVBERO.."botgps")
-local y = mohmaddevberof:scard(DEVBERO.."bot:gpsby:id") 
+local t = mohmadDEVBEROF:scard(DEVBERO.."botgps")
+local y = mohmadDEVBEROF:scard(DEVBERO.."bot:gpsby:id") 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*🔘┇ العدد الكلي للكروبات هو » ❪'..(y)..'❫* \n', 1, 'md') 
 end
 if text == 'المشتركين' and is_sudo(msg) then     
-local addgrop = mohmaddevberof:scard(DEVBERO.."usersbot") or 0    
+local addgrop = mohmadDEVBEROF:scard(DEVBERO.."usersbot") or 0    
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*🔘┇ عدد المشتركين في البوت » ❪ '..addgrop..' ❫*\n♦', 1, 'md')    
 end      
 if text and text:match("^ضع عدد التفعيل$") and is_devmohmad(msg) then  
-mohmaddevberof:setex(DEVBERO.."numadd:bot" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."numadd:bot" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*📊┇ ارسل لي العدد الان*'  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text == 'مسح المجموعات' and is_devmohmad(msg) then 
-local lgp = mohmaddevberof:smembers(DEVBERO.."bot:gpsby:id") 
-local lsug = mohmaddevberof:smembers(DEVBERO.."botgps") 
-local lgpn = mohmaddevberof:scard(DEVBERO.."bot:gpsby:id") 
-local lsugn = mohmaddevberof:scard(DEVBERO.."bot:gpsby:id") 
+local lgp = mohmadDEVBEROF:smembers(DEVBERO.."bot:gpsby:id") 
+local lsug = mohmadDEVBEROF:smembers(DEVBERO.."botgps") 
+local lgpn = mohmadDEVBEROF:scard(DEVBERO.."bot:gpsby:id") 
+local lsugn = mohmadDEVBEROF:scard(DEVBERO.."bot:gpsby:id") 
 for k,v in pairs(lgp) do 
 rem_group(v)   
 changeChatMemberStatus(v, bot_id, "Left")  
@@ -4821,19 +4821,19 @@ local num2 = 0
 local admins = data.members_
 for i=0 , #admins do
 if data.members_[i].bot_info_ == false and data.members_[i].status_.ID == "ChatMemberStatusEditor" then
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,admins[i].user_id_) 
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,admins[i].user_id_) 
 num2 = num2 + 1
 tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_
 },function(arg,b) 
 if b.username_ == true then
-mohmaddevberof:set(DEVBERO.."user:Name"..b.id_,"@"..b.username_)
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..b.id_,"@"..b.username_)
 end
 if b.first_name_ == false then
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,admins[i].user_id_) 
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,admins[i].user_id_) 
 end
 end,nil)   
 else
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,admins[i].user_id_) 
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,admins[i].user_id_) 
 end
 end
 if num2 == 0 then
@@ -4857,7 +4857,7 @@ tdcli_function ({ID = "GetUser",user_id_ = owner_id
 },function(arg,b) 
 if b.first_name_ == false then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*🔘┇ حساب المنشئ محذوف *\n', 1, 'md')
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,owner_id) 
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,owner_id) 
 return false  end
 local textm = '👤┇ منشئ المجموعه » ( {'..(b.first_name_)..'} ) \n📡'
 sendMention(msg,msg.chat_id_,textm,owner_id)   
@@ -4876,21 +4876,21 @@ local admins = data.members_
 for i=0 , #admins do
 if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
 owner_id = admins[i].user_id_
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,owner_id) 
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,owner_id) 
 end
 end
 tdcli_function ({ID = "GetUser",user_id_ = owner_id
 },function(arg,b) 
 if b.first_name_ == false then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇ المنشئ حاذف لا استطيع رفعه منشئ *\n', 1, 'md')
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,owner_id) 
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,owner_id) 
 return false  end
 if b.username_ == false then 
 local text = '☑┇ تم ترقية منشئ المجموعه \n•⊱ '..CatchName(b.first_name_,50)..' ⊰• \n✓'
 berofmonshn(msg.chat_id_, owner_id, msg.id_, text, 31, utf8.len(b.first_name_)) 
 else
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ تم ترقية منشئ المجموعه \n •♦* ['..CatchName(b.first_name_,20)..'](t.me/'..b.username_..') *🔽• *\n✓', 1, 'md') 
-mohmaddevberof:set(DEVBERO.."user:Name"..b.id_,"@"..b.username_)
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..b.id_,"@"..b.username_)
 end
 end,nil)   
 end,nil)   
@@ -4908,60 +4908,60 @@ if data.message_ == "CHAT_ADMIN_REQUIRED" then
 berof_sendMsg(msg.chat_id_,msg.id_, 1, "*❕┇* ماعندي صلاحيه اغير اسم المجموعه \n", 1, 'md')  
 else
 berof_sendMsg(msg.chat_id_,msg.id_, 1, "*☑┇* تم وضع اسم للمجموعه \n", 1, 'md')  
-mohmaddevberof:set(DEVBERO..'group:name'..msg.chat_id_,name)
+mohmadDEVBEROF:set(DEVBERO..'group:name'..msg.chat_id_,name)
 end
 end,nil) 
 end
 if text=="ضع رابط" and msg.reply_to_message_id_ == 0  and is_mod(msg) then  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*🔘┇* حسناا ارسل لي رابط المجموعه ", 1, 'md')       
-mohmaddevberof:set(DEVBERO.."link:group"..msg.chat_id_, 'setlinkwai') 
+mohmadDEVBEROF:set(DEVBERO.."link:group"..msg.chat_id_, 'setlinkwai') 
 end
 if text == "الرابط" then 
-local link = mohmaddevberof:get(DEVBERO.."link:group"..msg.chat_id_)            
+local link = mohmadDEVBEROF:get(DEVBERO.."link:group"..msg.chat_id_)            
 if link then                              
-berof_sendMsg(msg.chat_id_, msg.id_, 1, '*ٴ☑┇ »* رابط مجموعة ↓\n*ٴ🔘┇ » '..mohmaddevberof:get(DEVBERO..'group:name'..msg.chat_id_)..' *\n*ٴ☑┇* » ['..link..']\n♦', 1, 'md')                          
+berof_sendMsg(msg.chat_id_, msg.id_, 1, '*ٴ☑┇ »* رابط مجموعة ↓\n*ٴ🔘┇ » '..mohmadDEVBEROF:get(DEVBERO..'group:name'..msg.chat_id_)..' *\n*ٴ☑┇* » ['..link..']\n♦', 1, 'md')                          
 else                
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*🔘┇* لا يوجد رابط المجموعه\n*❕┇ ارسل » ❪ ضع رابط ❫ لوضع رابط المجموعه*\n♦', 1, 'md')              
 end            
 end
 if text and text:match("^مسح الرابط$") and is_mod(msg) then              
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇* تم مسح رابط المجموعه \n✓", 1 , "md")           
-mohmaddevberof:del(DEVBERO.."link:group" .. msg.chat_id_)       
+mohmadDEVBEROF:del(DEVBERO.."link:group" .. msg.chat_id_)       
 end
 if text=="اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then 
-mohmaddevberof:setex(DEVBERO.."bc:in:gropsfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+mohmadDEVBEROF:setex(DEVBERO.."bc:in:gropsfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*💬┇* ارسل لي التوجيه ليتم اذاعته للمجموعات\n✓", 1, "md") 
 end
 if text=="اذاعه خاص بالتوجيه" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then 
-mohmaddevberof:setex(DEVBERO.."bc:in:pvfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+mohmadDEVBEROF:setex(DEVBERO.."bc:in:pvfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*💬┇* ارسل لي التوجيه ليتم اذاعته للخاص\n✓", 1, "md") 
 end
 if text=="اذاعه عام بالتوجيه" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then 
-mohmaddevberof:setex(DEVBERO.."bc:in:allfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+mohmadDEVBEROF:setex(DEVBERO.."bc:in:allfwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*💬┇* ارسل لي التوجيه ليتم اذاعته للكل\n✓", 1, "md") 
 end
 if text=="اذاعه" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then 
-mohmaddevberof:setex(DEVBERO.."bc:in:grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+mohmadDEVBEROF:setex(DEVBERO.."bc:in:grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*💬┇* ارسل لي سواء كان »❪ رساله , صوره , متحركه , ملصق  ❫ للاذاعه الى المجموعات\n✓", 1, "md") 
 end
 if text=="اذاعه للكل" and msg.reply_to_message_id_ == 0  and is_devmohmad(msg) then 
-mohmaddevberof:setex(DEVBERO.."bc:in:all" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+mohmadDEVBEROF:setex(DEVBERO.."bc:in:all" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*💬┇* ارسل لي سواء كان »❪ رساله , صوره , متحركه , ملصق  ❫ للاذاعه الى الكل\n✓", 1, "md") 
 end
 if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and is_devmohmad(msg) then 
-mohmaddevberof:setex(DEVBERO.."bc:in:pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+mohmadDEVBEROF:setex(DEVBERO.."bc:in:pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*💬┇* ارسل لي سواء كان »❪ رساله , صوره , متحركه , ملصق  ❫ للاذاعه الى الخاص\n✓", 1, "md") 
 end 
 if text and text:match("^ضع قوانين$") and is_mod(msg) then 
-mohmaddevberof:setex(DEVBERO.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+mohmadDEVBEROF:setex(DEVBERO.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "💬*┇* ارسل لي النص الان \n♦", 1, "md")  
 end
 if text and text:match("^مسح القوانين$")  and is_mod(msg) then  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "☑*┇* تم مسح القوانين \n✓", 1, "md")  
-mohmaddevberof:del(DEVBERO.."rules:group" .. msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO.."rules:group" .. msg.chat_id_) 
 end
 if text and text:match("^القوانين$") then 
-local rules = mohmaddevberof:get(DEVBERO.."rules:group" .. msg.chat_id_)   
+local rules = mohmadDEVBEROF:get(DEVBERO.."rules:group" .. msg.chat_id_)   
 if rules then     
 berof_sendMsg(msg.chat_id_, msg.id_, 1, rules, 1, nil)   
 else      
@@ -5054,16 +5054,16 @@ getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),necha)
 end
 if text and text:match('^غادر (-%d+)') and is_devmohmad(msg) then 
 gp = text:match('غادر (-%d+)') 
-mohmaddevberof:srem(DEVBERO..'bot:gps',gp) 
-mohmaddevberof:srem(DEVBERO..'bot:gpsby:id',gp) 
-mohmaddevberof:srem(DEVBERO.."botgps",gp) 
-mohmaddevberof:del(DEVBERO..'mod:'..gp) 
-mohmaddevberof:del(DEVBERO..'moder'..gp) 
-mohmaddevberof:del(DEVBERO..'banned:'..gp) 
-mohmaddevberof:del(DEVBERO.."add:bot:group"..gp) 
-mohmaddevberof:del(DEVBERO.."setmoder:"..gp) 
-mohmaddevberof:del(DEVBERO.."gps:settings:"..gp) 
-mohmaddevberof:del(DEVBERO.."gps:settings:"..gp) 
+mohmadDEVBEROF:srem(DEVBERO..'bot:gps',gp) 
+mohmadDEVBEROF:srem(DEVBERO..'bot:gpsby:id',gp) 
+mohmadDEVBEROF:srem(DEVBERO.."botgps",gp) 
+mohmadDEVBEROF:del(DEVBERO..'mod:'..gp) 
+mohmadDEVBEROF:del(DEVBERO..'moder'..gp) 
+mohmadDEVBEROF:del(DEVBERO..'banned:'..gp) 
+mohmadDEVBEROF:del(DEVBERO.."add:bot:group"..gp) 
+mohmadDEVBEROF:del(DEVBERO.."setmoder:"..gp) 
+mohmadDEVBEROF:del(DEVBERO.."gps:settings:"..gp) 
+mohmadDEVBEROF:del(DEVBERO.."gps:settings:"..gp) 
 berof_sendMsg(text:match('غادر (-%d+)'), 0, 1,'☑*┇*تم مغادره البوت من المجموعه \n🔘*┇*الامر بواسطه مطور البوت \n 💬*┇*للاستفسار راسل مطور البوت ', 1, 'md') 
 changeChatMemberStatus(text:match('غادر (-%d+)'), bot_id, "Left") 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*تم ازاله المجموعه من مجموعات البوت بنجاح ✔ ', 1, 'md') 
@@ -5074,31 +5074,31 @@ delete_msg(msg.chat_id_,{[0] = tonumber(msg.reply_to_message_id_),msg.id_})
 end   
 end
 if text ==('تفعيل الترحيب') and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO..'add:welc:'..msg.chat_id_,'add') 
+mohmadDEVBEROF:set(DEVBERO..'add:welc:'..msg.chat_id_,'add') 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*  تم تفعيل الترحيب', 1, 'md') 
 end
 if text ==('تعطيل الترحيب') and is_mod(msg) then 
-mohmaddevberof:set(DEVBERO..'add:welc:'..msg.chat_id_,'rem') 
+mohmadDEVBEROF:set(DEVBERO..'add:welc:'..msg.chat_id_,'rem') 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*  تم تعطيل الترحيب', 1, 'md') 
 end
 if text ==('مسح الترحيب') and is_mod(msg) then 
-mohmaddevberof:del(DEVBERO..'welcome:'..msg.chat_id_,welcome) 
+mohmadDEVBEROF:del(DEVBERO..'welcome:'..msg.chat_id_,welcome) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*  تم مسح ترحيب المجموعه', 1, 'md') 
 end
 if text and text:match("^ضع صوره") and is_mod(msg) and msg.reply_to_message_id_ == 0 then  
-mohmaddevberof:set(DEVBERO..'setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true) 
+mohmadDEVBEROF:set(DEVBERO..'setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '📷*┇* ارسل لي الصوره الان ', 1, 'md') 
 end           
 if text ==('المجموعات') and is_devmohmad(msg) then
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id')  
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id')  
 if #list == 0 then  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*📊┇ لا توجد مجموعات حاليا *\n', 1, 'md')   
 return false  end
 local t = '❕┇* اهلا بك في ايدي المجموعات 󾓫📡*\n*ٴ⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃*\n'  
 for k,v in pairs(list) do   
-local nummsg = tonumber(mohmaddevberof:get(DEVBERO..'groupmsg:'..v..':')) 
-numrgroup(v) local numg = (mohmaddevberof:get(DEVBERO.."numgrop"..v) or '3')
-local namechat = mohmaddevberof:get(DEVBERO..'group:name'..v) 
+local nummsg = tonumber(mohmadDEVBEROF:get(DEVBERO..'groupmsg:'..v..':')) 
+numrgroup(v) local numg = (mohmadDEVBEROF:get(DEVBERO.."numgrop"..v) or '3')
+local namechat = mohmadDEVBEROF:get(DEVBERO..'group:name'..v) 
 if namechat then
 t = t..'*'..k.."➛* `"..v.."` "..tfgroup(nummsg).."\n*« "..namechat..' » ❪'..numg..'❫*\n*ٴ⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃⁃*\n'   
 else
@@ -5108,7 +5108,7 @@ file = io.open("berof_groups.txt", "w") file:write([[ ]]..isnothtml(t)..[[ ]]) f
 end  
 t = t..'*⚠️┇*لعرض معلومات مجموعه معينه\n*🔘┇ ارسل كشف من ثم ايدي المجموعه*\n*💬┇ مثال ❪كشف -10012345667❫*\n꞉'  
 if #list >= 25 then  
-local groups = mohmaddevberof:scard(DEVBERO..'bot:gpsby:id')  
+local groups = mohmadDEVBEROF:scard(DEVBERO..'bot:gpsby:id')  
 sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './berof_groups.txt','⚠️┇ عذرا لديك الكثير من المجموعات\n🔘┇ تم ارسال المجموعات في الملف\n💬┇ عدد المجموعات •⊱'..groups..'⊰•',dl_cb, nil) 
 else 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md')  
@@ -5119,22 +5119,22 @@ if text ==('مسح المحذوف') and is_monsh(msg) then local function delete
 if is_mod(msg) then 
 local function getadd_or_rem(mohmad)     
 if mohmad == 'welcome' then     
-local hash = mohmaddevberof:get(DEVBERO..'add:welc:'..msg.chat_id_)     
+local hash = mohmadDEVBEROF:get(DEVBERO..'add:welc:'..msg.chat_id_)     
 if hash == 'add' then     
 return '✓'     
 else     
 return '✘'     
 end     
 elseif mohmad == 'spam' then     
-local hash = mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"flood")     
+local hash = mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"flood")     
 if hash then      
-if mohmaddevberof:hget("flooding:settings:"..msg.chat_id_, "flood") == "kick" then     
+if mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_, "flood") == "kick" then     
 return 'بالطرد 🔘'     
-elseif mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"flood") == "keed" then     
+elseif mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"flood") == "keed" then     
 return 'بالتقيد 🔘'     
-elseif mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"flood") == "mute" then     
+elseif mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"flood") == "mute" then     
 return 'بالكتم 🚫'           
-elseif mohmaddevberof:hget("flooding:settings:"..msg.chat_id_,"flood") == "del" then     
+elseif mohmadDEVBEROF:hget("flooding:settings:"..msg.chat_id_,"flood") == "del" then     
 return 'بالمسح ⚠️'     
 end      
 else     
@@ -5143,249 +5143,249 @@ end
 end     
 end    
 if text == 'الاعدادات' and is_monsh(msg) then    
-if mohmaddevberof:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
+if mohmadDEVBEROF:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
 lock_tagservr_bot = '✓'
 else 
 lock_tagservr_bot = '✘'    
 end
-if mohmaddevberof:get(DEVBERO..'lockpin'..msg.chat_id_) then    
+if mohmadDEVBEROF:get(DEVBERO..'lockpin'..msg.chat_id_) then    
 lock_pin = '✓'
 else 
 lock_pin = '✘'    
 end
-if mohmaddevberof:get(DEVBERO..'lock:tagservr'..msg.chat_id_) then    
+if mohmadDEVBEROF:get(DEVBERO..'lock:tagservr'..msg.chat_id_) then    
 lock_tagservr = '✓'
 else 
 lock_tagservr = '✘'    
 end
-if mohmaddevberof:get(DEVBERO..'lock:text'..msg.chat_id_) then    
+if mohmadDEVBEROF:get(DEVBERO..'lock:text'..msg.chat_id_) then    
 lock_text = '✓'
 else 
 lock_text = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:AddMempar"..msg.chat_id_) == 'kick' then
+if mohmadDEVBEROF:get(DEVBERO.."lock:AddMempar"..msg.chat_id_) == 'kick' then
 lock_add = '✓'
 else 
 lock_add = '✘'    
 end    
-if mohmaddevberof:get(DEVBERO.."lock:Join"..msg.chat_id_) == 'kick' then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Join"..msg.chat_id_) == 'kick' then
 lock_join = '✓'
 else 
 lock_join = '✘'    
 end    
-if mohmaddevberof:get(DEVBERO..'lock:edit'..msg.chat_id_) then    
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..msg.chat_id_) then    
 lock_edit = '✓'
 else 
 lock_edit = '✘'    
 end
-if mohmaddevberof:get(DEVBERO..'lock:edit:media'..msg.chat_id_) then    
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit:media'..msg.chat_id_) then    
 lock_edit_med = '✓'
 else 
 lock_edit_med = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "del" then
 lock_photo = '✓' 
-elseif mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ked" then 
 lock_photo = 'بالتقيد 🔘'   
-elseif mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "ktm" then 
 lock_photo = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Photo"..msg.chat_id_) == "kick" then 
 lock_photo = 'بالطرد 🔘'   
 else
 lock_photo = '✘'   
 end    
-if mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "del" then
 lock_phon = '✓' 
-elseif mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ked" then 
 lock_phon = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "ktm" then 
 lock_phon = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Contact"..msg.chat_id_) == "kick" then 
 lock_phon = 'بالطرد 🔘'    
 else
 lock_phon = '✘'    
 end    
-if mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then
 lock_links = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ked" then
 lock_links = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ktm" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "ktm" then
 lock_links = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "kick" then
 lock_links = 'بالطرد 🔘'    
 else
 lock_links = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "del" then
 lock_cmds = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ked" then
 lock_cmds = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ktm" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "ktm" then
 lock_cmds = 'بالكتم 🚫'   
-elseif mohmaddevberof:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Cmd"..msg.chat_id_) == "kick" then
 lock_cmds = 'بالطرد 🔘'    
 else
 lock_cmds = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" then
 lock_user = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ked" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ked" then
 lock_user = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ktm" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "ktm" then
 lock_user = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "kick" then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "kick" then
 lock_user = 'بالطرد 🔘'    
 else
 lock_user = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" then
 lock_hash = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ked" then 
 lock_hash = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "ktm" then 
 lock_hash = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "kick" then 
 lock_hash = 'بالطرد 🔘'    
 else
 lock_hash = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "del" then
 lock_muse = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ked" then 
 lock_muse = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ktm" then 
 lock_muse = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "kick" then 
 lock_muse = 'بالطرد 🔘'    
 else
 lock_muse = '✘'    
 end 
-if mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "del" then
 lock_ved = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ked" then 
 lock_ved = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "ktm" then 
 lock_ved = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Video"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Video"..msg.chat_id_) == "kick" then 
 lock_ved = 'بالطرد 🔘'    
 else
 lock_ved = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "del" then
 lock_gif = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ked" then 
 lock_gif = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "ktm" then 
 lock_gif = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Animation"..msg.chat_id_) == "kick" then 
 lock_gif = 'بالطرد 🔘'    
 else
 lock_gif = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "del" then
 lock_ste = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ked" then 
 lock_ste = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "ktm" then 
 lock_ste = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Sticker"..msg.chat_id_) == "kick" then 
 lock_ste = 'بالطرد 🔘'    
 else
 lock_ste = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "del" then
 lock_geam = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ked" then 
 lock_geam = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "ktm" then 
 lock_geam = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:geam"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:geam"..msg.chat_id_) == "kick" then 
 lock_geam = 'بالطرد 🔘'    
 else
 lock_geam = '✘'    
 end    
-if mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "del" then
 lock_vico = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ked" then 
 lock_vico = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "ktm" then 
 lock_vico = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:vico"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:vico"..msg.chat_id_) == "kick" then 
 lock_vico = 'بالطرد 🔘'    
 else
 lock_vico = '✘'    
 end    
-if mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "del" then
 lock_inlin = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ked" then 
 lock_inlin = 'بالتقيد 🔘'
-elseif mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "ktm" then 
 lock_inlin = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Keyboard"..msg.chat_id_) == "kick" then 
 lock_inlin = 'بالطرد 🔘'
 else
 lock_inlin = '✘'
 end
-if mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "del" then
 lock_fwd = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ked" then 
 lock_fwd = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "ktm" then 
 lock_fwd = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:forward"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:forward"..msg.chat_id_) == "kick" then 
 lock_fwd = 'بالطرد 🔘'    
 else
 lock_fwd = '✘'    
 end    
-if mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "del" then
 lock_file = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ked" then 
 lock_file = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "ktm" then 
 lock_file = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Document"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Document"..msg.chat_id_) == "kick" then 
 lock_file = 'بالطرد 🔘'    
 else
 lock_file = '✘'    
 end    
-if mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "del" then
 lock_self = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ked" then 
 lock_self = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "ktm" then 
 lock_self = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Unsupported"..msg.chat_id_) == "kick" then 
 lock_self = 'بالطرد 🔘'    
 else
 lock_self = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'del' then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'del' then
 lock_bots = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'ked' then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'ked' then
 lock_bots = 'بالتقيد 🔘'   
-elseif mohmaddevberof:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'kick' then
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'kick' then
 lock_bots = 'بالطرد 🔘'    
 else
 lock_bots = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "del" then
 lock_mark = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ked" then 
 lock_mark = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "ktm" then 
 lock_mark = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Markdaun"..msg.chat_id_) == "kick" then 
 lock_mark = 'بالطرد 🔘'    
 else
 lock_mark = '✘'    
 end
-if mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "del" then    
+if mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "del" then    
 lock_spam = '✓'
-elseif mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ked" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ked" then 
 lock_spam = 'بالتقيد 🔘'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ktm" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "ktm" then 
 lock_spam = 'بالكتم 🚫'    
-elseif mohmaddevberof:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "kick" then 
+elseif mohmadDEVBEROF:get(DEVBERO.."lock:Spam"..msg.chat_id_) == "kick" then 
 lock_spam = 'بالطرد 🔘'    
 else
 lock_spam = '✘'    
@@ -5441,40 +5441,40 @@ end,nil)
 end,nil)  
 end    
 if text and text:match("^تغير الاشتراك$") and is_devmohmad(msg) then  
-mohmaddevberof:setex(DEVBERO.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*☑┇ حسنآ ارسل لي معرف القناة*\n♦'  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text and text:match("^تغير رساله الاشتراك$") and is_devmohmad(msg) then  
-mohmaddevberof:setex(DEVBERO.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 local t = '*☑┇ حسنآ ارسل لي النص الذي تريده*\n♦'  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
 end
 if text == "حذف رساله الاشتراك" and is_devmohmad(msg) then  
-mohmaddevberof:del(DEVBERO..'text:ch:user')
+mohmadDEVBEROF:del(DEVBERO..'text:ch:user')
 mohmad = "*☑┇ تم مسح رساله الاشتراك*\n✓"
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 end
 if text == "تفعيل الاشتراك الاجباري" and is_devmohmad(msg) then  
-if mohmaddevberof:get(DEVBERO..'add:ch:id') then
-local addchusername = mohmaddevberof:get(DEVBERO..'add:ch:username')
+if mohmadDEVBEROF:get(DEVBERO..'add:ch:id') then
+local addchusername = mohmadDEVBEROF:get(DEVBERO..'add:ch:username')
 mohmad = "*☑┇ الاشتراك الاجباري مفعل \n🔽┇ على القناة » *["..addchusername.."]\n✓"
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 else
-mohmaddevberof:setex(DEVBERO.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+mohmadDEVBEROF:setex(DEVBERO.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 mohmad = "*👤┇ اهلا عزيزي المطور \n☑┇ ارسل معرف قناتك ليتم تفعيل الاشتراك الاجباري*\n✓"
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 end
 end
 if text == "تعطيل الاشتراك الاجباري" and is_devmohmad(msg) then  
-mohmaddevberof:del(DEVBERO..'add:ch:id')
-mohmaddevberof:del(DEVBERO..'add:ch:username')
+mohmadDEVBEROF:del(DEVBERO..'add:ch:id')
+mohmadDEVBEROF:del(DEVBERO..'add:ch:username')
 mohmad = "*☑┇ تم تعطيل الاشتراك الاجباري *\n✓"
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 end
 if text == "الاشتراك الاجباري" and is_devmohmad(msg) then  
-if mohmaddevberof:get(DEVBERO..'add:ch:username') then
-local addchusername = mohmaddevberof:get(DEVBERO..'add:ch:username')
+if mohmadDEVBEROF:get(DEVBERO..'add:ch:username') then
+local addchusername = mohmadDEVBEROF:get(DEVBERO..'add:ch:username')
 mohmad = "*☑┇ تم تفعيل الاشتراك الاجباري \n🔽┇ على القناة » *["..addchusername.."]\n✓"
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 else
@@ -5482,9 +5482,9 @@ mohmad = "*❕┇ لا يوجد قناة في الاشتراك الاجباري 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 end
 end
-if text and text:match('^ضع تكرار (%d+)$') and is_mod(msg) then mohmaddevberof:hset("flooding:settings:"..msg.chat_id_ ,"floodmax" ,text:match('ضع تكرار (.*)')) berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*  تم وضع عدد التكرار في المجموعه ( '..text:match('ضع تكرار (.*)')..' )', 1, 'md') end if text and text:match('^ضع زمن التكرار (%d+)$') and is_mod(msg) then mohmaddevberof:hset("flooding:settings:"..msg.chat_id_ ,"floodtime" ,text:match('ضع زمن التكرار (.*)')) berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*  تم وضع زمن التكرار في المجموعه ( '..text:match('ضع زمن التكرار (.*)')..' )', 1, 'md') end
+if text and text:match('^ضع تكرار (%d+)$') and is_mod(msg) then mohmadDEVBEROF:hset("flooding:settings:"..msg.chat_id_ ,"floodmax" ,text:match('ضع تكرار (.*)')) berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*  تم وضع عدد التكرار في المجموعه ( '..text:match('ضع تكرار (.*)')..' )', 1, 'md') end if text and text:match('^ضع زمن التكرار (%d+)$') and is_mod(msg) then mohmadDEVBEROF:hset("flooding:settings:"..msg.chat_id_ ,"floodtime" ,text:match('ضع زمن التكرار (.*)')) berof_sendMsg(msg.chat_id_, msg.id_, 1,'☑*┇*  تم وضع زمن التكرار في المجموعه ( '..text:match('ضع زمن التكرار (.*)')..' )', 1, 'md') end
 if text == 'الترحيب' then 
-local getwelcom = mohmaddevberof:get(DEVBERO..'welcome:'..msg.chat_id_)  
+local getwelcom = mohmadDEVBEROF:get(DEVBERO..'welcome:'..msg.chat_id_)  
 if getwelcom then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, ''..getwelcom..'', 1, 'html') 
 else 
@@ -5501,14 +5501,14 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مميز للـكروب\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` ❫\n*☑┇* تـم تـرقيتـه مميز للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
@@ -5516,10 +5516,10 @@ else
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مميز \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))   
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` ❫\n*☑┇* بالتاكيد هو مميز'   
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
@@ -5547,14 +5547,14 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if not mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.id_) then
 setvip = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` ❫\n*☑┇* تـم تـرقيتـه مميز للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 else
 setvip = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` ❫\n*☑┇* بالتاكيد هو مميز'   
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 end
 else  
 setvip = ''   
@@ -5577,14 +5577,14 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,user) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,user) then
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مميز للـكروب\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تـم تـرقيتـه مميز للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
@@ -5592,10 +5592,10 @@ else
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مميز \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` ❫\n*☑┇* بالتاكيد هو مميز'   
-mohmaddevberof:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:group'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
@@ -5611,24 +5611,24 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المميزين\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تم تنزيله من المميزين'   
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
 else
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مميز \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مميز'   
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
 end
@@ -5655,12 +5655,12 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n??', 1, 'md') 
 return false  end
 if result.id_ then  
-if mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,result.id_) then
 setvip = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تم تنزيله من المميزين'   
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مميز'   
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,result.id_)  
 end
 else  
 setvip = ''   
@@ -5683,135 +5683,135 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,user) then
+if mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,user) then
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المميزين\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تم تنزيله من المميزين'   
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
 else
 if data.username_ == false then
 setvip = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مميز \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvip, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
 else
 setvip = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو ليس مميز'   
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvip, 1, 'md') 
 end
 end
 end,nil)   
 end
 if text ==('مسح المكتومين') and is_mod(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'mutes'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'mutes'..msg.chat_id_) 
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد مكتومين ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,v) 
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,v) 
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المكتومين *\n', 1, 'md') 
 end 
 if text ==('مسح المحظورين') and is_mod(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'berof:baned'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'berof:baned'..msg.chat_id_) 
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد محظورين ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,v) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,v) 
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المحظورين *\n', 1, 'md') 
 end 
 
 if text == 'مسح المميزين' and is_mod(msg) then  
-local list = mohmaddevberof:smembers(DEVBERO..'vip:group'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'vip:group'..msg.chat_id_) 
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد مميزين ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO..'vip:group'..msg.chat_id_,v) 
+mohmadDEVBEROF:srem(DEVBERO..'vip:group'..msg.chat_id_,v) 
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المميزين *\n', 1, 'md') 
 end 
 if text ==('مسح الادمنيه') and is_monsh(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'mods:'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'mods:'..msg.chat_id_) 
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد ادمنيه ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,v) 
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,v) 
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من الادمنيه *\n', 1, 'md') 
 end
 if text ==('مسح المدراء') and is_owner(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'modergroup'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'modergroup'..msg.chat_id_) 
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد مدراء ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,v) 
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,v) 
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المدراء *\n', 1, 'md') 
 end 
 if text == 'مسح المنشئين' and is_sudo(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'moder'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'moder'..msg.chat_id_) 
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد منشئين ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,v) 
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,v) 
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المنشئين *\n', 1, 'md') 
 end
 
 if text == 'مسح المميزين عام' and is_devmohmad(msg) then    
-local list = mohmaddevberof:smembers(DEVBERO..'vip:groups')  
+local list = mohmadDEVBEROF:smembers(DEVBERO..'vip:groups')  
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد مميزين عام ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO.."vip:groups",v)  
+mohmadDEVBEROF:srem(DEVBERO.."vip:groups",v)  
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المميزين عام *\n', 1, 'md') 
 end
 if text == 'مسح المطورين' and is_devmohmad(msg) then   
-local list = mohmaddevberof:smembers(DEVBERO..'sudo:bot')  
+local list = mohmadDEVBEROF:smembers(DEVBERO..'sudo:bot')  
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد مطورين ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO.."sudo:bot",v)  
+mohmadDEVBEROF:srem(DEVBERO.."sudo:bot",v)  
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المطورين *\n', 1, 'md') 
 end
 if text == 'مسح قائمه العام' and is_devmohmad(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'berof:gbaned')  
+local list = mohmadDEVBEROF:smembers(DEVBERO..'berof:gbaned')  
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد محظورين عام ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO.."berof:gbaned",v)  
+mohmadDEVBEROF:srem(DEVBERO.."berof:gbaned",v)  
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من المحظورين عام *\n', 1, 'md') 
@@ -5825,14 +5825,14 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'vip:groups',result.sender_user_id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',result.sender_user_id_) then
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مميز عام في البوت\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تـم تـرقيتـه مميز عام في البوت'   
-mohmaddevberof:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
@@ -5840,10 +5840,10 @@ else
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مميز عام \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))   
-mohmaddevberof:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو مميز عام'   
-mohmaddevberof:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
@@ -5869,14 +5869,14 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if not mohmaddevberof:sismember(DEVBERO..'vip:groups',result.id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',result.id_) then
 setvips = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تـم تـرقيتـه مميز عام البوت'   
-mohmaddevberof:sadd(DEVBERO..'vip:groups',result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 else
 setvips = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو مميز عام'   
-mohmaddevberof:sadd(DEVBERO..'vip:groups',result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 end
 else  
 setvips = ''   
@@ -5897,14 +5897,14 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'vip:groups',user) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',user) then
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مميز عام البوت\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',user)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تـم تـرقيتـه مميز عام البوت'   
-mohmaddevberof:sadd(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
@@ -5912,10 +5912,10 @@ else
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مميز عام \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',user)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو مميز عام'   
-mohmaddevberof:sadd(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'vip:groups',user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
@@ -5931,24 +5931,24 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'vip:groups',result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',result.sender_user_id_) then
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من مميزين عام\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تم تنزيله من مميزين عام'   
-mohmaddevberof:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
 else
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مميز عام \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مميز عام'   
-mohmaddevberof:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
 end
@@ -5973,12 +5973,12 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if mohmaddevberof:sismember(DEVBERO..'vip:groups',result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',result.id_) then
 setvips = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تم تنزيله من مميزين عام'   
-mohmaddevberof:srem(DEVBERO..'vip:groups',result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',result.id_)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مميز عام'   
-mohmaddevberof:srem(DEVBERO..'vip:groups',result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',result.id_)  
 end
 else  
 setvips = ''   
@@ -5999,24 +5999,24 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'vip:groups',user) then
+if mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',user) then
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من مميزين عام\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',user)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تم تنزيله من مميزين عام'   
-mohmaddevberof:srem(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
 else
 if data.username_ == false then
 setvips = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مميز عام \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setvips, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',user)  
 else
 setvips = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو ليس مميز عام'   
-mohmaddevberof:srem(DEVBERO..'vip:groups',user)  
+mohmadDEVBEROF:srem(DEVBERO..'vip:groups',user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setvips, 1, 'md') 
 end
 end
@@ -6031,14 +6031,14 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مدير للـكروب\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تـم تـرقيتـه مدير للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6046,10 +6046,10 @@ else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مدير \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))   
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو مدير'   
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6075,14 +6075,14 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if not mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.id_) then
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تـم تـرقيتـه مدير للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 else
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو مدير'   
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 end
 else  
 zo = ''   
@@ -6103,14 +6103,14 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,user) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,user) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مدير للـكروب\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تـم تـرقيتـه مدير للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6118,10 +6118,10 @@ else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مدير \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو مدير'   
-mohmaddevberof:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'modergroup'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6137,24 +6137,24 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*☑┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المدراء\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تم تنزيله من المدراء'   
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مدير \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مدير'   
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6179,12 +6179,12 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.id_) then
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تم تنزيله من المدراء'   
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مدير'   
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,result.id_)  
 end
 else  
 zo = ''   
@@ -6205,24 +6205,24 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,user) then
+if mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,user) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المدراء\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تم تنزيله من المدراء'   
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مدير \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو ليس مدير'   
-mohmaddevberof:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'modergroup'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6237,14 +6237,14 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه ادمن للـكروب\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تـم تـرقيتـه ادمن للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6252,10 +6252,10 @@ else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ادمن \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو ادمن'   
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6281,14 +6281,14 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if not mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,result.id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,result.id_) then
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تـم تـرقيتـه ادمن للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 else
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو ادمن'   
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 end
 else  
 zo = ''   
@@ -6309,14 +6309,14 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,user) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,user) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه ادمن للـكروب\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تـم تـرقيتـه ادمن للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6324,10 +6324,10 @@ else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ادمن \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو ادمن'   
-mohmaddevberof:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'mods:'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6343,24 +6343,24 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من الادمنيه\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تم تنزيله من الادمنيه'   
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس ادمن \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو ليس ادمن'   
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6385,12 +6385,12 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,result.id_) then
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تم تنزيله من الادمنيه'   
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو ليس ادمن'   
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,result.id_)  
 end
 else  
 zo = ''   
@@ -6411,24 +6411,24 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,user) then
+if mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,user) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من الادمنيه\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تم تنزيله من الادمنيه'   
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس ادمن \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو ليس ادمن'   
-mohmaddevberof:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'mods:'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6443,14 +6443,14 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه منشئ للـكروب\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تـم تـرقيتـه منشئ للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
@@ -6458,10 +6458,10 @@ else
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو منشئ \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))   
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو منشئ'   
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
@@ -6489,14 +6489,14 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if not mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,result.id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,result.id_) then
 setmonsh = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تـم تـرقيتـه منشئ للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو منشئ'   
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 end
 else  
 setmonsh = ''   
@@ -6519,14 +6519,14 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,user) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,user) then
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه منشئ للـكروب\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تـم تـرقيتـه منشئ للـكروب'   
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
@@ -6534,10 +6534,10 @@ else
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو منشئ \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو منشئ'   
-mohmaddevberof:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:sadd(DEVBERO..'moder'..msg.chat_id_,user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
@@ -6553,24 +6553,24 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المنشئين\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تم تنزيله من المنشئين'   
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
 else
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس منشئ \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو ليس منشئ'   
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
 end
@@ -6597,12 +6597,12 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,result.id_) then
 setmonsh = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تم تنزيله من المنشئين'   
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,result.id_)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو ليس منشئ'   
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,result.id_)  
 end
 else  
 setmonsh = ''   
@@ -6625,24 +6625,24 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,user) then
+if mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,user) then
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المنشئين\n'   
 berofmonshn(msg.chat_id_, user, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,user)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تم تنزيله من المنشئين'   
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
 else
 if data.username_ == false then
 setmonsh = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس منشئ \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, setmonsh, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,user)  
 else
 setmonsh = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو ليس منشئ'   
-mohmaddevberof:srem(DEVBERO..'moder'..msg.chat_id_,user)  
+mohmadDEVBEROF:srem(DEVBERO..'moder'..msg.chat_id_,user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, setmonsh, 1, 'md') 
 end
 end
@@ -6657,14 +6657,14 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'sudo:bot',result.sender_user_id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',result.sender_user_id_) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مطور البوت\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تـم تـرقيتـه مطور البوت'   
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6672,10 +6672,10 @@ else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مطور \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))   
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو مطور'   
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',result.sender_user_id_)  
 seavusername(result.sender_user_id_) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6701,14 +6701,14 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if not mohmaddevberof:sismember(DEVBERO..'sudo:bot',result.id_) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',result.id_) then
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تـم تـرقيتـه مطور البوت'   
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 else
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو مطور'   
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',result.id_)  
-mohmaddevberof:set(DEVBERO.."user:Name"..result.id_,"@"..username)
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',result.id_)  
+mohmadDEVBEROF:set(DEVBERO.."user:Name"..result.id_,"@"..username)
 end
 else  
 zo = ''   
@@ -6729,14 +6729,14 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if not mohmaddevberof:sismember(DEVBERO..'sudo:bot',user) then
+if not mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',user) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تـم تـرقيتـه مطور البوت\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تـم تـرقيتـه مطور البوت'   
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6744,10 +6744,10 @@ else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو مطور \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو مطور'   
-mohmaddevberof:sadd(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:sadd(DEVBERO..'sudo:bot',user)  
 seavusername(user) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
@@ -6763,24 +6763,24 @@ user_id_ = result.sender_user_id_
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'sudo:bot',result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',result.sender_user_id_) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المطورين\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* تم تنزيله من المطورين'   
-mohmaddevberof:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مطور \n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مطور'   
-mohmaddevberof:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',result.sender_user_id_)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6805,12 +6805,12 @@ if result and result.type_ and result.type_.user_ and result.type_.user_.type_ a
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
 if result.id_ then  
-if mohmaddevberof:sismember(DEVBERO..'sudo:bot',result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',result.id_) then
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* تم تنزيله من المطورين'   
-mohmaddevberof:srem(DEVBERO..'sudo:bot',result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',result.id_)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..username..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` *❫*\n*☑┇* بالتاكيد هو ليس مطور'   
-mohmaddevberof:srem(DEVBERO..'sudo:bot',result.id_)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',result.id_)  
 end
 else  
 zo = ''   
@@ -6831,24 +6831,24 @@ return false  end
 if data and data.type_ and data.type_.ID == "UserTypeBot" then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا تستطيع رفع وتنزيل البوتات *\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'sudo:bot',user) then
+if mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',user) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم تنزيله من المطورين\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* تم تنزيله من المطورين'   
-mohmaddevberof:srem(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد هو ليس مطور \n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
-mohmaddevberof:srem(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',user)  
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` *❫*\n*☑┇* بالتاكيد هو ليس مطور'   
-mohmaddevberof:srem(DEVBERO..'sudo:bot',user)  
+mohmadDEVBEROF:srem(DEVBERO..'sudo:bot',user)  
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6863,20 +6863,20 @@ tdcli_function ({
 ID = "GetUser",
 user_id_ = result.sender_user_id_
 },function(arg,data) 
-if mohmaddevberof:sismember(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) or mohmaddevberof:sismember(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_) or mohmaddevberof:sismember(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) or mohmadDEVBEROF:sismember(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_) or mohmadDEVBEROF:sismember(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم رفع قيوده\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` ❫\n*☑┇* تم رفع قيوده\n♦'   
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
@@ -6884,15 +6884,15 @@ if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد تم رفع قيوده\n♦'   
 berofmonshn(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.sender_user_id_..'` ❫\n*☑┇* بالتاكيد تم رفع قيوده\n♦'   
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.sender_user_id_) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.sender_user_id_)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,result.sender_user_id_)   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6912,20 +6912,20 @@ user_id_ = user
 if data and data.code_ and data.code_ == 6 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا استطيع استخراج معلوماته*\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'tedmembars'..msg.chat_id_,user) or mohmaddevberof:sismember(DEVBERO..'mutes'..msg.chat_id_,user) or mohmaddevberof:sismember(DEVBERO..'berof:baned'..msg.chat_id_,user) then
+if mohmadDEVBEROF:sismember(DEVBERO..'tedmembars'..msg.chat_id_,user) or mohmadDEVBEROF:sismember(DEVBERO..'mutes'..msg.chat_id_,user) or mohmadDEVBEROF:sismember(DEVBERO..'berof:baned'..msg.chat_id_,user) then
 if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ تم رفع قيوده\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` ❫\n*☑┇* تم رفع قيوده\n♦'   
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 else
@@ -6933,15 +6933,15 @@ if data.username_ == false then
 zo = '👤┇ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n☑┇ بالتاكيد تم رفع قيوده\n♦'   
 berofmonshn(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..user..'` ❫\n*☑┇* بالتاكيد تم رفع قيوده\n♦'   
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,user) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,user)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,user)   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end
@@ -6967,19 +6967,19 @@ user_id_ = result.id_
 if data and data.code_ and data.code_ == 6 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1, '*❕┇ لا استطيع استخراج معلوماته*\n♦', 1, 'md') 
 return false  end
-if mohmaddevberof:sismember(DEVBERO..'tedmembars'..msg.chat_id_,result.id_) or mohmaddevberof:sismember(DEVBERO..'mutes'..msg.chat_id_,result.id_) or mohmaddevberof:sismember(DEVBERO..'berof:baned'..msg.chat_id_,result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'tedmembars'..msg.chat_id_,result.id_) or mohmadDEVBEROF:sismember(DEVBERO..'mutes'..msg.chat_id_,result.id_) or mohmadDEVBEROF:sismember(DEVBERO..'berof:baned'..msg.chat_id_,result.id_) then
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` ❫\n*☑┇* تم رفع قيوده\n♦'   
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.id_) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.id_)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,result.id_)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.id_) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.id_)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,result.id_)   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 else
 zo = '*👤┇* العضــو » ❪ [@'..data.username_..'] ❫\n*🔘┇ الايـدي » ❪* `'..result.id_..'` ❫\n*☑┇* بالتاكيد تم رفع قيوده\n♦'   
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
-mohmaddevberof:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.id_) 
-mohmaddevberof:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.id_)   
-mohmaddevberof:srem(DEVBERO..'mutes'..msg.chat_id_,result.id_)   
+mohmadDEVBEROF:srem(DEVBERO..'tedmembars'..msg.chat_id_,result.id_) 
+mohmadDEVBEROF:srem(DEVBERO..'berof:baned'..msg.chat_id_,result.id_)   
+mohmadDEVBEROF:srem(DEVBERO..'mutes'..msg.chat_id_,result.id_)   
 berof_sendMsg(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
 end
 end,nil)   
@@ -9037,17 +9037,17 @@ end,nil)
 end,nil)
 end
 if text == 'عدد الاضافه' or text == 'شكد اضيف' or text == 'شكد العدد' then 
-local whatnumadded = (mohmaddevberof:get(DEVBERO..'setadd:'..msg.chat_id_) or 0) 
+local whatnumadded = (mohmadDEVBEROF:get(DEVBERO..'setadd:'..msg.chat_id_) or 0) 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,"📇*┇* عدد الاضافات المطلوبه\n❕*┇* *"..whatnumadded.."* اشخاص \n", 1, 'md') 
 end
 if text == "مسح رسايلي" or text == "مسح رسائلي" or text == "حذف رسايلي" or text == "حذف رسائلي" then  
-local getmsgs = mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 0
+local getmsgs = mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 local mohmad = '\n*📨┇ عدد رسائلك » ❪ '..getmsgs..' ❫ رساله\n☑┇ تم مسح جميع رسائلك *\n♦'  
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md')  
-mohmaddevberof:del(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) 
+mohmadDEVBEROF:del(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) 
 end
 if text == "رسايلي" or text == "رسائلي" or text == "msg" then 
-local getmsgs = mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 0
+local getmsgs = mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 local mohmad = '*📨┇ عدد رسائلك هنا » ❪ '..getmsgs..' ❫ رسالة *' 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 end 
@@ -9141,12 +9141,12 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1,zo, 1, 'md')
 end,nil)
 end
 if text == "تفاعلي" then
-local msguser = tonumber(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 1) 
+local msguser = tonumber(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 1) 
 mohmad = '*💬┇ تفاعلك هنا » ❪ '..formsgg(msguser)..' ❫\n♦*'
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
 end
 if text == "جهاتي" then
-local addmempar = tonumber(mohmaddevberof:get(DEVBERO..'add:mempar'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
+local addmempar = tonumber(mohmadDEVBEROF:get(DEVBERO..'add:mempar'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
 if addmempar == 0 then
 mohmad = '*❕┇ عذرا انت لم تقم باضافه احد هنا *'
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad, 1, 'md') 
@@ -9168,17 +9168,17 @@ if tonumber(msg.sender_user_id_) == tonumber(373906612) then
 t = 'مطور السورس 🔱'
 elseif tonumber(msg.sender_user_id_) == tonumber(SUDO) then
 t = 'مطور اساسي 🔽'
-elseif mohmaddevberof:sismember(DEVBERO..'sudo:bot',msg.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',msg.sender_user_id_) then
 t = 'المطور 📡'
-elseif mohmaddevberof:sismember(DEVBERO..'moder'..msg.chat_id_,msg.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,msg.sender_user_id_) then
 t = 'المنشئ 📊'
-elseif mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,msg.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,msg.sender_user_id_) then
 t = 'المدير ❕'
-elseif mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,msg.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,msg.sender_user_id_) then
 t = 'الادمن 🔘'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:groups',msg.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',msg.sender_user_id_) then
 t = 'مميز عام 🔽'
-elseif mohmaddevberof:sismember(DEVBERO..'vip:group'..msg.chat_id_,msg.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,msg.sender_user_id_) then
 t = 'عضو مميز ☀'
 else
 t = 'عضو 🔽'
@@ -9188,7 +9188,7 @@ monsend(msg,msg.chat_id_,zo,msg.sender_user_id_)
 end,nil)
 end
 if text == 'تغير الايدي' and is_devmohmad(msg) or text == 'تغيير الايدي' and is_devmohmad(msg) then
-mohmaddevberof:setex(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_,200,true)  
+mohmadDEVBEROF:setex(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_,200,true)  
 local mohmadid= [[
 *👤┇ اهلا عزيزي المطور 
 ☑┇ يمكنك استخدام الدوال الاتيه ↓
@@ -9206,16 +9206,16 @@ berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmadid, 1, 'md')
 return false  
 end 
 if text == 'مسح تغير الايدي' and is_devmohmad(msg) or text == 'حذف تغير الايدي' and is_devmohmad(msg) then
-mohmaddevberof:del(DEVBERO.."KLISH:ID")
+mohmadDEVBEROF:del(DEVBERO.."KLISH:ID")
 berof_sendMsg(msg.chat_id_, msg.id_, 1,  '*☑┇ تم مسح كليشه الايدي *\n', 1, 'md')
 return false  
 end 
-if mohmaddevberof:get(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_) then 
+if mohmadDEVBEROF:get(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
 berof_sendMsg(msg.chat_id_, msg.id_, 1, "*☑┇ تم الغاء الامر *\n✓", 1, "md") 
-mohmaddevberof:del(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_) 
+mohmadDEVBEROF:del(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_) 
 return false  end 
-mohmaddevberof:del(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_) 
+mohmadDEVBEROF:del(DEVBERO.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_) 
 local CHENGER_ID = text:match("(.*)")  
 if CHENGER_ID:find('NKOGET') then
 local filegames = io.open("plugins_/games.lua","r")
@@ -9223,7 +9223,7 @@ if not filegames then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'\n🗂┇ لا يمكنك وضع دالة طبع عدد النقود في كليشة الايدي يرجى تفعيل الملف ارسل ` تفعيل ملف games.lua`\n', 1, 'md')    
 return false  end 
 end
-mohmaddevberof:set(DEVBERO.."KLISH:ID",CHENGER_ID)
+mohmadDEVBEROF:set(DEVBERO.."KLISH:ID",CHENGER_ID)
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'\n☑*┇* تم تغير كليشه الايدي \n', 1, 'md')    
 end
 if text == ("ايدي") and msg.reply_to_message_id_ == 0 then
@@ -9249,17 +9249,17 @@ USERNAME_GET = '@'..result.username_..''
 else 
 USERNAME_GET = ' لا يوجد ' 
 end
-local msguser = tonumber(mohmaddevberof:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 1) 
-local addmempar = tonumber(mohmaddevberof:get(DEVBERO..'add:mempar'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
+local msguser = tonumber(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..msg.sender_user_id_) or 1) 
+local addmempar = tonumber(mohmadDEVBEROF:get(DEVBERO..'add:mempar'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
 t = get_rtpa(msg.chat_id_,msg.sender_user_id_)
-NUMPGAME = (mohmaddevberof:get(DEVBERO..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0)
+NUMPGAME = (mohmadDEVBEROF:get(DEVBERO..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0)
 if tonumber(NUMPGAME) == 0 then
 nko = '0'
 else
 nko = NUMPGAME
 end
-if not mohmaddevberof:get(DEVBERO..'lock:id'..msg.chat_id_) then      
-local get_id_text = mohmaddevberof:get(DEVBERO.."KLISH:ID")
+if not mohmadDEVBEROF:get(DEVBERO..'lock:id'..msg.chat_id_) then      
+local get_id_text = mohmadDEVBEROF:get(DEVBERO.."KLISH:ID")
 if get_id_text then
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then   
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, mohmad.photos_[0].sizes_[1].photo_.persistent_id_,get_id(msg,mohmad,get_id_text))       
@@ -9282,8 +9282,8 @@ end
 end
 end
 else
-if mohmaddevberof:get(DEVBERO..'lock:id:photo'..msg.chat_id_) then      
-local get_id_text = mohmaddevberof:get(DEVBERO.."KLISH:ID")
+if mohmadDEVBEROF:get(DEVBERO..'lock:id:photo'..msg.chat_id_) then      
+local get_id_text = mohmadDEVBEROF:get(DEVBERO.."KLISH:ID")
 if get_id_text then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,get_id(msg,mohmad,get_id_text), 1, 'html')   
 else
@@ -9298,7 +9298,7 @@ end,nil)
 end
 
 if text == 'قفل التثبيت' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
-tdcli_function ({ ID = "GetChannelFull",  channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  mohmaddevberof:set(DEVBERO..'pinned'..msg.chat_id_,data.pinned_message_id_)  end,nil)
+tdcli_function ({ ID = "GetChannelFull",  channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  mohmadDEVBEROF:set(DEVBERO..'pinned'..msg.chat_id_,data.pinned_message_id_)  end,nil)
 function by_reply(extra, result, success)   
 if not msg.can_be_deleted_ == true then   
 berof_send(msg.chat_id_,msg.id_,"*❕┇ انا لست ادمن هنا يرجى ترقيتي \n♦*")   
@@ -9315,18 +9315,18 @@ end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = result.sender_user_id_},function(arg,da) 
 if da and da.status_.ID == "ChatMemberStatusEditor" or da and da.status_.ID == "ChatMemberStatusCreator" then
-mohmaddevberof:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertp(data.first_name_)..'}'..'\n☑┇ تم منعه من التثبيت هنا\n',result.sender_user_id_)   
 else
-if mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.sender_user_id_) then
 tt = 'مدير'
-elseif mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,result.sender_user_id_) then
 tt = 'ادمن'
 else
 tt = 'عضو'
 end
 if tt ~= 'عضو' then 
-mohmaddevberof:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertp(data.first_name_)..'}'..'\n☑┇ تم منعه من التثبيت هنا\n',result.sender_user_id_)   
 else
 berof_send(msg.chat_id_,msg.id_,"*❕┇ هذا مجرد عضو هنا\n♦*")   
@@ -9339,7 +9339,7 @@ tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonu
 end
 if text and text:match('^قفل التثبيت @(.*)') and is_owner(msg) then   
 local user = text:match('قفل التثبيت @(.*)')    
-tdcli_function ({ ID = "GetChannelFull",  channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  mohmaddevberof:set(DEVBERO..'pinned'..msg.chat_id_,data.pinned_message_id_)  end,nil)
+tdcli_function ({ ID = "GetChannelFull",  channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  mohmadDEVBEROF:set(DEVBERO..'pinned'..msg.chat_id_,data.pinned_message_id_)  end,nil)
 function py_username(extra, result, success)   
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = result.id_},function(arg,da) 
 if da and da.status_.ID == "ChatMemberStatusEditor" or da and da.status_.ID == "ChatMemberStatusCreator" then
@@ -9363,18 +9363,18 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من التثبيت هنا\n',result.id_)   
 else
-if mohmaddevberof:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.id_) then
+if mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..msg.chat_id_,result.id_) then
 tt = 'مدير'
-elseif mohmaddevberof:sismember(DEVBERO..'mods:'..msg.chat_id_,result.id_) then
+elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..msg.chat_id_,result.id_) then
 tt = 'ادمن'
 else
 tt = 'عضو'
 end
 if tt ~= 'عضو' then
-mohmaddevberof:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من التثبيت هنا\n',result.id_)   
 else
 berof_send(msg.chat_id_,msg.id_,"*❕┇ هذا مجرد عضو \n♦*")   
@@ -9388,7 +9388,7 @@ end
 if text == 'فتح التثبيت' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع التثبيت عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9405,7 +9405,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:PINMSG'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع التثبيت عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9426,7 +9426,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الملصقات هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9456,7 +9456,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الملصقات هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9465,7 +9465,7 @@ end
 if text == 'فتح الملصقات' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع الملصقات عنه\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9482,7 +9482,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:STEKR'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع الملصقات عنه\n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9503,7 +9503,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الصور هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9533,7 +9533,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الصور هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9542,7 +9542,7 @@ end
 if text == 'فتح الصور' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع الصور عنه\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9559,7 +9559,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:PHOTO'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع الصور عنه\n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9579,7 +9579,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الاونلاين هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9609,7 +9609,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الاونلاين هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9618,7 +9618,7 @@ end
 if text == 'فتح الاونلاين' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع الاونلاين عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9635,7 +9635,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:INLIN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع الاونلاين عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9655,7 +9655,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال التوجيه هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9685,7 +9685,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال التوجيه هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9694,7 +9694,7 @@ end
 if text == 'فتح التوجيه' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع التوجيه عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9711,7 +9711,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:FWD'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع التوجيه عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9731,7 +9731,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الروابط هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9761,7 +9761,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الروابط هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9770,7 +9770,7 @@ end
 if text == 'فتح الروابط' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع الروابط عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9787,7 +9787,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:LINKS'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع الروابط عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9807,7 +9807,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال السيلفي هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9837,7 +9837,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال السيلفي هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9846,7 +9846,7 @@ end
 if text == 'فتح السيلفي' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع السيلفي عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9863,7 +9863,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:SELPHY'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع السيلفي عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9883,7 +9883,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'❕┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الصوت هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9913,7 +9913,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الصوت هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9922,7 +9922,7 @@ end
 if text == 'فتح الصوت' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع الصوت عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9939,7 +9939,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:VICO'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع الصوت عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -9959,7 +9959,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الفيديو هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -9989,7 +9989,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الفيديو هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -9998,7 +9998,7 @@ end
 if text == 'فتح الفيديو' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع الفيديو عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10015,7 +10015,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:VIDEO'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع الفيديو عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -10035,7 +10035,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الماركداون هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10065,7 +10065,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال الماركداون هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -10074,7 +10074,7 @@ end
 if text == 'فتح الماركداون' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع الماركداون عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10091,7 +10091,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:MARKDWN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع الماركداون عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -10111,7 +10111,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال المتحركه هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10141,7 +10141,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال المتحركه هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -10150,7 +10150,7 @@ end
 if text == 'فتح المتحركه' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع المتحركه عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10167,7 +10167,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:GIF'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع المتحركه عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -10187,7 +10187,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من ارسال المعرفات هنا\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10216,7 +10216,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من ارسال المعرفات هنا\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -10225,7 +10225,7 @@ end
 if text == 'فتح المعرفات' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منع المعرفات عنه \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10242,7 +10242,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:USERNAME'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منع المعرفات عنه \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -10262,7 +10262,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ عذرا لا تستطيع منع » { 
 return false  
 end    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منعه من » ( طرد - حظر ) المستخدمين\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10291,7 +10291,7 @@ if result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT
 berof_send(msg.chat_id_,msg.id_,"*✖┇ المعرف غير صحيح \n♦*")   
 return false  
 end   
-mohmaddevberof:sadd(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منعه من » ( طرد - حظر ) المستخدمين\n',result.id_)   
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = user},py_username,nil) 
@@ -10300,7 +10300,7 @@ end
 if text == 'فتح الحظر' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then   
 function by_reply(extra, result, success)   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ ☑┇ تم الغاء منعه من ( طرد - حظر ) المستخدمين \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10317,7 +10317,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*🔘┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'LOCK:BAN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منعه من ( طرد - حظر ) المستخدمين \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -10333,7 +10333,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ انا بوت استطيع طرد - ح�
 return false  
 end   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:sadd(DEVBERO..'SET:BAN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'SET:BAN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم منحه صلاحية ( طرد - حظر ) المستخدمين \n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10350,7 +10350,7 @@ berof_send(msg.chat_id_,msg.id_,"*❕┇ انا بوت لا تستطيع منع�
 return false  
 end   
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-mohmaddevberof:srem(DEVBERO..'SET:BAN'..msg.chat_id_,result.sender_user_id_)     
+mohmadDEVBEROF:srem(DEVBERO..'SET:BAN'..msg.chat_id_,result.sender_user_id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(data.first_name_)..'}'..'\n☑┇ تم الغاء منحه صلاحية ( طرد - حظر ) المستخدمين\n',result.sender_user_id_)   
 end,nil)   
 end   
@@ -10367,7 +10367,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*❕┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:sadd(DEVBERO..'SET:BAN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:sadd(DEVBERO..'SET:BAN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم منحه صلاحية ( طرد - حظر ) المستخدمين \n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
@@ -10383,28 +10383,28 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 berof_send(msg.chat_id_,msg.id_,"*❕┇ هاذا معرف قناة \n♦*")   
 return false 
 end      
-mohmaddevberof:srem(DEVBERO..'SET:BAN'..msg.chat_id_,result.id_)     
+mohmadDEVBEROF:srem(DEVBERO..'SET:BAN'..msg.chat_id_,result.id_)     
 sendMention(msg,msg.chat_id_,'👤┇ العضو » {'..CatchNamertprtp(result.type_.user_.first_name_)..'}'..'\n☑┇ تم الغاء منحه صلاحية ( طرد - حظر ) المستخدمين\n',result.id_)   
 end    
 tdcli_function ({ID = "SearchPublicChat",username_ = username},py_username,nil) 
 end
 if text ==('مسح صلاحيات الحظر') and is_owner(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'SET:BAN'..msg.chat_id_) 
+local list = mohmadDEVBEROF:smembers(DEVBERO..'SET:BAN'..msg.chat_id_) 
 if #list == 0 then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*❕┇* لا يوجد اعضاء لديهم صلاحياة الحظر ليتم مسحهم\n', 1, 'md') 
 return false  end
 local num = 0
 for k,v in pairs(list) do  
-mohmaddevberof:srem(DEVBERO..'SET:BAN'..msg.chat_id_,v) 
+mohmadDEVBEROF:srem(DEVBERO..'SET:BAN'..msg.chat_id_,v) 
 num = num + 1
 end 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ تم مسح {'..num..'} من الذين لديهم صلاحيات الحظر *\n', 1, 'md') 
 end
 if text == 'صلاحيات الحظر' and is_owner(msg) then 
-local list = mohmaddevberof:smembers(DEVBERO..'SET:BAN'..msg.chat_id_)
+local list = mohmadDEVBEROF:smembers(DEVBERO..'SET:BAN'..msg.chat_id_)
 local t = '*☑┇ قائمه اصحاب صلاحية الحظر *\n*ٴ━━━━━━━━━*\n' 
 for k, v in pairs(list) do 
-local mohmad = mohmaddevberof:get(DEVBERO.."user:Name" .. v)
+local mohmad = mohmadDEVBEROF:get(DEVBERO.."user:Name" .. v)
 if mohmad then
 local username = mohmad
 t = t..'*'..k.." ➺* ❲["..username.."](tg://user?id="..v..")❳\n"   
@@ -10426,10 +10426,10 @@ if data.channel_.status_.ID == "ChatMemberStatusKicked" then
 print('\27[30;32m»» THE BOT IS KICKED GROUP ↓\n-100'..data.channel_.id_..' \n\27[1;37m')
 rem_group('-100'..data.channel_.id_)   
 local idch = '-100'..data.channel_.id_
-mohmaddevberof:srem(DEVBERO..'bot:gpsby:id',idch) 
-mohmaddevberof:srem(DEVBERO.."bot:gpsby:id:add",idch) 
-mohmaddevberof:srem(DEVBERO.."bot:gps:id", idch) 
-tdcli_function({ID="GetChat",chat_id_ = '-100'..data.channel_.id_},function(arg,data)  linkgp = mohmaddevberof:get(DEVBERO.."link:group"..idch)  
+mohmadDEVBEROF:srem(DEVBERO..'bot:gpsby:id',idch) 
+mohmadDEVBEROF:srem(DEVBERO.."bot:gpsby:id:add",idch) 
+mohmadDEVBEROF:srem(DEVBERO.."bot:gps:id", idch) 
+tdcli_function({ID="GetChat",chat_id_ = '-100'..data.channel_.id_},function(arg,data)  linkgp = mohmadDEVBEROF:get(DEVBERO.."link:group"..idch)  
 if linkgp then  link = '['..data.title_..']('..linkgp..')'  else  link = '`'..(data.title_ or '...')..'`' end
 mohmad = '\n*👤┇ اهلا عزيزي المطور *\nٴ━━━━━━━━━━━━'..
 '\n*☑┇ لقد تم طردي من مجموعه جديده *'..
@@ -10441,19 +10441,19 @@ berof_sendMsg(SUDO,0, 1,mohmad, 1, "md")  end,nil)
 elseif data.channel_.status_.ID == "ChatMemberStatusMember" then   
 print('\27[30;32m»» THE BOT IS NOT ADMIEN ↓\n»» '..'-100'..data.channel_.id_..'\n\27[1;37m')
 rem_group('-100'..data.channel_.id_)   
-mohmaddevberof:sadd(DEVBERO..'botgps','-100'..data.channel_.id_) 
+mohmadDEVBEROF:sadd(DEVBERO..'botgps','-100'..data.channel_.id_) 
 elseif data.channel_.status_.ID == "ChatMemberStatusEditor" then   
 local mohmadch = '-100'..data.channel_.id_
-if mohmaddevberof:sismember(DEVBERO..'bot:gpsby:id:add','-100'..data.channel_.id_)  then  
+if mohmadDEVBEROF:sismember(DEVBERO..'bot:gpsby:id:add','-100'..data.channel_.id_)  then  
 print('\27[30;33m»» THE GROUP IS HAS BEEN ADD ↓\n»» '..'-100'..data.channel_.id_..'\n\27[1;37m')
 else 
 print('\27[30;35m»» THE BOT IS ADMIEN AND ADD GROUP ↓\n»» '..'-100'..data.channel_.id_..'\n\27[1;37m')
 add_group('-100'..data.channel_.id_)   
-mohmaddevberof:sadd(DEVBERO..'bot:gpsby:id','-100'..data.channel_.id_)   
-mohmaddevberof:sadd(DEVBERO.."botgps",'-100'..data.channel_.id_)  
-mohmaddevberof:sadd(DEVBERO.."bot:gpsby:id:add",'-100'..data.channel_.id_)  
-mohmaddevberof:set(DEVBERO.."test:group"..'-100'..data.channel_.id_,'BEROF')    
-mohmaddevberof:set(DEVBERO.."add:bot:group"..'-100'..data.channel_.id_, true)   
+mohmadDEVBEROF:sadd(DEVBERO..'bot:gpsby:id','-100'..data.channel_.id_)   
+mohmadDEVBEROF:sadd(DEVBERO.."botgps",'-100'..data.channel_.id_)  
+mohmadDEVBEROF:sadd(DEVBERO.."bot:gpsby:id:add",'-100'..data.channel_.id_)  
+mohmadDEVBEROF:set(DEVBERO.."test:group"..'-100'..data.channel_.id_,'BEROF')    
+mohmadDEVBEROF:set(DEVBERO.."add:bot:group"..'-100'..data.channel_.id_, true)   
 end
 return false 
 end  
@@ -10462,9 +10462,9 @@ if data.ID == "UpdateNewMessage" then
 local msg = data.message_
 text = msg.content_.text_
 if msg.is_post_ ~= false then
-mohmaddevberof:srem(DEVBERO.."bot:gpsby:id:add",msg.chat_id_)  
-mohmaddevberof:srem(DEVBERO.."botgps",msg.chat_id_)  
-mohmaddevberof:srem(DEVBERO..'bot:gpsby:id',msg.chat_id_)   
+mohmadDEVBEROF:srem(DEVBERO.."bot:gpsby:id:add",msg.chat_id_)  
+mohmadDEVBEROF:srem(DEVBERO.."botgps",msg.chat_id_)  
+mohmadDEVBEROF:srem(DEVBERO..'bot:gpsby:id',msg.chat_id_)   
 return false
 end
 if not msg.forward_info_ and msg.is_channel_post_ then
@@ -10491,37 +10491,37 @@ end
 if msg.sender_user_id_ and is_gban(msg.chat_id_,msg.sender_user_id_) then 
 kick(msg,msg.chat_id_,msg.sender_user_id_) 
 delete_msg(msg.chat_id_, {[0] = msg.id_}) 
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id')  for k,v in pairs(list) do  kick(msg,v,msg.sender_user_id_) end
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id')  for k,v in pairs(list) do  kick(msg,v,msg.sender_user_id_) end
 return false 
 end
 if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and is_gban(msg.chat_id_,msg.content_.members_[0].id_) then 
 kick(msg,msg.chat_id_,msg.content_.members_[0].id_) 
 delete_msg(msg.chat_id_, {[0] = msg.id_})  
-local list = mohmaddevberof:smembers(DEVBERO..'bot:gpsby:id')  for k,v in pairs(list) do  kick(msg,v,msg.content_.members_[0].id_) end
+local list = mohmadDEVBEROF:smembers(DEVBERO..'bot:gpsby:id')  for k,v in pairs(list) do  kick(msg,v,msg.content_.members_[0].id_) end
 end 
 if msg.content_.ID == "MessageChatAddMembers" then  
 local mem_id = msg.content_.members_  
 for i=0,#mem_id do  
-if msg.content_.members_[i].type_.ID == "UserTypeBot" and mohmaddevberof:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'del'  and not is_vipgroup(msg) then  
+if msg.content_.members_[i].type_.ID == "UserTypeBot" and mohmadDEVBEROF:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'del'  and not is_vipgroup(msg) then  
 kick(msg,msg.chat_id_,mem_id[i].id_)
 end  
-if mohmaddevberof:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
+if mohmadDEVBEROF:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end  
 end
-if msg.content_.ID == "MessageChatDeleteMember" and mohmaddevberof:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
+if msg.content_.ID == "MessageChatDeleteMember" and mohmadDEVBEROF:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end 
 if msg.content_.ID == "MessageChatAddMembers" then  
 local mem_id = msg.content_.members_  
 for i=0,#mem_id do  
-if msg.content_.members_[i].type_.ID == "UserTypeBot" and mohmaddevberof:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'ked' and not is_vipgroup(msg) then  
+if msg.content_.members_[i].type_.ID == "UserTypeBot" and mohmadDEVBEROF:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'ked' and not is_vipgroup(msg) then  
 kick(msg,msg.chat_id_,mem_id[i].id_)
 HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..msg.sender_user_id_.."") 
-mohmaddevberof:sadd(DEVBERO..'tedmembars'..msg.chat_id_,msg.sender_user_id_)
+mohmadDEVBEROF:sadd(DEVBERO..'tedmembars'..msg.chat_id_,msg.sender_user_id_)
 end  
-if mohmaddevberof:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
+if mohmadDEVBEROF:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end  
@@ -10529,11 +10529,11 @@ end
 if msg.content_.ID == "MessageChatAddMembers" then  
 local mem_id = msg.content_.members_  
 for i=0,#mem_id do  
-if msg.content_.members_[i].type_.ID == "UserTypeBot" and mohmaddevberof:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'kick' and not is_vipgroup(msg) then  
+if msg.content_.members_[i].type_.ID == "UserTypeBot" and mohmadDEVBEROF:get(DEVBERO.."lock:Bot:kick"..msg.chat_id_) == 'kick' and not is_vipgroup(msg) then  
 kick(msg,msg.chat_id_,mem_id[i].id_)
 changeChatMemberStatus(msg.chat_id_, msg.sender_user_id_, "Kicked")
 end  
-if mohmaddevberof:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
+if mohmadDEVBEROF:get(DEVBERO..'lock:tagservrbot'..msg.chat_id_) then
 delete_msg(msg.chat_id_,{[0] = msg.id_}) 
 end
 end  
@@ -10552,7 +10552,7 @@ return false end
 BEROFadd(ta,data)   
 BEROF(ta,data)   
 if not text and not is_monsh(ta) then
-if mohmaddevberof:get(DEVBERO..'lock:edit:media'..data.chat_id_) then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit:media'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end
@@ -10561,58 +10561,58 @@ if txxt and not is_vipgroup(ta) then
 if is_filter(ta,txxt) then    
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end
-if txxt:find("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") and mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") and mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end    
-if txxt:find(".[Pp][Ee]") and mohmaddevberof:get(DEVBERO..'lock:links'..msg.chat_id_) then 
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find(".[Pp][Ee]") and mohmadDEVBEROF:get(DEVBERO..'lock:links'..msg.chat_id_) then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end    
-if txxt:find("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") and mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") and mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end    
-if txxt:find("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") and mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") and mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end    
-if txxt:find("[Tt].[Mm][Ee]/") and mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find("[Tt].[Mm][Ee]/") and mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end    
-if txxt:find("[Ww][Ww][Ww].") and mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find("[Ww][Ww][Ww].") and mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end    
 if txxt:find(".[Cc][Oo][Mm]") then
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) and mohmaddevberof:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) and mohmadDEVBEROF:get(DEVBERO.."lock:Link"..msg.chat_id_) == "del" then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end    
-if txxt:find('@[%a%d_]+') and mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" then
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
-delete_msg(data.chat_id_,{[0] = data.message_id_}) 
-end    
-end
-if txxt:find('@(.+)') and mohmaddevberof:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" then
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find('@[%a%d_]+') and mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end
-if txxt:find('#[%a%d_]+') and mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" then
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find('@(.+)') and mohmadDEVBEROF:get(DEVBERO.."lock:user:name"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end
-if txxt:find('#(.+)') and mohmaddevberof:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" then
-if mohmaddevberof:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+if txxt:find('#[%a%d_]+') and mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
+delete_msg(data.chat_id_,{[0] = data.message_id_}) 
+end    
+end
+if txxt:find('#(.+)') and mohmadDEVBEROF:get(DEVBERO.."lock:hashtak"..msg.chat_id_) == "del" then
+if mohmadDEVBEROF:get(DEVBERO..'lock:edit'..data.chat_id_) then 
 delete_msg(data.chat_id_,{[0] = data.message_id_}) 
 end    
 end
@@ -10639,35 +10639,35 @@ if not filess then
 os.execute('cd requfiles ;wget https://raw.githubusercontent.com/BEROF/BEROF/master/requfiles/serpent.lua') 
 dofile('BEROF.lua')  
 end
-local list = mohmaddevberof:smembers(DEVBERO.."usersbot")
+local list = mohmadDEVBEROF:smembers(DEVBERO.."usersbot")
 for k,v in pairs(list) do
 getchat(v,function(arg,data)
 end)
 end
-local list = mohmaddevberof:smembers(DEVBERO.."botgps")
+local list = mohmadDEVBEROF:smembers(DEVBERO.."botgps")
 for k,v in pairs(list) do 
 getchat(v,function(arg,data)
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
 print('\27[30;32m»» البوت عضو في المجموعه\nتم مغادرة المجموعه \n\27[1;37m')
-mohmaddevberof:srem(DEVBERO..'botgps',v) 
+mohmadDEVBEROF:srem(DEVBERO..'botgps',v) 
 changeChatMemberStatus(v, bot_id, "Left")
 rem_group(v)   
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
-mohmaddevberof:srem(DEVBERO..'botgps',v) 
+mohmadDEVBEROF:srem(DEVBERO..'botgps',v) 
 rem_group(v)   
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
 print('\27[30;32m»» البوت مطرود في المجموعه\nتم مسح بيانات المجموعه \n\27[1;37m')
-mohmaddevberof:srem(DEVBERO..'botgps',v) 
+mohmadDEVBEROF:srem(DEVBERO..'botgps',v) 
 rem_group(v)   
 end
 if data and data.code_ and data.code_ == 400 then
-mohmaddevberof:srem(DEVBERO..'botgps',v) 
+mohmadDEVBEROF:srem(DEVBERO..'botgps',v) 
 rem_group(v)   
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusEditor" then
-mohmaddevberof:set(DEVBERO..'group:name'..v,data.title_)
+mohmadDEVBEROF:set(DEVBERO..'group:name'..v,data.title_)
 print('\27[30;32m»» البوت ادمن في المجموعه \n\27[1;37m')
 add_group(v)   
 end end) end
