@@ -1,6 +1,6 @@
 local function GET_TEXT(msg)
 if chat_type == 'super' then 
-if not mohmadDEVBEROm:get(DEVBERO..'lock:reoly:bot'..msg.chat_id_) then
+if not mohmadDEVBEROF:get(DEVBERO..'lock:reoly:bot'..msg.chat_id_) then
 if text == "هلو" or text == "هلاو" or text == "هلوو" or text == "هاي" then 
 local mohmad = {'هلاوات 😻 مشعشع 💫','اهلا وسهلا 💔','😩كل شويه يجي واحد واكلة هلو😖 والله مليت 🤕🙌','Hello😻, my friend😿, how are you👮','😎كل هلا بك في كروبنا 🤕 نورت😼'} 
 berof_sendMsg(msg.chat_id_, msg.id_, 1,mohmad[math.random(#mohmad)], 1, 'html')  
@@ -59,20 +59,20 @@ end
 local function help_rep(msg, MSG_TEXT)
 if chat_type == 'super' then 
 if MSG_TEXT[1] == 'تفعيل ردود البوت' and is_monsh(msg) then   
-if mohmadDEVBEROm:get(DEVBERO..'lock:reoly:bot'..msg.chat_id_) then
+if mohmadDEVBEROF:get(DEVBERO..'lock:reoly:bot'..msg.chat_id_) then
 mohmad = '*☑┇ تم تفعيل ردود البوت *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
-mohmadDEVBEROm:del(DEVBERO..'lock:reoly:bot'..msg.chat_id_) 
+mohmadDEVBEROF:del(DEVBERO..'lock:reoly:bot'..msg.chat_id_) 
 else
 mohmad = '*☑┇ بالتاكيد تم تفعيل ردود البوت *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
 end
 end
 if MSG_TEXT[1] == 'تعطيل ردود البوت' and is_monsh(msg) then   
-if not mohmadDEVBEROm:get(DEVBERO..'lock:reoly:bot'..msg.chat_id_) then
+if not mohmadDEVBEROF:get(DEVBERO..'lock:reoly:bot'..msg.chat_id_) then
 mohmad = '*☑┇ تم تعطيل ردود البوت *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
-mohmadDEVBEROm:set(DEVBERO..'lock:reoly:bot'..msg.chat_id_,true) 
+mohmadDEVBEROF:set(DEVBERO..'lock:reoly:bot'..msg.chat_id_,true) 
 else
 mohmad = '*☑┇ بالتاكيد تم تعطيل ردود البوت *\n✓' 
 berof_sendMsg( msg.chat_id_, msg.id_, 1, mohmad, 1, "md") 
