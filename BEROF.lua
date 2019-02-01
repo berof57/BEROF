@@ -9272,12 +9272,12 @@ end
 end
 else
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, mohmad.photos_[0].sizes_[1].photo_.persistent_id_,'\n🌐┇ ايديك ⇜ ❪ '..msg.sender_user_id_..' ❫'..username..'\n📊┇ رتبة البوت ⇜ ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب ⇜ ❪ '..rtpa..' ❫\n💬┇ تفاعلك ⇜ ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك ⇜ ❪ '..(msguser)..' ❫\n📷┇ صورك ⇜ ❪ '..mohmad.total_count_..' ❫\n')       
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, mohmad.photos_[0].sizes_[1].photo_.persistent_id_,'\n🎟┇ ايديك ⇜ ❪ '..msg.sender_user_id_..' ❫'..username..'\n🎭┇ رتبة البوت ⇜ ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب ⇜ ❪ '..rtpa..' ❫\n💌┇ تفاعلك ⇜ ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك ⇜ ❪ '..(msguser)..' ❫\n📷┇ صورك ⇜ ❪ '..mohmad.total_count_..' ❫\n')       
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
-berof_sendMsg(msg.chat_id_, msg.id_, 1,'*\n🌐┇ ايديك » ❪ '..msg.sender_user_id_..' ❫*'..usernamee..'\n*📊┇ رتبة البوت » ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب » ❪ '..rtpa..' ❫\n💬┇ تفاعلك » ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك » ❪ '..(msguser)..' ❫\n'..'\n📷┇ لا يمكنني عرض صورتك لانك قمت بحظر البوت*', 1, 'md')   
+berof_sendMsg(msg.chat_id_, msg.id_, 1,'*\n🎟┇ ايديك » ❪ '..msg.sender_user_id_..' ❫*'..usernamee..'\n*🎭┇ رتبة البوت » ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب » ❪ '..rtpa..' ❫\n💌┇ تفاعلك » ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك » ❪ '..(msguser)..' ❫\n'..'\n📷┇ لا يمكنني عرض صورتك لانك قمت بحظر البوت*', 1, 'md')   
 else
-berof_sendMsg(msg.chat_id_, msg.id_, 1, '\n*📷┇ ليس لديك صور في حسابك 🔽'..'\n🌐┇ ايديك » ❪ '..msg.sender_user_id_..' ❫*'..usernamee..'\n*📊┇ رتبة البوت » ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب » ❪ '..rtpa..' ❫\n💬┇ تفاعلك » ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك » ❪ '..(msguser)..' ❫*\n',1, 'md')      
+berof_sendMsg(msg.chat_id_, msg.id_, 1, '\n*📷┇ ليس لديك صور في حسابك 🔽'..'\n🎟┇ ايديك » ❪ '..msg.sender_user_id_..' ❫*'..usernamee..'\n*🎭┇ رتبة البوت » ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب » ❪ '..rtpa..' ❫\n💌┇ تفاعلك » ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك » ❪ '..(msguser)..' ❫*\n',1, 'md')      
 end 
 end
 end
@@ -9287,7 +9287,7 @@ local get_id_text = mohmadDEVBEROF:get(DEVBERO.."KLISH:ID")
 if get_id_text then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,get_id(msg,mohmad,get_id_text), 1, 'html')   
 else
-berof_sendMsg(msg.chat_id_, msg.id_, 1,'*\n🌐┇ ايديك » ❪ '..msg.sender_user_id_..' ❫*'..usernamee..'\n*📊┇ رتبة البوت » ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب » ❪ '..rtpa..' ❫\n💬┇ تفاعلك » ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك » ❪ '..(msguser)..' ❫\n📱┇ جهاتك » ❪ '..(addmempar)..' ❫*', 1, 'md')   
+berof_sendMsg(msg.chat_id_, msg.id_, 1,'*\n🎟┇ ايديك » ❪ '..msg.sender_user_id_..' ❫*'..usernamee..'\n*🎭┇ رتبة البوت » ❪ '..get_rtpa(msg.chat_id_,msg.sender_user_id_)..' ❫\n🔱┇ رتبة الكروب » ❪ '..rtpa..' ❫\n💌┇ تفاعلك » ❪ '..formsgg(msguser)..' ❫\n📨┇ رسائلك » ❪ '..(msguser)..' ❫\n📱┇ جهاتك » ❪ '..(addmempar)..' ❫*', 1, 'md')   
 end
 end
 end
