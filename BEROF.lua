@@ -9167,7 +9167,7 @@ end
 if tonumber(msg.sender_user_id_) == tonumber(373906612) then
 t = 'مطور السورس 🔱'
 elseif tonumber(msg.sender_user_id_) == tonumber(SUDO) then
-t = 'مطور اساسي 🔽'
+t = 'مطور اساسي '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',msg.sender_user_id_) then
 t = 'المطور 📡'
 elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..msg.chat_id_,msg.sender_user_id_) then
