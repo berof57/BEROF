@@ -563,7 +563,7 @@ return t
 end
 function get_rtpa(chat_id,user_id)
 if tonumber(user_id) == tonumber(SUDO) then
-t = 'مطور اساسي 🔽'
+t = 'مطور اساسي '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',user_id) then
 t = 'مطور البوت 🔘'
 elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..chat_id,user_id) then
@@ -9165,7 +9165,7 @@ elseif da.status_.ID == "ChatMemberStatusMember" then
 rtpa = 'عضو'
 end
 if tonumber(msg.sender_user_id_) == tonumber(373906612) then
-t = 'مطور السورس 🔱'
+t = 'مطور السورس '
 elseif tonumber(msg.sender_user_id_) == tonumber(SUDO) then
 t = 'مطور اساسي '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',msg.sender_user_id_) then
@@ -9179,7 +9179,7 @@ t = 'الادمن 🔘'
 elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',msg.sender_user_id_) then
 t = 'مميز عام 🔽'
 elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..msg.chat_id_,msg.sender_user_id_) then
-t = 'عضو مميز ☀'
+t = 'عضو مميز '
 else
 t = 'عضو 🔽'
 end
