@@ -1,6 +1,6 @@
 killall screen
 while(true) do
-rm -fr ../.telegram-cli
+rm -rf ../.telegram-cli
 screen ./BEROF.sh
 done
 echo -e "BEROF IS RUN BOT"
