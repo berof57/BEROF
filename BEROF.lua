@@ -942,7 +942,7 @@ if not is_devmohmad(msg) then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ هاذا الامر خاص بالمطور الاساسي *\n', 1, 'md') 
 return false
 end
-local Get_Files, res = https.request("https://raw.githubusercontent.com/NOVAR1/NOVAR1/master/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/berof56/novpi/master/getfile.josn")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 if Get_info then
