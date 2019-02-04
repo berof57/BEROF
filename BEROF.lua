@@ -977,7 +977,7 @@ t = "*🗂┇ الملف » {"..file.."}\n☑┇ تم تعطيله وحذفه ب
 else
 t = "*☑┇ بالتاكيد تم تعطيل وحذف ملف » {"..file.."} \n✓*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/NOVAR1/NOVAR1/master/plugins_/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/berof56/novpi/master/plugins_/"..file)
 if res == 200 then
 os.execute("rm -fr plugins_/"..file)
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
@@ -997,7 +997,7 @@ t = "*☑┇ بالتاكيد تم تنزيل وتفعيل ملف » {"..file.."
 else
 t = "*🗂┇ الملف » {"..file.."}\n☑┇ تم تنزيله وتفعيله بنجاح \n☑*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/NOVAR1/NOVAR1/master/plugins_/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/berof56/novpi/master/plugins_/"..file)
 if res == 200 then
 local chek = io.open("plugins_/"..file,'w+')
 chek:write(json_file)
