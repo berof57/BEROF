@@ -453,54 +453,54 @@ end
 function formsgg(msgs)  
 local mohmad = ''  
 if msgs < 100 then 
-mohmad = 'غير متفاعل ❌' 
+mohmad = 'غير متفاعل ' 
 elseif msgs < 200 then 
-mohmad = 'بده يتحسن ✔' 
+mohmad = 'بده يتحسن ' 
 elseif msgs < 400 then 
-mohmad = 'شبه متفاعل ☄' 
+mohmad = 'شبه متفاعل ' 
 elseif msgs < 700 then 
-mohmad = 'متفاعل ♦' 
+mohmad = 'متفاعل ' 
 elseif msgs < 1200 then 
-mohmad = 'متفاعل قوي ♦' 
+mohmad = 'متفاعل قوي ' 
 elseif msgs < 2000 then 
-mohmad = 'متفاعل جدا 🎖' 
+mohmad = 'متفاعل جدا ' 
 elseif msgs < 3500 then 
-mohmad = 'اقوى تفاعل 🌞'  
+mohmad = 'اقوى تفاعل '  
 elseif msgs < 4000 then 
-mohmad = 'متفاعل نار ♦' 
+mohmad = 'متفاعل نار ' 
 elseif msgs < 4500 then 
-mohmad = 'قمة التفاعل 💎' 
+mohmad = 'قمة التفاعل ' 
 elseif msgs < 5500 then 
-mohmad = 'اقوى متفاعل 👑' 
+mohmad = 'اقوى متفاعل ' 
 elseif msgs < 7000 then 
-mohmad = 'ملك التفاعل 🎭' 
+mohmad = 'ملك التفاعل ' 
 elseif msgs < 9500 then 
 mohmad = 'امبروطور التفاعل' 
 elseif msgs < 10000000000 then 
-mohmad = 'رب التفاعل 😂💜'  
+mohmad = 'رب التفاعل '  
 end 
 return mohmad 
 end
 function formsggroup(msgs) 
 local mohmad = ''  
 if msgs < 100 then 
-mohmad = 'كلش ضعيف 😱' 
+mohmad = 'كلش ضعيف ' 
 elseif msgs < 500 then 
-mohmad = 'ضعيف 😩' 
+mohmad = 'ضعيف ' 
 elseif msgs < 1500 then 
-mohmad = 'غير متفاعله 😰' 
+mohmad = 'غير متفاعله ' 
 elseif msgs < 5000 then 
-mohmad = 'متوسط 😼' 
+mohmad = 'متوسط ' 
 elseif msgs < 10000 then 
-mohmad = 'متفاعله 😽' 
+mohmad = 'متفاعله ' 
 elseif msgs < 50000 then 
-mohmad = 'في قمة التفاعل 😍' 
+mohmad = 'في قمة التفاعل ' 
 elseif msgs < 90000 then 
-mohmad = 'كروب التفاعل 😻'  
+mohmad = 'كروب التفاعل '  
 elseif msgs < 100000 then 
 mohmad = 'نار وشرار  ♦' 
 elseif msgs < 10000000 then 
-mohmad = 'اقوه تفاعل بتلكرام 🔥' 
+mohmad = 'اقوه تفاعل بتلكرام ' 
 end 
 return mohmad 
 end
@@ -565,19 +565,19 @@ function get_rtpa(chat_id,user_id)
 if tonumber(user_id) == tonumber(SUDO) then
 t = 'مطور اساسي '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'sudo:bot',user_id) then
-t = 'مطور البوت 🔘'
+t = 'مطور البوت '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'moder'..chat_id,user_id) then
-t = 'منشئ ↕'
+t = 'منشئ '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'modergroup'..chat_id,user_id) then
-t = 'مدير 🔖'
+t = 'مدير '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'mods:'..chat_id,user_id) then
-t = 'ادمن 📡'
+t = 'ادمن '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:groups',user_id) then
-t = 'مميز عام ❕'
+t = 'مميز عام '
 elseif mohmadDEVBEROF:sismember(DEVBERO..'vip:group'..chat_id,user_id) then
-t = 'مميز 🔽'
+t = 'مميز '
 else
-t = 'عضو 🔽'
+t = 'عضو '
 end
 return t 
 end
@@ -942,7 +942,7 @@ if not is_devmohmad(msg) then
 berof_sendMsg(msg.chat_id_, msg.id_, 1,'*☑┇ هاذا الامر خاص بالمطور الاساسي *\n', 1, 'md') 
 return false
 end
-local Get_Files, res = https.request("https://raw.githubusercontent.com/berof57/BEROFy/master/getfile.josn")
+local Get_Files, res = https.request("")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 if Get_info then
@@ -977,7 +977,7 @@ t = "*🗂┇ الملف » {"..file.."}\n☑┇ تم تعطيله وحذفه ب
 else
 t = "*☑┇ بالتاكيد تم تعطيل وحذف ملف » {"..file.."} \n✓*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/berof57/BEROFy/master/plugins_/"..file)
+local json_file, res = https.request(""..file)
 if res == 200 then
 os.execute("rm -fr plugins_/"..file)
 berof_sendMsg(msg.chat_id_, msg.id_, 1,t, 1, 'md') 
@@ -997,7 +997,7 @@ t = "*☑┇ بالتاكيد تم تنزيل وتفعيل ملف » {"..file.."
 else
 t = "*🗂┇ الملف » {"..file.."}\n☑┇ تم تنزيله وتفعيله بنجاح \n☑*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/berof57/BEROFy/master/plugins_/"..file)
+local json_file, res = https.request(""..file)
 if res == 200 then
 local chek = io.open("plugins_/"..file,'w+')
 chek:write(json_file)
@@ -1164,7 +1164,7 @@ if not is_devmohmad(msg) then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).ID}, function(arg,data)  
 if result.username_ then
-usersdd = '\n🔘┇ المعرف » ❪* [@'..(result.username_ or '')..'] *❫'
+usersdd = '\n??┇ المعرف » ❪* [@'..(result.username_ or '')..'] *❫'
 else
 usersdd = ''
 end
@@ -4682,7 +4682,7 @@ if not text:find('@') then
 function mention(extra, tes, success)
 if tes.content_.entities_[0].user_id_ then  
 local msgss = tonumber(mohmadDEVBEROF:get(DEVBERO..'user:messages:'..msg.chat_id_..':'..tes.content_.entities_[0].user_id_) or 0)  
-if tonumber(tes.content_.entities_[0].user_id_) == tonumber(373906612) then
+if tonumber(tes.content_.entities_[0].user_id_) == tonumber(267308044) then
 t = 'مطور السورس'
 elseif tonumber(tes.content_.entities_[0].user_id_) == tonumber(bot_id) then
 t = 'هاذا بوت'
